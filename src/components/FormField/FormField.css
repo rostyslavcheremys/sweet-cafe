@@ -1,0 +1,33 @@
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field__label {
+    font-family: var(--font-family);
+    color: var(--grey-light-color);
+    font-weight: 400;
+    margin: 25px 0 7px 20px;
+}
+
+.form-field__input {
+    width: 400px;
+}
+
+.form-field__input .MuiOutlinedInput-root {
+    font-family: var(--font-family);
+    color: var(--grey-dark-color);
+    height: 50px;
+    border-radius: 50px;
+    padding: 0 10px;
+}
+
+.form-field__input .MuiOutlinedInput-root fieldset,
+.form-field__input .MuiOutlinedInput-root:hover fieldset,
+.form-field__input .MuiOutlinedInput-root.Mui-focused fieldset {
+    border: 3px solid var(--grey-light-color);
+}
+
+.form-field__input .MuiIconButton-root {
+    margin-right: 2px;
+}

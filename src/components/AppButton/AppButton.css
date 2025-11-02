@@ -1,0 +1,14 @@
+.app-button.MuiButton-root {
+    font-family: var(--font-family);
+    width: 140px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 40px;
+    text-transform: none;
+    background: var(--main-color);
+    box-shadow: none;
+}
+
+.app-button.MuiButton-root:hover {
+    box-shadow: none;
+}

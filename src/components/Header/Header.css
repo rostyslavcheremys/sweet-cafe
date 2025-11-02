@@ -26,10 +26,12 @@ header {
 .header__icon-user {
     font-size: 50px !important;
     color: var(--white-color);
+    cursor: pointer;
 }
 
 .header__icon-cart {
     font-size: 40px !important;
     color: var(--white-color);
     margin-top: 5px;
+    cursor: pointer;
 }
