@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100px;
+    background: var(--main-color);
+    width: 100%;
+}
+
+.header__label {
+    font-family: var(--font-family);
+    color: var(--white-color);
+    font-weight: 400;
+    font-size: 64px;
+    text-align: center;
+}
+
+.header__buttons {
+    position: absolute;
+    right: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+.header__icon-user {
+    font-size: 50px !important;
+    color: var(--white-color);
+}
+
+.header__icon-cart {
+    font-size: 40px !important;
+    color: var(--white-color);
+    margin-top: 5px;
+}

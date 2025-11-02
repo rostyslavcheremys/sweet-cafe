@@ -1,0 +1,15 @@
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    background: var(--main-color);
+    width: 100%;
+}
+
+.footer__label {
+    font-family: var(--font-family);
+    color: var(--white-color);
+    font-weight: 400;
+    font-size: 14px;
+}
