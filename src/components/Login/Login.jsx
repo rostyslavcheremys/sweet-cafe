@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-
 import { FormField } from "../FormField/FormField.jsx";
+import { AppButton } from "../AppButton/AppButton.jsx";
+import { AuthRedirect } from "../AuthRedirect/AuthRedirect.jsx";
 
 import "./Login.css";
-import {AppButton} from "../AppButton/AppButton.jsx";
 
 export const Login = () => {
     return (
@@ -12,12 +11,23 @@ export const Login = () => {
                 <label className="login__label">Welcome!</label>
 
                 <div className="login__forms">
-                    <FormField label="Email" type="email" name="email"/>
-                    <FormField label="Password" type="password" name="password"/>
+                    <FormField
+                        label="Email"
+                        type="email"
+                        name="email"
+                    />
 
-                    <p className="helper-text">
-                        Don’t have an account? <Link to="/signup" className="text-link">Sign Up</Link>
-                    </p>
+                    <FormField
+                        label="Password"
+                        type="password"
+                        name="password"
+                    />
+
+                    <AuthRedirect
+                        text="Don’t have an account?"
+                        linkText="Sign Up"
+                        linkTo="/signup"
+                    />
 
                     <div className="login__button">
                         <AppButton label="Log In"/>

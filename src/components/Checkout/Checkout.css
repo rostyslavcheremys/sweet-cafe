@@ -1,4 +1,4 @@
-.signup {
+.checkout {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,14 +7,14 @@
     min-height: calc(100vh - 170px);
 }
 
-.signup__container {
+.checkout__container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.signup__label {
+.checkout__label {
     font-family: var(--font-family);
     color: var(--grey-dark-color);
     font-weight: 400;
@@ -22,13 +22,13 @@
     margin-bottom: -10px;
 }
 
-.signup__forms {
+.checkout__forms {
     display: flex;
     flex-direction: column;
     justify-content: start;
 }
 
-.signup__button {
+.checkout__button {
     display: flex;
     align-items: center;
     justify-content: center;

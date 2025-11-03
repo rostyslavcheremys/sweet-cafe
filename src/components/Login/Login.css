@@ -28,18 +28,6 @@
     justify-content: start;
 }
 
-.helper-text {
-    font-family: var(--font-family);
-    color: var(--grey-light-color);
-    font-weight: 400;
-    margin: 7px 0 0 20px;
-}
-
-.text-link {
-    color: var(--main-color);
-    text-decoration: none;
-}
-
 .login__button {
     display: flex;
     align-items: center;
