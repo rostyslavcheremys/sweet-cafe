@@ -1,0 +1,47 @@
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.categories__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.categories__tabs .MuiTab-root {
+    font-family: var(--second-family);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--grey-dark-color);
+    flex-shrink: 0;
+}
+
+.categories__tabs .MuiTabs-indicator {
+    height: 4px;
+    background: var(--main-color) !important;
+    border-radius: 4px;
+}
+
+.categories__tabs .MuiTab-root.Mui-selected {
+    color: var(--main-color) !important;
+}
+
+@media (max-width: 768px) {
+    .categories__tabs .MuiTab-root {
+        font-size: 14px;
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .categories__tabs .MuiTab-root {
+        font-size: 12px;
+        padding: 0 6px;
+    }
+}
