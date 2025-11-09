@@ -3,7 +3,7 @@ header {
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 100px;
+    height: 80px;
     background: var(--main-color);
     width: 100%;
 }
@@ -12,26 +12,70 @@ header {
     font-family: var(--font-family);
     color: var(--white-color);
     font-weight: 400;
-    font-size: 64px;
+    font-size: 52px;
     text-align: center;
+    cursor: pointer;
 }
 
 .header__buttons {
-    position: absolute;
-    right: 40px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 27px;
     gap: 10px;
 }
 
 .header__icon-user {
-    font-size: 50px !important;
+    font-size: 42px !important;
     color: var(--white-color);
     cursor: pointer;
 }
 
 .header__icon-cart {
-    font-size: 40px !important;
+    font-size: 35px !important;
     color: var(--white-color);
-    margin-top: 5px;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    header {
+        height: 70px;
+    }
+
+    .header__label {
+        font-size: 42px;
+    }
+
+    .header__icon-user {
+        font-size: 37px !important;
+    }
+
+    .header__icon-cart {
+        font-size: 30px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        justify-content: space-between;
+        height: 60px;
+    }
+
+    .header__label {
+        font-size: 32px;
+        padding-left: 25px;
+    }
+
+    .header__buttons {
+        right: 22px;
+    }
+
+    .header__icon-user {
+        font-size: 32px !important;
+    }
+
+    .header__icon-cart {
+        font-size: 25px !important;
+    }
 }

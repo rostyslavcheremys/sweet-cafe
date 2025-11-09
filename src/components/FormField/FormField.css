@@ -4,10 +4,10 @@
 }
 
 .form-field__label {
-    font-family: var(--font-family);
+    font-family: var(--second-family);
     color: var(--grey-light-color);
-    font-weight: 400;
-    margin: 25px 0 7px 20px;
+    font-weight: 700;
+    margin: 15px 0 7px 20px;
 }
 
 .form-field__input {
@@ -15,8 +15,9 @@
 }
 
 .form-field__input .MuiOutlinedInput-root {
-    font-family: var(--font-family);
+    font-family: var(--second-family);
     color: var(--grey-dark-color);
+    font-weight: 600;
     height: 50px;
     border-radius: 50px;
     padding: 0 10px;
@@ -43,7 +44,8 @@
     height: 50px;
     display: flex;
     align-items: center;
-    font-family: var(--font-family);
+    font-family: var(--second-family);
+    font-weight: 600;
     color: var(--grey-dark-color);
 }
 
@@ -54,7 +56,8 @@
 }
 
 .form-field__menu-item {
-    font-family: var(--font-family) !important;
+    font-family: var(--second-family) !important;
+    font-weight: 600 !important;
     color: var(--grey-dark-color) !important;
     padding: 12px 20px !important;
     background-color: #ffffff !important;
@@ -65,7 +68,7 @@
     color: #fff !important;
 }
 
-.Mui-selected {
+.form-field__input .Mui-selected {
     background-color: var(--main-color) !important;
     color: #fff !important;
 }

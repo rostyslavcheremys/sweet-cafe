@@ -1,7 +1,7 @@
 .auth-redirect {
-    font-family: var(--font-family);
+    font-family: var(--second-family);
     color: var(--grey-light-color);
-    font-weight: 400;
+    font-weight: 700;
     margin: 7px 0 0 20px;
 }
 

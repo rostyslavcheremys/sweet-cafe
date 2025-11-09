@@ -1,5 +1,6 @@
 .app-button.MuiButton-root {
-    font-family: var(--font-family);
+    font-family: var(--second-family);
+    font-weight: 700;
     width: 140px;
     height: 40px;
     font-size: 18px;

@@ -32,7 +32,7 @@ export const FormField = ({ label, type = "text", name, value, onChange }) => {
                                         onClick={() => setShowPassword((prev) => !prev)}
                                         edge="end"
                                     >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPassword ? <Visibility /> :  <VisibilityOff />}
                                     </IconButton>
                                 </InputAdornment>
                             ),

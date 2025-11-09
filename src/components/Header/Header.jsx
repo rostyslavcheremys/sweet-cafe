@@ -12,9 +12,13 @@ export const Header = () => {
         navigate("/login");
     };
 
+    const handleMenuClick = () => {
+        navigate("/menu");
+    };
+
     return(
         <header>
-            <label className="header__label">Sweet Cafe</label>
+            <label className="header__label" onClick={handleMenuClick}>Sweet Cafe</label>
 
             <div className="header__buttons">
                 <PersonIcon className="header__icon-user" onClick={handleUserClick} />
