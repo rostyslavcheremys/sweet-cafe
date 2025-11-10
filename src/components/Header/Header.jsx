@@ -8,13 +8,17 @@ import "./Header.css";
 export const Header = () => {
     const navigate = useNavigate();
 
+    const handleMenuClick = () => {
+        navigate("/");
+    };
+
     const handleUserClick = () => {
         navigate("/login");
     };
 
-    const handleMenuClick = () => {
-        navigate("/menu");
-    };
+    const handleCartClick = () => {
+        navigate("/cart");
+    }
 
     return(
         <header>
@@ -22,7 +26,7 @@ export const Header = () => {
 
             <div className="header__buttons">
                 <PersonIcon className="header__icon-user" onClick={handleUserClick} />
-                <LocalMallIcon className="header__icon-cart"/>
+                <LocalMallIcon className="header__icon-cart" onClick={handleCartClick} />
             </div>
         </header>
     );
