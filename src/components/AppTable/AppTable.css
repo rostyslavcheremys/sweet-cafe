@@ -1,0 +1,76 @@
+.app-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.app-table__container {
+    padding: 15px;
+    box-shadow: none;
+}
+
+.app-table__head {
+    font-family: var(--second-family) !important;
+    color: var(--grey-light-color) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+}
+
+.app-table__head-right {
+    font-family: var(--second-family) !important;
+    color: var(--grey-light-color) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-align: right;
+}
+
+.app-table__text {
+    font-family: var(--second-family) !important;
+    color: var(--grey-dark-color) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+}
+
+.app-table__text-right {
+    font-family: var(--second-family) !important;
+    color: var(--grey-dark-color) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-align: right;
+}
+
+.app-table__quantity {
+    font-family: var(--second-family) !important;
+    color: var(--grey-dark-color) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin: 0 10px;
+    display: inline-block;
+    min-width: 20px;
+}
+
+.app-table__button-quantity {
+    color: var(--main-color) !important;
+}
+
+.app-table__button-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    color: var(--grey-dark-color) !important;
+}
+
+.app-table__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+}
