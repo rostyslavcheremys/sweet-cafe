@@ -8,25 +8,25 @@ import "./Header.css";
 export const Header = () => {
     const navigate = useNavigate();
 
-    const handleMenuClick = () => {
+    const handleMenu = () => {
         navigate("/");
     };
 
-    const handleUserClick = () => {
+    const handleUser = () => {
         navigate("/login");
     };
 
-    const handleCartClick = () => {
+    const handleCart = () => {
         navigate("/cart");
     }
 
     return(
         <header>
-            <label className="header__label" onClick={handleMenuClick}>Sweet Cafe</label>
+            <label className="header__label" onClick={handleMenu}>Sweet Cafe</label>
 
             <div className="header__buttons">
-                <PersonIcon className="header__icon-user" onClick={handleUserClick} />
-                <LocalMallIcon className="header__icon-cart" onClick={handleCartClick} />
+                <PersonIcon className="header__icon-user" onClick={handleUser} />
+                <LocalMallIcon className="header__icon-cart" onClick={handleCart} />
             </div>
         </header>
     );

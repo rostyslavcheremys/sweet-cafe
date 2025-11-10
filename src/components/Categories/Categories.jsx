@@ -7,7 +7,7 @@ import "./Categories.css";
 export const Categories = () => {
     const [value, setValue] = useState(0);
 
-    const handleValueChange = (event, newValue) => {
+    const handleValue = (event, newValue) => {
         setValue(newValue);
     };
 
@@ -20,7 +20,7 @@ export const Categories = () => {
                     value={value}
                     scrollButtons
                     allowScrollButtonsMobile
-                    onChange={handleValueChange}
+                    onChange={handleValue}
                 >
                     <Tab label="Combo Offers" />
                     <Tab label="Hot Drinks" />
