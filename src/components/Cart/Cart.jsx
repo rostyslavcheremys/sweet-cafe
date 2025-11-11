@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AppTable } from "../AppTable/AppTable.jsx";
 import { AppButton } from "../AppButton/AppButton.jsx";
 
 import "./Cart.css";
-import {useNavigate} from "react-router-dom";
 
 export const Cart = () => {
     const navigate = useNavigate();
@@ -47,9 +47,9 @@ export const Cart = () => {
                 <AppTable
                     columns={columns}
                     rows={rows}
-                    onAdd={handleAdd}
-                    onRemove={handleRemove}
-                    onDelete={handleDelete}
+                    onIncreaseQuantity={handleAdd}
+                    onDecreaseQuantity={handleRemove}
+                    onDeleteCartItem={handleDelete}
                     showTotal={true}
                 />
 

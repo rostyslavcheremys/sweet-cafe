@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AppTable } from "../AppTable/AppTable.jsx";
 
 import "./Orders.css";
-import {useNavigate} from "react-router-dom";
 
 export const Orders = () => {
     const navigate = useNavigate();
@@ -22,8 +22,9 @@ export const Orders = () => {
         { field: "date", headerName: "Date" },
         { field: "status", headerName: "Status" },
     ];
-    const handleViewOrder = () => {
-        navigate("/");
+
+    const handleOrderDetails = () => {
+        navigate("/order/id");
     };
 
     return (
@@ -35,7 +36,7 @@ export const Orders = () => {
                     columns={columns}
                     rows={rows}
                     showActions={true}
-                    onView={handleViewOrder}
+                    onViewOrder={handleOrderDetails}
                 />
             </div>
         </div>

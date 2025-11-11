@@ -7,17 +7,17 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import "./FormField.css";
 
-export const FormField = ({ label, type = "text", name, value, onChange }) => {
+export const FormField = ({ label, type = "text", name, value, className = "", onChange }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPassword = type === "password";
 
     return (
         <div className="form-field">
-            <label className="form-field__label">{label}</label>
+            <label className={`form-field__label ${className}`}>{label}</label>
 
             <TextField
-                className="form-field__input"
+                className={`form-field__input ${className}`}
                 variant="outlined"
                 type={isPassword && showPassword ? "text" : type}
                 name={name}

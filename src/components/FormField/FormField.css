@@ -10,8 +10,18 @@
     margin: 15px 0 7px 20px;
 }
 
+.form-field__label.app-table__edit-field,
+.form-field__label.app-table__add-field {
+    margin: 1px 0 0 0;
+}
+
 .form-field__input {
     width: 400px;
+}
+
+.form-field__input.app-table__edit-field,
+.form-field__input.app-table__add-field {
+    width: 200px;
 }
 
 .form-field__input .MuiOutlinedInput-root {
