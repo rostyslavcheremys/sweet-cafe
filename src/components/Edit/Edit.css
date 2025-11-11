@@ -1,0 +1,36 @@
+.edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 220px);
+}
+
+.edit__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.edit__label {
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.edit__forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-bottom: 10px;
+}
+
+.edit__button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+}
