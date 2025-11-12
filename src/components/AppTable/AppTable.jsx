@@ -53,28 +53,30 @@ export const AppTable = ({
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
-                            {columns.map((col) => (
-                                <TableCell key={`new-${col.field}`}>
-                                    <div className="app-table__fields">
-                                        <FormField
-                                            className="app-table__add-field"
-                                            value={newItem[col.field] ?? ""}
-                                            onChange={(e) =>
-                                                setNewItem({ ...newItem, [col.field]: e.target.value })
-                                            }
-                                        />
+                        {newItem &&
+                            <TableRow>
+                                {columns.map((col) => (
+                                    <TableCell key={`new-${col.field}`}>
+                                        <div className="app-table__fields">
+                                            <FormField
+                                                className="app-table__add-field"
+                                                value={newItem[col.field] ?? ""}
+                                                onChange={(e) =>
+                                                    setNewItem({ ...newItem, [col.field]: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                    </TableCell>
+                                ))}
+                                <TableCell>
+                                    <div className="app-table__icon-container">
+                                        <IconButton onClick={() => onAddItem(newItem)}>
+                                            <AddIcon/>
+                                        </IconButton>
                                     </div>
                                 </TableCell>
-                            ))}
-                            <TableCell>
-                                <div className="app-table__icon-container">
-                                    <IconButton onClick={() => onAddItem(newItem)}>
-                                        <AddIcon/>
-                                    </IconButton>
-                                </div>
-                            </TableCell>
-                        </TableRow>
+                            </TableRow>
+                        }
                         {rows.map((row) => (
                             <TableRow key={row.id}>
                                 {columns.map((col) => (
