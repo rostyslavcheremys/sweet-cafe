@@ -19,7 +19,7 @@ footer {
         height: 50px;
     }
     .footer__label {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
@@ -29,6 +29,6 @@ footer {
     }
 
     .footer__label {
-        font-size: 12px;
+        font-size: 10px;
     }
 }

@@ -34,13 +34,6 @@
 @media (max-width: 768px) {
     .categories__tabs .MuiTab-root {
         font-size: 14px;
-        padding: 0 8px;
-    }
-}
-
-@media (max-width: 600px) {
-    .categories__tabs .MuiTab-root {
-        font-size: 12px;
-        padding: 0 6px;
+        padding: 10px;
     }
 }
