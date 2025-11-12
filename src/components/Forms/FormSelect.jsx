@@ -2,17 +2,17 @@ import { FormControl, Select, MenuItem } from "@mui/material";
 
 export const FormSelect = ({ label, name, value, onChange, options = [] }) => {
     return (
-        <div className="form-field">
-            <label className="form-field__label">{label}</label>
+        <div className="form">
+            <label className="form__label">{label}</label>
 
-            <FormControl className="form-field__input">
+            <FormControl className="form__field">
                 <Select
                     value={value}
                     onChange={onChange}
                     name={name}
                     MenuProps={{
                         PaperProps: {
-                            className: "form-field__menu"
+                            className: "form__select"
                         }
                     }}
                 >
@@ -20,7 +20,7 @@ export const FormSelect = ({ label, name, value, onChange, options = [] }) => {
                         <MenuItem
                             key={option.value}
                             value={option.value}
-                            className="form-field__menu-item"
+                            className="form__menu"
                         >
                             {option.label}
                         </MenuItem>

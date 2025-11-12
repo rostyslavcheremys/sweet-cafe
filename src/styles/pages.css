@@ -1,29 +1,33 @@
-.profile {
+.page {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
     min-height: calc(100vh - 220px);
+    width: 100%;
 }
 
-.profile__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.profile__label {
+.page__label {
     font-family: var(--second-family);
     color: var(--grey-dark-color);
     font-weight: 700;
     font-size: 32px;
+    margin-bottom: 10px;
 }
 
-.profile__button {
+.page__forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.page__button {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 25px;
+    margin-top: 30px;
+}
+
+.page__forms.edit {
+    margin-bottom: 30px;
 }

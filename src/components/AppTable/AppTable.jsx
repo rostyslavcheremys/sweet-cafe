@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import ImageIcon from "@mui/icons-material/Image";
 
-import { FormField } from "../FormField/FormField.jsx";
+import { FormField } from "../Forms/FormField.jsx";
 
 import "./AppTable.css";
 

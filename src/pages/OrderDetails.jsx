@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { AppTable } from "../AppTable/AppTable.jsx";
+import { AppTable } from "../components/AppTable/AppTable.jsx";
 
-import "./OrderDetails.css";
+import "../styles/pages.css";
 
 export const OrderDetails = () => {
 
@@ -21,17 +21,15 @@ export const OrderDetails = () => {
     ];
 
     return (
-        <div className="order-details">
-            <div className="order-details__container">
-                <label className="order-details__label">Order: id</label>
+        <div className="page">
+            <label className="page__label">Order: id</label>
 
-                <AppTable
-                    columns={columns}
-                    rows={rows}
-                    showTotal={true}
-                    showActions={false}
-                />
-            </div>
+            <AppTable
+                columns={columns}
+                rows={rows}
+                showTotal={true}
+                showActions={false}
+            />
         </div>
     );
 };

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AppTable } from "../AppTable/AppTable.jsx";
+import { AppTable } from "../components/AppTable/AppTable.jsx";
 
-import "./Orders.css";
+import "../styles/pages.css";
 
 export const Orders = () => {
     const navigate = useNavigate();
@@ -28,17 +28,15 @@ export const Orders = () => {
     };
 
     return (
-        <div className="orders">
-            <div className="orders__container">
-                <label className="orders__label">Orders</label>
+        <div className="page">
+            <label className="page__label">Orders</label>
 
-                <AppTable
-                    columns={columns}
-                    rows={rows}
-                    showActions={true}
-                    onViewOrder={handleOrderDetails}
-                />
-            </div>
+            <AppTable
+                columns={columns}
+                rows={rows}
+                showActions={true}
+                onViewOrder={handleOrderDetails}
+            />
         </div>
     );
 };

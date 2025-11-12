@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { AppTable } from "../AppTable/AppTable.jsx";
-import { FormSelect } from "../FormField/FormSelect.jsx";
+import { AppTable } from "../components/AppTable/AppTable.jsx";
+import { FormSelect } from "../components/Forms/FormSelect.jsx";
 
-import "./Edit.css";
+import "../styles/pages.css";
 
 export const Edit = () => {
     const [category, setCategory] = useState("");
@@ -58,40 +58,38 @@ export const Edit = () => {
     };
 
     return (
-        <div className="edit">
-            <div className="edit__container">
-                <label className="edit__label">Edit</label>
+        <div className="page ">
+            <label className="page__label">Edit</label>
 
-                <div className="edit__forms">
-                    <FormSelect
-                        label="Category"
-                        name="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        options={[
-                            { value: "combo", label: "Combo Offers" },
-                            { value: "hot-drinks", label: "Hot Drinks" },
-                            { value: "cold-drinks", label: "Cold Drinks" },
-                            { value: "donuts", label: "Donuts" },
-                            { value: "cakes", label: "Cakes" },
-                            { value: "cupcakes", label: "Cupcakes" },
-                            { value: "croissants", label: "Croissants" },
-                        ]}
-                    />
-                </div>
-
-                <AppTable
-                    columns={columns}
-                    rows={rows}
-                    editItem={editItem}
-                    onEditItem={handleEdit}
-                    onSaveItem={handleSave}
-                    onDeleteItem={handleDelete}
-                    onAddItem={handleAddItem}
-                    newItem={newItem}
-                    setNewItem={setNewItem}
+            <div className="page__forms edit">
+                <FormSelect
+                    label="Category"
+                    name="category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    options={[
+                        {value: "combo", label: "Combo Offers"},
+                        {value: "hot-drinks", label: "Hot Drinks"},
+                        {value: "cold-drinks", label: "Cold Drinks"},
+                        {value: "donuts", label: "Donuts"},
+                        {value: "cakes", label: "Cakes"},
+                        {value: "cupcakes", label: "Cupcakes"},
+                        {value: "croissants", label: "Croissants"},
+                    ]}
                 />
             </div>
+
+            <AppTable
+                columns={columns}
+                rows={rows}
+                editItem={editItem}
+                onEditItem={handleEdit}
+                onSaveItem={handleSave}
+                onDeleteItem={handleDelete}
+                onAddItem={handleAddItem}
+                newItem={newItem}
+                setNewItem={setNewItem}
+            />
         </div>
     );
 };

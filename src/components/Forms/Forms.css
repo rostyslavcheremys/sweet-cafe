@@ -1,30 +1,30 @@
-.form-field {
+.form {
     display: flex;
     flex-direction: column;
 }
 
-.form-field__label {
+.form__label {
     font-family: var(--second-family);
     color: var(--grey-light-color);
     font-weight: 700;
     margin: 15px 0 7px 20px;
 }
 
-.form-field__label.app-table__edit-field,
-.form-field__label.app-table__add-field {
+.form__label.app-table__edit-field,
+.form__label.app-table__add-field {
     margin: 1px 0 0 0;
 }
 
-.form-field__input {
+.form__field {
     width: 400px;
 }
 
-.form-field__input.app-table__edit-field,
-.form-field__input.app-table__add-field {
+.form__field.app-table__edit-field,
+.form__field.app-table__add-field {
     width: 200px;
 }
 
-.form-field__input .MuiOutlinedInput-root {
+.form__field .MuiOutlinedInput-root {
     font-family: var(--second-family);
     color: var(--grey-dark-color);
     font-weight: 600;
@@ -33,24 +33,24 @@
     padding: 0 10px;
 }
 
-.form-field__input .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-notchedOutline {
     border: 3px solid var(--grey-light-color) !important;
     border-radius: 50px;
 }
 
-.form-field__input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
     border-color: var(--grey-light-color) !important;
 }
 
-.form-field__input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: var(--grey-light-color) !important;
 }
 
-.form-field__input .MuiIconButton-root {
+.form__field .MuiIconButton-root {
     margin-right: 2px;
 }
 
-.form-field__input .MuiSelect-select {
+.form__field .MuiSelect-select {
     height: 50px;
     display: flex;
     align-items: center;
@@ -59,13 +59,13 @@
     color: var(--grey-dark-color);
 }
 
-.form-field__menu {
+.form__select {
     border-radius: 20px !important;
     padding: 0;
     background: #fff;
 }
 
-.form-field__menu-item {
+.form__menu {
     font-family: var(--second-family) !important;
     font-weight: 600 !important;
     color: var(--grey-dark-color) !important;
@@ -73,12 +73,12 @@
     background-color: #ffffff !important;
 }
 
-.form-field__menu-item:hover {
+.form__menu:hover {
     background-color: var(--main-color) !important;
     color: #fff !important;
 }
 
-.form-field__input .Mui-selected {
+.form-field .Mui-selected {
     background-color: var(--main-color) !important;
     color: #fff !important;
 }

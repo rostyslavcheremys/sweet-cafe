@@ -7,18 +7,15 @@
 }
 
 .categories__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     overflow-x: auto;
 }
 
 .categories__tabs .MuiTab-root {
     font-family: var(--second-family);
+    color: var(--grey-dark-color);
     font-size: 16px;
     font-weight: 700;
-    color: var(--grey-dark-color);
     flex-shrink: 0;
 }
 

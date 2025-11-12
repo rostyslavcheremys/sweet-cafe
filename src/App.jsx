@@ -1,25 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Layout } from "./components/Layout/Layout.jsx";
-import { Menu } from "./components/Menu/Menu.jsx"
-import { Login } from  "./components/Login/Login.jsx";
-import { Signup } from "./components/Signup/Signup.jsx";
-import { Profile } from "./components/Profile/Profile.jsx";
-import { Cart } from "./components/Cart/Cart.jsx";
-import { Checkout } from "./components/Checkout/Checkout.jsx"
-import { Orders } from "./components/Orders/Orders.jsx";
-import { OrderDetails } from "./components/OrderDetails/OrderDetails.jsx";
-import { Edit } from "./components/Edit/Edit.jsx";
-import { Account } from "./components/Account/Account.jsx";
-
-import './App.css';
+import { Layout } from "./pages/Layout/Layout.jsx";
+import { Home } from "./pages/Home.jsx"
+import { Login } from "./pages/Login.jsx";
+import { Signup } from "./pages/Signup.jsx";
+import { Profile } from "./pages/Profile.jsx";
+import { Cart } from "./pages/Cart.jsx";
+import { Checkout } from "./pages/Checkout.jsx"
+import { Orders } from "./pages/Orders.jsx";
+import { OrderDetails } from "./pages/OrderDetails.jsx";
+import { Edit } from "./pages/Edit.jsx";
+import { Account } from "./pages/Account.jsx";
 
 export const App = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
-                    <Route path="/" element={<Menu />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />
                     <Route path="profile" element={<Profile />} />
