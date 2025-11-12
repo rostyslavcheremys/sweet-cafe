@@ -7,8 +7,10 @@
 }
 
 .categories__container {
-    width: 100%;
+    display: flex;
+    justify-content: center;
     overflow-x: auto;
+    width: 100%;
 }
 
 .categories__tabs .MuiTab-root {
