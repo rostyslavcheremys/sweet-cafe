@@ -10,6 +10,7 @@ import { Checkout } from "./components/Checkout/Checkout.jsx"
 import { Orders } from "./components/Orders/Orders.jsx";
 import { OrderDetails } from "./components/OrderDetails/OrderDetails.jsx";
 import { Edit } from "./components/Edit/Edit.jsx";
+import { Account } from "./components/Account/Account.jsx";
 
 import './App.css';
 
@@ -27,6 +28,7 @@ export const App = () => {
                     <Route path="orders" element={<Orders />} />
                     <Route path="/order/id" element={<OrderDetails />} />
                     <Route path="edit" element={<Edit />} />
+                    <Route path="account" element={<Account />} />
                 </Route>
             </Routes>
         </BrowserRouter>
