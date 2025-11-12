@@ -8,7 +8,7 @@ import "../styles/pages.css";
 export const Edit = () => {
     const [category, setCategory] = useState("");
     const [editItem, setEditItem] = useState(null);
-    const [newItem, setNewItem] = useState({ name: "", size: "", price: "" });
+    const [newItem, setNewItem] = useState(null);
 
     const [rows, setRows] = useState([
         { id: 1, name: "Coca-Cola", size: "500 ml", price: 0.50 },
@@ -32,30 +32,30 @@ export const Edit = () => {
     const handleEdit = (updatedRow) => {
         setRows(rows.map(r => r.id === updatedRow.id ? updatedRow : r));
         setEditItem(updatedRow.id);
-    };
+    }
 
     const handleSave = (updatedData) => {
         setRows(rows.map(r => r.id === editItem.id ? { ...r, ...updatedData } : r));
         setEditItem(null);
-    };
+    }
 
     const handleDelete = (row) => {
         setRows(rows.filter(r => r.id !== row.id));
-    };
+    }
 
-    const handleAddItem = () => {
+    const handleStartAdd = () => {
+        const emptyItem = columns.reduce((acc, col) => ({ ...acc, [col.field]: "" }), {});
+        setNewItem(emptyItem);
+    }
+
+    const handleCancelAdd = () => setNewItem(null);
+
+    const handleSaveAdd = () => {
         if (!newItem.name || !newItem.size || !newItem.price) return;
-
-        const newProduct = {
-            id: Date.now(),
-            name: newItem.name,
-            size: newItem.size,
-            price: Number(newItem.price),
-        };
-
-        setRows([...rows, newProduct]);
-        setNewItem({ name: "", size: "", price: "" });
-    };
+        const itemToAdd = { ...newItem, id: Date.now(), price: Number(newItem.price) };
+        setRows([...rows, itemToAdd]);
+        setNewItem(null);
+    }
 
     return (
         <div className="page ">
@@ -83,12 +83,15 @@ export const Edit = () => {
                 columns={columns}
                 rows={rows}
                 editItem={editItem}
+                newItem={newItem}
+                setNewItem={setNewItem}
                 onEditItem={handleEdit}
                 onSaveItem={handleSave}
                 onDeleteItem={handleDelete}
-                onAddItem={handleAddItem}
-                newItem={newItem}
-                setNewItem={setNewItem}
+                onStartAddItem={handleStartAdd}
+                onCancelAddItem={handleCancelAdd}
+                onSaveAddItem={handleSaveAdd}
+                allowAddItem={true}
             />
         </div>
     );
