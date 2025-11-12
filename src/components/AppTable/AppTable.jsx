@@ -41,7 +41,7 @@ export const AppTable = ({
     return (
         <div className="app-table">
             <TableContainer className="app-table__container">
-                <Table>
+                <Table className="app-table__table">
                     <TableHead>
                         <TableRow>
                             {columns.map((col) => (
@@ -165,12 +165,12 @@ export const AppTable = ({
                         ))}
                         {showTotal && (
                             <TableRow>
-                                <TableCell className="app-table__cell head left">Total Price</TableCell>
-                                <TableCell/>
-                                <TableCell/>
-                                <TableCell/>
-                                <TableCell className="app-table__cell head">{formatPrice(total)}</TableCell>
-                                {showActions && <TableCell/>}
+                                <TableCell className="app-table__cell head left total">Total Price</TableCell>
+                                <TableCell className="head "/>
+                                <TableCell className="head "/>
+                                <TableCell className="head "/>
+                                <TableCell className="app-table__cell head total">{formatPrice(total)}</TableCell>
+                                {showActions && <TableCell className="head "/>}
                             </TableRow>
                         )}
                     </TableBody>

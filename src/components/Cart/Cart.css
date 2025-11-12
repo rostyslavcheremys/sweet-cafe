@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .cart__label {
@@ -19,11 +20,12 @@
     color: var(--grey-dark-color);
     font-weight: 700;
     font-size: 32px;
+    margin-bottom: 10px;
 }
 
 .cart__button {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 25px;
+    margin-top: 30px;
 }
