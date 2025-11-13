@@ -31,3 +31,9 @@
 .page__forms.edit {
     margin-bottom: 30px;
 }
+
+@media (max-width: 768px) {
+    .page__label {
+        font-size: 26px;
+    }
+}

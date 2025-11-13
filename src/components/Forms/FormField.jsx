@@ -36,8 +36,7 @@ export const FormField = ({ label, type = "text", name, value, className = "", o
                                     </IconButton>
                                 </InputAdornment>
                             ),
-                        }
-                        : {},
+                        } : {},
                 }}
             />
         </div>
