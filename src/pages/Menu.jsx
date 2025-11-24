@@ -3,7 +3,7 @@ import { ItemCards } from "../components/ItemCards/ItemCards.jsx";
 
 import "../styles/pages.css";
 
-export const Home = () => {
+export const Menu = () => {
     return (
         <div className="page">
             <Categories />

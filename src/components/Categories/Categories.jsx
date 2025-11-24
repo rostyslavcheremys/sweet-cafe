@@ -22,7 +22,6 @@ export const Categories = () => {
                     allowScrollButtonsMobile
                     onChange={handleValue}
                 >
-                    <Tab label="Combo Offers" />
                     <Tab label="Drinks" />
                     <Tab label="Ice Creams" />
                     <Tab label="Donuts" />

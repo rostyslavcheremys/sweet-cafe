@@ -8,11 +8,30 @@
 }
 
 .page__label {
+    text-align: center;
     font-family: var(--second-family);
     color: var(--grey-dark-color);
     font-weight: 700;
     font-size: 32px;
     margin-bottom: 10px;
+}
+
+.page__welcome {
+    text-align: center;
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.page__hint {
+    text-align: center;
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 .page__forms {
@@ -36,4 +55,45 @@
     .page__label {
         font-size: 26px;
     }
+
+    .page__welcome {
+        font-size: 24px;
+    }
+
+    .page__hint {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page__welcome {
+        font-size: 20px;
+    }
+}
+
+.donut-wrapper {
+    display: inline-block;
+    animation: pulse 1s infinite;
+}
+
+.donut {
+    width: 250px;
+    height: 250px;
+    background-image: url('../../public/images/donut1.png');
+    background-size: cover;
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
