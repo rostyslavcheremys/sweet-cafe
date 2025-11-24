@@ -8,7 +8,7 @@ import "../styles/pages.css";
 export const Orders = () => {
     const navigate = useNavigate();
 
-    const [rows, setRows] = useState([
+    const [rows,] = useState([
         { id: 1, price: 1.50, items: 3, time: "14:34", date: "27.04.25", status: "Processing" },
         { id: 2, price: 1, items: 2, time: "09:59", date: "25.04.25", status: "Completed" },
         { id: 3, price: 5, items: 5, time: "16:27", date: "22.04.25", status: "Completed" },

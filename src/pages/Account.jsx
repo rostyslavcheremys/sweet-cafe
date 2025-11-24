@@ -14,16 +14,12 @@ export const Account = () => {
         confirmPassword: ""
     });
 
-    const [error, setError] = useState("");
-
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
-        setError("");
     }
 
     const handleSave = () => {
         if (form.password !== form.confirmPassword) {
-            setError("Passwords do not match");
             return;
         }
 
