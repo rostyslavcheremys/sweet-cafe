@@ -1,3 +1,5 @@
+![CI/CD](https://github.com/rostyslavcheremys/sweet-cafe/actions/workflows/ci-cd.yml/badge.svg)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
