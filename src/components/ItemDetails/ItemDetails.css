@@ -1,0 +1,58 @@
+.item-details .MuiPaper-root {
+    border-radius: 12px !important;
+}
+
+.item-details__title {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--second-family) !important;
+    color: var(--grey-dark-color);
+    font-weight: 700 !important;
+    font-size: 18px;
+    padding: 20px 25px 15px !important;
+}
+
+.item-details__button {
+    padding: 0 0 0 25px !important;
+}
+
+.item-details__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px 20px!important;
+}
+
+.item-details__image {
+    max-width: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.item-details__label {
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.item-details__description {
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 400;
+    font-size: 16px;
+    padding-top: 15px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.item-details__details {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px !important;
+}
+
+.item-details__actions {
+    display: flex;
+    justify-content: center !important;
+    padding: 0 25px 20px!important;
+}

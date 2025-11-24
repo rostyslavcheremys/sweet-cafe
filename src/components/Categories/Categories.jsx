@@ -23,12 +23,11 @@ export const Categories = () => {
                     onChange={handleValue}
                 >
                     <Tab label="Combo Offers" />
-                    <Tab label="Hot Drinks" />
-                    <Tab label="Cold Drinks" />
+                    <Tab label="Drinks" />
+                    <Tab label="Ice Creams" />
                     <Tab label="Donuts" />
                     <Tab label="Cakes" />
                     <Tab label="Cupcakes" />
-                    <Tab label="Croissants" />
                 </Tabs>
             </div>
         </div>

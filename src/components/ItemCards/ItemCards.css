@@ -1,0 +1,36 @@
+.item-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 100%;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.card-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    gap: 8px;
+}
+
+.card-label {
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 700;
+    font-size: 18px;
+}
