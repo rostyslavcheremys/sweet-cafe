@@ -16,21 +16,13 @@
     margin-bottom: 10px;
 }
 
-.page__welcome {
+.page__label-welcome {
     text-align: center;
     font-family: var(--second-family);
     color: var(--grey-dark-color);
     font-weight: 600;
     font-size: 28px;
     margin-bottom: 10px;
-}
-
-.page__hint {
-    font-family: var(--second-family);
-    color: var(--grey-dark-color);
-    font-weight: 400;
-    font-size: 18px;
-    margin-top: 10px;
 }
 
 .page__forms {
@@ -55,71 +47,13 @@
         font-size: 26px;
     }
 
-    .page__welcome {
+    .page__label-welcome {
         font-size: 24px;
-    }
-
-    .page__hint {
-        font-size: 16px;
     }
 }
 
 @media (max-width: 600px) {
-    .page__welcome {
+    .page__label-welcome {
         font-size: 20px;
     }
-}
-
-.donut-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    animation: pulse 1s infinite;
-}
-
-.donut {
-    width: 250px;
-    height: 250px;
-    background-image: url('../../src/assets/donut1.png');
-    background-size: cover;
-    border-radius: 50%;
-    animation: spin 10s linear infinite;
-    margin: 0 auto;
-    cursor: pointer;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-
-.sprinkles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.sprinkles span {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: sprinkle 4s linear infinite;
-}
-
-@keyframes sprinkle {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    50% { transform: translateY(20px) rotate(180deg); opacity: 0.5; }
-    100% { transform: translateY(0) rotate(360deg); opacity: 1; }
 }

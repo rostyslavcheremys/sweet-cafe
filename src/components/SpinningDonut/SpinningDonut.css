@@ -1,0 +1,43 @@
+.spinning-donut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: pulse 1s infinite;
+}
+
+.donut {
+    width: 250px;
+    height: 250px;
+    background-image: url('../../assets/donut1.png');
+    background-size: cover;
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.donut__hint {
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .donut__hint {
+        font-size: 16px;
+    }
+}
