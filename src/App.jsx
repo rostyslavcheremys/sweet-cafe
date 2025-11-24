@@ -2,7 +2,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 
 import { Layout } from "./pages/Layout/Layout.jsx";
 import { Home } from "./pages/Home.jsx";
-import { Menu } from "./pages/Menu.jsx"
+import { Menu } from "./pages/Menu.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Signup } from "./pages/Signup.jsx";
 import { Profile } from "./pages/Profile.jsx";

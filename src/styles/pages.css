@@ -26,7 +26,6 @@
 }
 
 .page__hint {
-    text-align: center;
     font-family: var(--second-family);
     color: var(--grey-dark-color);
     font-weight: 400;
@@ -72,14 +71,17 @@
 }
 
 .donut-wrapper {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     animation: pulse 1s infinite;
 }
 
 .donut {
     width: 250px;
     height: 250px;
-    background-image: url('../../public/images/donut1.png');
+    background-image: url('../../src/assets/donut1.png');
     background-size: cover;
     border-radius: 50%;
     animation: spin 10s linear infinite;
@@ -96,4 +98,28 @@
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+
+.sprinkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.sprinkles span {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: sprinkle 4s linear infinite;
+}
+
+@keyframes sprinkle {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(20px) rotate(180deg); opacity: 0.5; }
+    100% { transform: translateY(0) rotate(360deg); opacity: 1; }
 }
