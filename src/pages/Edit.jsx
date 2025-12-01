@@ -26,6 +26,7 @@ export const Edit = () => {
         { field: "name", headerName: "Name", align: "left" },
         { field: "size", headerName: "Size" },
         { field: "price", headerName: "Price" },
+        { field: "total_quantity", headerName: "Quantity" },
         { field: "image", headerName: "Image" },
     ];
 
@@ -68,13 +69,11 @@ export const Edit = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     options={[
-                        {value: "combo", label: "Combo Offers"},
-                        {value: "hot-drinks", label: "Hot Drinks"},
-                        {value: "cold-drinks", label: "Cold Drinks"},
+                        {value: "drinks", label: "Drinks"},
+                        {value: "ice-creams", label: "Ice Creams"},
                         {value: "donuts", label: "Donuts"},
                         {value: "cakes", label: "Cakes"},
                         {value: "cupcakes", label: "Cupcakes"},
-                        {value: "croissants", label: "Croissants"},
                     ]}
                 />
             </div>
