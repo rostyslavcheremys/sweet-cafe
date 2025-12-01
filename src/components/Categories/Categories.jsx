@@ -4,11 +4,12 @@ import { Tabs, Tab } from "@mui/material";
 
 import "./Categories.css";
 
-export const Categories = () => {
+export const Categories = ({ categories, setSelectedCategory }) => {
     const [value, setValue] = useState(0);
 
     const handleValue = (event, newValue) => {
         setValue(newValue);
+        setSelectedCategory(categories[newValue]?.id || null);
     };
 
     return (
@@ -22,11 +23,9 @@ export const Categories = () => {
                     allowScrollButtonsMobile
                     onChange={handleValue}
                 >
-                    <Tab label="Drinks" />
-                    <Tab label="Ice Creams" />
-                    <Tab label="Donuts" />
-                    <Tab label="Cakes" />
-                    <Tab label="Cupcakes" />
+                    {categories.map((category, index) => (
+                        <Tab key={category.id || index} label={category.name} />
+                    ))}
                 </Tabs>
             </div>
         </div>

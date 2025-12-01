@@ -2,12 +2,10 @@ import { useState } from "react";
 
 import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
-import { items } from "../../items.js";
-
 import "./ItemCards.css";
 
-export const ItemCards = () => {
-    const [selectedItem, setSelectedItem] = useState(null); // обраний продукт
+export const ItemCards = ({ items, selectedCategory }) => {
+    const [selectedItem, setSelectedItem] = useState(null);
     const [open, setOpen] = useState(false);
 
     const handleOpen = (item) => {
@@ -20,20 +18,24 @@ export const ItemCards = () => {
         setSelectedItem(null);
     };
 
+    const filteredItems = selectedCategory
+        ? items.filter(item => item.category?.id === selectedCategory)
+        : items;
+
     return (
         <>
             <div className="item-cards">
-                {items.map((item, index) => (
+                {filteredItems.map((item) => (
                     <div
                         className="item-card"
-                        key={index}
+                        key={item.id}
                         onClick={() => handleOpen(item)}
                     >
                         <div className="card">
-                            <img className="card-image" src={item.image} alt={item.title} />
+                            <img className="card-image" src={item.image_url} alt={item.name} />
                             <div className="card-content">
-                                <label className="card-label">{item.title}</label>
-                                <label className="card-label">{`$${item.price}`}</label>
+                                <label className="card-label">{item.name}</label>
+                                <label className="card-label">{`$${item.price.toFixed(2)}`}</label>
                             </div>
                         </div>
                     </div>
@@ -43,8 +45,8 @@ export const ItemCards = () => {
             {selectedItem && (
                 <ItemDetails
                     open={open}
-                    onClose={handleClose}
                     item={selectedItem}
+                    onClose={handleClose}
                 />
             )}
         </>
