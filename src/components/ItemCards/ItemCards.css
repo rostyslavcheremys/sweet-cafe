@@ -32,5 +32,6 @@
     font-family: var(--second-family);
     color: var(--grey-dark-color);
     font-weight: 700;
-    font-size: 18px;
+    font-size: clamp(16px, 2vw, 18px);
+    white-space: nowrap;
 }
