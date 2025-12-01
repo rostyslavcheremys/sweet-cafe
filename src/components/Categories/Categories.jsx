@@ -7,6 +7,7 @@ import "./Categories.css";
 export const Categories = ({ categories, setSelectedCategory }) => {
     const [value, setValue] = useState(0);
 
+
     const handleValue = (event, newValue) => {
         setValue(newValue);
         setSelectedCategory(categories[newValue]?.id || null);
