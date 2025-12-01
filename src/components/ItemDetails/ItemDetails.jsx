@@ -12,27 +12,29 @@ import { AppButton } from "../AppButton/AppButton.jsx";
 
 import "./ItemDetails.css";
 
-export const ItemDetails = ({ open, onClose, item }) => {
+export const ItemDetails = ({ open, item, onClose }) => {
     const handleAddToCart = () => {
-        console.log(item.title);
+        console.log(item.name);
         onClose();
     };
 
     return (
         <Dialog className="item-details" open={open} onClose={onClose}>
             <DialogTitle className="item-details__title">
-                {item.title}
-                <IconButton className="item-details__button" onClick={onClose}>
-                    <CloseIcon />
-                </IconButton>
+                {item.name}
+                <div className="item-details__close-icon">
+                    <IconButton className="item-details__button" onClick={onClose}>
+                        <CloseIcon />
+                    </IconButton>
+                </div>
             </DialogTitle>
             <DialogContent className="item-details__content">
-                <img className="item-details__image" src={item.image} alt={item.title}/>
+                <img className="item-details__image" src={item.image_url} alt={item.name}/>
                 <label className="item-details__description">{item.description}</label>
 
                 <div className="item-details__details">
                     <label className="item-details__label">{item.size}</label>
-                    <label className="item-details__label">{`$${item.price}`}</label>
+                    <label className="item-details__label">{`$${item.price.toFixed(2)}`}</label>
                 </div>
             </DialogContent>
             <DialogActions className="item-details__actions">
