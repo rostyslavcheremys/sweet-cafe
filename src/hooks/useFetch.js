@@ -11,6 +11,7 @@ export function useFetch(fetchFunction, dependencies = [], transformData = data 
             try {
                 const res = await fetchFunction();
                 setData(transformData(res.data));
+                console.log(transformData(res.data));
             } catch (err) {
                 setError(err);
                 console.error("Fetch error:", err);
