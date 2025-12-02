@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Layout } from "./pages/Layout/Layout.jsx";
 import { Home } from "./pages/Home.jsx";
@@ -15,7 +15,7 @@ import { Account } from "./pages/Account.jsx";
 
 export const App = () => {
     return (
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />
@@ -31,6 +31,6 @@ export const App = () => {
                     <Route path="/account" element={<Account />} />
                 </Route>
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     );
 }
