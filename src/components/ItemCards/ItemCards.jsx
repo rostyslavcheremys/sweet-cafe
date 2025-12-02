@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
+import placeholder from "../../assets/placeholder.webp";
+
 import "./ItemCards.css";
 
 export const ItemCards = ({ items, selectedCategory }) => {
@@ -32,10 +34,10 @@ export const ItemCards = ({ items, selectedCategory }) => {
                         onClick={() => handleOpen(item)}
                     >
                         <div className="card">
-                            <img className="card-image" src={item.image_url} alt={item.name} />
-                            <div className="card-content">
-                                <label className="card-label">{item.name}</label>
-                                <label className="card-label">{`$${item.price.toFixed(2)}`}</label>
+                            <img className="card__image" src={item.image_ur || placeholder} alt={item.name} />
+                            <div className="card__content">
+                                <label className="card__label">{item.name}</label>
+                                <label className="card__label">{`$${item.price.toFixed(2)}`}</label>
                             </div>
                         </div>
                     </div>

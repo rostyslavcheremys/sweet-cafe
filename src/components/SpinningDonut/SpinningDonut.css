@@ -9,7 +9,7 @@
 .donut {
     width: 250px;
     height: 250px;
-    background-image: url('../../assets/donut.png');
+    background-image: url('../../assets/donut.webp');
     background-size: cover;
     border-radius: 50%;
     animation: spin 10s linear infinite;
