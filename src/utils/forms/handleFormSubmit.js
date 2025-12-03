@@ -8,9 +8,7 @@ export const handleFormSubmit = (
     navigate
 ) => async (formData) => {
     try {
-        const response = await postData(formData);
-
-        const data = response.data;
+        const data = await postData(formData);
 
         if (data?.token) {
             AuthService.setToken(data.token);
