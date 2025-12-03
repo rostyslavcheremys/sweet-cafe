@@ -7,12 +7,12 @@ import { useGet } from "../hooks/useGet.js";
 
 import { getUser } from "../../api.js";
 
-import { AuthService } from "../services/AuthService.js";
+import { AuthService } from "../services/authService.js";
 
 export const Profile = () => {
     const navigate = useNavigate();
 
-   /* const { data: user, isLoading, error } = useGet(getUser, []);*/
+    const { data: user, isLoading, error } = useGet(getUser, []);
 
     const handleEdit = () => navigate("/edit");
 
@@ -21,8 +21,8 @@ export const Profile = () => {
     const handleOrders = () => navigate("/orders");
 
     const handleSignOut = () => {
-      /*  AuthService.removeToken();
-        localStorage.removeItem("user");*/
+        AuthService.removeToken();
+        localStorage.removeItem("user");
         navigate("/login");
     };
 
@@ -30,13 +30,13 @@ export const Profile = () => {
 
     return (
         <Loader
-          /*  isLoading={false}
-            error={false}*/
+            isLoading={isLoading}
+            error={error}
             errorText="Failed to load profile!"
         >
             <div className="page">
                 <span className="page__label">
-                    {/*Welcome{user?.name ? `, ${user.name}` : ""}!*/}
+                    Welcome{user?.name ? `, ${user.name}` : ""}!
                 </span>
 
                 <div className="page__button">
