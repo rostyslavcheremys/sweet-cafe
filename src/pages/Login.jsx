@@ -1,37 +1,92 @@
-import { FormField } from "../components/Forms/FormField.jsx";
-import { AuthRedirect } from "../components/AuthRedirect/AuthRedirect.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-import "../styles/pages.css";
+import { Loader } from "../components/Loader/Loader.jsx";
+import { FormController } from "../components/FormController/FormController.jsx";
+import { AppButton } from "../components/AppButton/AppButton.jsx";
+import { AuthRedirect } from "../components/AuthRedirect/AuthRedirect.jsx";
+import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
+
+import { usePost } from "../hooks/usePost.js";
+import { useMessageDialog } from "../hooks/useMessageDialog.js";
+
+import { getEmailValidation } from "../utils/validations/email.js";
+import { getPasswordValidation } from "../utils/validations/password.js";
+import { handleFormSubmit } from "../utils/forms/handleFormSubmit.js";
+
+import { login } from "../../api.js";
 
 export const Login = () => {
-    return (
-        <div className="page">
-            <label className="page__label">Welcome!</label>
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
 
-            <div className="page__forms">
-                <FormField
-                    label="Email"
-                    type="email"
-                    name="email"
-                />
+    const navigate = useNavigate();
 
-                <FormField
-                    label="Password"
-                    type="password"
-                    name="password"
-                />
+    const { control, handleSubmit } = useForm({
+        defaultValues: {
+            email: "",
+            password: ""
+        },
+        mode: "onChange"
+    });
 
-                <AuthRedirect
-                    text="Don’t have an account?"
-                    linkText="Sign Up"
-                    linkTo="/signup"
-                />
+    const { postData, isLoading } = usePost(login);
 
-                <div className="page__button">
-                    <AppButton label="Log In"/>
-                </div>
-            </div>
-        </div>
+    const onLoginSubmit = handleFormSubmit(
+        postData,
+        showMessage,
+        "Logged in successfully!",
+        "Login failed!",
+        navigate,
     );
-}
+
+    return (
+        <Loader isLoading={isLoading}>
+            <div className="page">
+                <span className="page__label">Welcome!</span>
+
+                <form className="page__forms" onSubmit={handleSubmit(onLoginSubmit)}>
+                    <FormController
+                        control={control}
+                        name="email"
+                        label="Email"
+                        type="email"
+                        rules={getEmailValidation()}
+                    />
+
+                    <FormController
+                        control={control}
+                        name="password"
+                        label="Password"
+                        type="password"
+                        rules={getPasswordValidation()}
+                    />
+
+                    <AuthRedirect
+                        text="Don’t have an account?"
+                        linkText="Sign Up"
+                        linkTo="/signup"
+                    />
+
+                    <div className="page__button">
+                        <AppButton
+                            type="submit"
+                            label="Log In"
+                            disabled={isLoading}
+                        />
+                    </div>
+                </form>
+
+                <MessageDialog
+                    open={messageOpen}
+                    handleClose={handleMessageClose}
+                    message={message}
+                />
+            </div>
+        </Loader>
+    );
+};

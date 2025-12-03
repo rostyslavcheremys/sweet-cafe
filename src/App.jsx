@@ -13,6 +13,8 @@ import { OrderDetails } from "./pages/OrderDetails.jsx";
 import { Edit } from "./pages/Edit.jsx";
 import { Account } from "./pages/Account.jsx";
 
+import "./styles/pages.css";
+
 export const App = () => {
     return (
         <BrowserRouter>

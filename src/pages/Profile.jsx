@@ -1,45 +1,72 @@
 import { useNavigate } from "react-router-dom";
 
+import { Loader } from "../components/Loader/Loader.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
 
-import "../styles/pages.css";
+import { useGet } from "../hooks/useGet.js";
+
+import { getUser } from "../../api.js";
+
+import { AuthService } from "../services/AuthService.js";
 
 export const Profile = () => {
     const navigate = useNavigate();
 
-    const handleEdit = () => {
-        navigate("/edit");
-    }
+    const { data: user, isLoading, error } = useGet(getUser, []);
 
-    const handleAccount = () => {
-        navigate("/account");
-    }
+    const handleEdit = () => navigate("/edit");
 
-    const handleOrders = () => {
-        navigate("/orders");
-    }
+    const handleAccount = () => navigate("/account");
 
-    const handleSignOut = () => {}
+    const handleOrders = () => navigate("/orders");
+
+    const handleSignOut = () => {
+        AuthService.removeToken();
+        localStorage.removeItem("user");
+        navigate("/login");
+    };
+
+    console.log("Token:", AuthService.getToken());
 
     return (
-        <div className="page">
-            <label className="page__label">Welcome, Name!</label>
+        <Loader
+            isLoading={isLoading}
+            error={error}
+            errorText="Failed to load profile!"
+        >
+            <div className="page">
+                <span className="page__label">
+                    Welcome{user?.name ? `, ${user.name}` : ""}!
+                </span>
 
-            <div className="page__button">
-                <AppButton label="Edit" onClick={handleEdit}/>
-            </div>
+                <div className="page__button">
+                    <AppButton
+                        label="Edit"
+                        onClick={handleEdit}
+                    />
+                </div>
 
-            <div className="page__button">
-                <AppButton label="Account" onClick={handleAccount}/>
-            </div>
+                <div className="page__button">
+                    <AppButton
+                        label="Account"
+                        onClick={handleAccount}
+                    />
+                </div>
 
-            <div className="page__button">
-                <AppButton label="Orders" onClick={handleOrders}/>
-            </div>
+                <div className="page__button">
+                    <AppButton
+                        label="Orders"
+                        onClick={handleOrders}
+                    />
+                </div>
 
-            <div className="page__button">
-                <AppButton label="Sign Out" onClick={handleSignOut}/>
+                <div className="page__button">
+                    <AppButton
+                        label="Sign Out"
+                        onClick={handleSignOut}
+                    />
+                </div>
             </div>
-        </div>
+        </Loader>
     );
 }

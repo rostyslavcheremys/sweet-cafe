@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import PersonIcon from '@mui/icons-material/Person';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+import PersonIcon from "@mui/icons-material/Person";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+
+import { AuthService } from "../../services/authService.js";
 
 import "./Header.css";
 
@@ -13,7 +15,7 @@ export const Header = () => {
     };
 
     const handleUser = () => {
-        navigate("/login");
+        AuthService.getToken() ?  navigate("/profile") : navigate("/login");
     };
 
     const handleCart = () => {

@@ -10,13 +10,12 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { AppButton } from "../AppButton/AppButton.jsx";
 
+import imagePlaceholder from "../../assets/placeholder.webp";
+
 import "./ItemDetails.css";
 
 export const ItemDetails = ({ open, item, onClose }) => {
-    const handleAddToCart = () => {
-        console.log(item.name);
-        onClose();
-    };
+    const handleAddToCart = () => onClose();
 
     return (
         <Dialog className="item-details" open={open} onClose={onClose}>
@@ -29,7 +28,7 @@ export const ItemDetails = ({ open, item, onClose }) => {
                 </div>
             </DialogTitle>
             <DialogContent className="item-details__content">
-                <img className="item-details__image" src={item.image_url} alt={item.name}/>
+                <img className="item-details__image" src={item.image_url || imagePlaceholder} alt={item.name}/>
                 <label className="item-details__description">{item.description}</label>
 
                 <div className="item-details__details">
@@ -42,4 +41,4 @@ export const ItemDetails = ({ open, item, onClose }) => {
             </DialogActions>
         </Dialog>
     );
-};
+}
