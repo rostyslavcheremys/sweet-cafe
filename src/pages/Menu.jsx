@@ -25,7 +25,7 @@ export const Menu = () => {
     );
 
     useEffect(() => {
-        if (Array.isArray(categories) && selectedCategory === null) {
+        if (Array.isArray(categories) && categories.length && selectedCategory === null) {
             setSelectedCategory(categories[0].id);
         }
     }, [categories]);
