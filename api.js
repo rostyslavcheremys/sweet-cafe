@@ -20,8 +20,9 @@ export const login = (data) => api.post("/auth/login", data);
 export const getCategories = () =>
     api.get("/categories").then(res => res.data.categories || []);
 
-export const getMenuItems = () =>
-    api.get("/menu_items").then(res => res.data.menu_items || []);
+export const getMenuItemsByCategory = (categoryId) =>
+    api.get("/menu_items", { params: { category_id: categoryId } })
+        .then(res => res.data.menu_items || []);
 
 export const getUser = () => api.get("/auth/me")
     .then(res => {

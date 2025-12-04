@@ -3,14 +3,10 @@ import { Tabs, Tab } from "@mui/material";
 import "./Categories.css";
 
 export const Categories = ({ categories = [], selectedCategory, setSelectedCategory }) => {
+    const value = categories.findIndex(c => c.id === selectedCategory);
 
-    const value = selectedCategory
-        ? categories.findIndex(c => c.id === selectedCategory)
-        : 0;
-
-    const handleValue = (_, newValue) => {
-        const categoryId = categories[newValue]?.id || null;
-        setSelectedCategory(categoryId);
+    const handleCategory = (_, newValue) => {
+        setSelectedCategory(categories[newValue]?.id || null);
     };
 
     return (
@@ -19,10 +15,10 @@ export const Categories = ({ categories = [], selectedCategory, setSelectedCateg
                 <Tabs
                     className="categories__tabs"
                     variant="scrollable"
-                    value={value}
+                    value={value >= 0 ? value : 0}
                     scrollButtons
                     allowScrollButtonsMobile
-                    onChange={handleValue}
+                    onChange={handleCategory}
                 >
                     {categories.map(category => (
                         <Tab key={category.id} label={category.name} />

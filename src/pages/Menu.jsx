@@ -6,7 +6,7 @@ import { ItemCards } from "../components/ItemCards/ItemCards.jsx";
 
 import { useGet } from "../hooks/useGet.js";
 
-import { getMenuItems, getCategories } from "../../api.js";
+import { getMenuItemsByCategory, getCategories } from "../../api.js";
 
 import "../styles/pages.css";
 
@@ -19,14 +19,13 @@ export const Menu = () => {
         error: categoriesError
     } = useGet(getCategories, []);
 
-    const {
-        data: items = [],
-        isLoading: itemsLoading,
-        error: itemsError
-    } = useGet(getMenuItems, []);
+    const { data: items = [], isLoading: itemsLoading, error: itemsError } = useGet(
+        () => selectedCategory !== null ? getMenuItemsByCategory(selectedCategory) :
+            Promise.resolve([]), [selectedCategory]
+    );
 
     useEffect(() => {
-        if (categories?.length && selectedCategory === null) {
+        if (Array.isArray(categories) && selectedCategory === null) {
             setSelectedCategory(categories[0].id);
         }
     }, [categories]);
@@ -43,10 +42,8 @@ export const Menu = () => {
                     selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory}
                 />
-                <ItemCards
-                    items={items}
-                    selectedCategory={selectedCategory}
-                />
+
+                <ItemCards items={items} />
             </div>
         </Loader>
     );

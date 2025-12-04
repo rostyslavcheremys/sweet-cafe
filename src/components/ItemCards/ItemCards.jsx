@@ -1,27 +1,22 @@
 import { useState } from "react";
+
 import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
 import imagePlaceholder from "../../assets/placeholder.webp";
+
 import "./ItemCards.css";
 
-export const ItemCards = ({ items = [], selectedCategory }) => {
+export const ItemCards = ({ items = [] }) => {
     const [selectedItem, setSelectedItem] = useState(null);
-
-    const openItem = (item) => setSelectedItem(item);
-    const closeItem = () => setSelectedItem(null);
-
-    const filteredItems = selectedCategory
-        ? items.filter(item => item.category?.id === selectedCategory)
-        : items;
 
     return (
         <>
             <div className="item-cards">
-                {filteredItems.map((item) => (
+                {items.map((item) => (
                     <div
                         className="item-card"
                         key={item.id}
-                        onClick={() => openItem(item)}
+                        onClick={() => setSelectedItem(item)}
                     >
                         <div className="card">
                             <img
@@ -42,7 +37,7 @@ export const ItemCards = ({ items = [], selectedCategory }) => {
                 <ItemDetails
                     open={true}
                     item={selectedItem}
-                    onClose={closeItem}
+                    onClose={() => setSelectedItem(null)}
                 />
             )}
         </>
