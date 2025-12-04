@@ -11,7 +11,7 @@ import { AuthService } from "../services/authService.js";
 export const Profile = () => {
     const navigate = useNavigate();
 
-    const { data: user, isLoading, error } = useGet(getUser, []);
+    const { data: user, isLoading } = useGet(getUser, []);
 
     const handleEdit = () => navigate("/edit");
 

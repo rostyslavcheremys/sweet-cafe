@@ -32,7 +32,7 @@ export const Account = () => {
 
     const navigate = useNavigate();
 
-    const { data: user, isLoading: loadingUser, error } = useGet(getUser, []);
+    const { data: user, isLoading: loadingUser } = useGet(getUser, []);
 
     const { control, handleSubmit, watch, reset } = useForm({
         defaultValues: getDefaultValues(user),
