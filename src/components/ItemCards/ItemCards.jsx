@@ -1,24 +1,14 @@
 import { useState } from "react";
-
 import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
 import imagePlaceholder from "../../assets/placeholder.webp";
-
 import "./ItemCards.css";
 
-export const ItemCards = ({ items, selectedCategory }) => {
+export const ItemCards = ({ items = [], selectedCategory }) => {
     const [selectedItem, setSelectedItem] = useState(null);
-    const [open, setOpen] = useState(false);
 
-    const handleOpen = (item) => {
-        setSelectedItem(item);
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-        setSelectedItem(null);
-    };
+    const openItem = (item) => setSelectedItem(item);
+    const closeItem = () => setSelectedItem(null);
 
     const filteredItems = selectedCategory
         ? items.filter(item => item.category?.id === selectedCategory)
@@ -31,10 +21,14 @@ export const ItemCards = ({ items, selectedCategory }) => {
                     <div
                         className="item-card"
                         key={item.id}
-                        onClick={() => handleOpen(item)}
+                        onClick={() => openItem(item)}
                     >
                         <div className="card">
-                            <img className="card__image" src={item.image_url || imagePlaceholder} alt={item.name} />
+                            <img
+                                className="card__image"
+                                src={item.image_url || imagePlaceholder}
+                                alt={item.name}
+                            />
                             <div className="card__content">
                                 <label className="card__label">{item.name}</label>
                                 <label className="card__label">{`$${item.price.toFixed(2)}`}</label>
@@ -46,9 +40,9 @@ export const ItemCards = ({ items, selectedCategory }) => {
 
             {selectedItem && (
                 <ItemDetails
-                    open={open}
+                    open={true}
                     item={selectedItem}
-                    onClose={handleClose}
+                    onClose={closeItem}
                 />
             )}
         </>

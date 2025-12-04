@@ -1,15 +1,16 @@
-import { useState } from "react";
-
 import { Tabs, Tab } from "@mui/material";
 
 import "./Categories.css";
 
-export const Categories = ({ categories, setSelectedCategory }) => {
-    const [value, setValue] = useState(0);
+export const Categories = ({ categories = [], selectedCategory, setSelectedCategory }) => {
 
-    const handleValue = (event, newValue) => {
-        setValue(newValue);
-        setSelectedCategory(categories[newValue]?.id || null);
+    const value = selectedCategory
+        ? categories.findIndex(c => c.id === selectedCategory)
+        : 0;
+
+    const handleValue = (_, newValue) => {
+        const categoryId = categories[newValue]?.id || null;
+        setSelectedCategory(categoryId);
     };
 
     return (
@@ -23,8 +24,8 @@ export const Categories = ({ categories, setSelectedCategory }) => {
                     allowScrollButtonsMobile
                     onChange={handleValue}
                 >
-                    {categories.map((category, index) => (
-                        <Tab key={category.id || index} label={category.name} />
+                    {categories.map(category => (
+                        <Tab key={category.id} label={category.name} />
                     ))}
                 </Tabs>
             </div>

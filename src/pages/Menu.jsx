@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Loader } from "../components/Loader/Loader.jsx";
 import { Categories } from "../components/Categories/Categories.jsx";
@@ -14,16 +14,22 @@ export const Menu = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     const {
-        data: categories,
+        data: categories = [],
         isLoading: categoriesLoading,
         error: categoriesError
     } = useGet(getCategories, []);
 
     const {
-        data: items,
+        data: items = [],
         isLoading: itemsLoading,
         error: itemsError
     } = useGet(getMenuItems, []);
+
+    useEffect(() => {
+        if (categories?.length && selectedCategory === null) {
+            setSelectedCategory(categories[0].id);
+        }
+    }, [categories]);
 
     return (
         <Loader
