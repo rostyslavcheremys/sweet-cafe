@@ -6,7 +6,6 @@ import { AppButton } from "../components/AppButton/AppButton.jsx";
 import { useGet } from "../hooks/useGet.js";
 
 import { getUser } from "../../api.js";
-
 import { AuthService } from "../services/authService.js";
 
 export const Profile = () => {
@@ -31,8 +30,8 @@ export const Profile = () => {
     return (
         <Loader
             isLoading={isLoading}
-            error={error}
-            errorText="Failed to load profile!"
+            /*error={error}
+            errorText="Failed to load profile!"*/
         >
             <div className="page">
                 <span className="page__label">

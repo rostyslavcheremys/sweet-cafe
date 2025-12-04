@@ -1,11 +1,12 @@
 import { AuthService } from "../../services/authService.js";
 
-export const handleFormSubmit = (
+export const submitFormData = (
     postData,
     showMessage,
     successMessage,
     errorMessage,
-    navigate
+    navigate,
+    path,
 ) => async (formData) => {
     try {
         const data = await postData(formData);
@@ -13,7 +14,7 @@ export const handleFormSubmit = (
         if (data?.token) {
             AuthService.setToken(data.token);
             AuthService.setUser(data.user);
-            showMessage(successMessage, () => navigate("/menu"));
+            showMessage(successMessage, () => navigate(path));
         }
     } catch {
         showMessage(errorMessage);

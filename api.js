@@ -5,28 +5,36 @@ export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
 });
 
+api.interceptors.request.use(config => {
+    const token = AuthService.getToken();
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
 export const signup = (data) => api.post("/auth/signup", data);
 
 export const login = (data) => api.post("/auth/login", data);
 
-export const getMenuItems = () => api.get("/menu_items");
+export const getCategories = () =>
+    api.get("/categories").then(res => res.data.categories || []);
 
-export const getCategories = () => api.get("/categories");
+export const getMenuItems = () =>
+    api.get("/menu_items").then(res => res.data.menu_items || []);
 
-export const getUser = () => {
-    const token = AuthService.getToken();
-    console.log(token);
-    if (!token) return Promise.resolve({ data: null });
+export const getUser = () => api.get("/auth/me")
+    .then(res => {
+        AuthService.setUser(res.data.user);
+        return res.data.user;
+    });
 
-    return api.get("/auth/me", {
-        headers: { Authorization: `Bearer ${token}` }
-    })
+export const patchUser = (userId, data, fullUpdate = false) => {
+    const method = fullUpdate ? "put" : "patch";
+
+    return api[method](`/users/${userId}`, { user: data })
         .then(res => {
             AuthService.setUser(res.data.user);
-            return { data: res.data.user };
-        })
-        .catch(error => {
-            console.error("Failed to fetch user", error);
-            return { data: null };
+            return res.data;
         });
 };

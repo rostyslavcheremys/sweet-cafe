@@ -10,12 +10,13 @@ import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 import { usePost } from "../hooks/usePost.js";
 import { useMessageDialog } from "../hooks/useMessageDialog.js";
 
+import { getDefaultValues } from "../utils/forms/getDefaultValues.js";
+import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getNameValidation } from "../utils/validations/name.js";
 import { getEmailValidation } from "../utils/validations/email.js";
 import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
 import { getPasswordValidation } from "../utils/validations/password.js";
 import { getConfirmPasswordValidation } from "../utils/validations/confirmPassword.js";
-import { handleFormSubmit } from "../utils/forms/handleFormSubmit.js";
 
 import { signup } from "../../api.js";
 
@@ -30,24 +31,19 @@ export const Signup = () => {
     const navigate = useNavigate();
 
     const { control, handleSubmit, watch } = useForm({
-        defaultValues: {
-            name: "",
-            email: "",
-            phone: "",
-            password: "",
-            confirmPassword: ""
-        },
+        defaultValues: getDefaultValues(),
         mode: "onChange"
     });
 
     const { postData, isLoading } = usePost(signup);
 
-    const onSignupSubmit = handleFormSubmit(
+    const onSignupSubmit = submitFormData(
         postData,
         showMessage,
-        "Account created successfully!",
+        "Signup successful!",
         "Signup failed!",
-        navigate
+        navigate,
+        "/menu"
     );
 
     return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useGet = (getFunction, dependencies = [], transformData = data => data) => {
+export const useGet = (getFunction, dependencies = []) => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -11,9 +11,9 @@ export const useGet = (getFunction, dependencies = [], transformData = data => d
             setError(null);
 
             try {
-                const response = await getFunction();
-                setData(transformData(response.data));
-                console.log(transformData(response.data));
+                const result = await getFunction();
+                setData(result);
+                console.log(result);
             } catch (error) {
                 setError(error);
                 console.error("GET request error:", error);

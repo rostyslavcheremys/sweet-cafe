@@ -13,17 +13,17 @@ import "../styles/pages.css";
 export const Menu = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const { data: categories, isLoading: categoriesLoading, error: categoriesError } = useGet(
-        getCategories,
-        [],
-        data => data.categories || []
-    );
+    const {
+        data: categories,
+        isLoading: categoriesLoading,
+        error: categoriesError
+    } = useGet(getCategories, []);
 
-    const { data: items, isLoading: itemsLoading, error: itemsError } = useGet(
-        getMenuItems,
-        [],
-        data => data.menu_items || []
-    );
+    const {
+        data: items,
+        isLoading: itemsLoading,
+        error: itemsError
+    } = useGet(getMenuItems, []);
 
     return (
         <Loader

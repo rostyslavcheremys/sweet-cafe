@@ -1,79 +1,120 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-import { FormField } from "../components/Forms/FormField.jsx";
+import { Loader } from "../components/Loader/Loader.jsx";
+import { FormController } from "../components/FormController/FormController.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
+import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 
-import "../styles/pages.css";
+import { useMessageDialog } from "../hooks/useMessageDialog.js";
+import { useGet } from "../hooks/useGet.js";
+import { usePost } from "../hooks/usePost.js";
+
+import { getDefaultValues } from "../utils/forms/getDefaultValues.js";
+import { prepareUserPayload } from "../utils/forms/prepareUserPayload.js";
+import { submitFormData } from "../utils/forms/submitFormData.js";
+import { getNameValidation } from "../utils/validations/name.js";
+import { getEmailValidation } from "../utils/validations/email.js";
+import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
+import { getPasswordValidation } from "../utils/validations/password.js";
+import { getConfirmPasswordValidation } from "../utils/validations/confirmPassword.js";
+
+import { getUser, patchUser } from "../../api.js";
 
 export const Account = () => {
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        password: "",
-        confirmPassword: ""
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
+
+    const navigate = useNavigate();
+
+    const { data: user, isLoading: loadingUser, error } = useGet(getUser, []);
+
+    const { control, handleSubmit, watch, reset } = useForm({
+        defaultValues: getDefaultValues(user),
+        mode: "onChange"
     });
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    }
+    const { postData, isLoading: saving } = usePost((data) =>
+            patchUser(user.id, prepareUserPayload(data))
+    );
 
-    const handleSave = () => {
-        if (form.password !== form.confirmPassword) {
-            return;
-        }
+    const onSave = submitFormData(
+        postData,
+        showMessage,
+        "Account update successful!",
+        "Account update failed!",
+        navigate,
+        "/profile"
+    );
 
-        console.log("Saved:", form);
-    }
+    useEffect(() => {
+        if (user) reset(getDefaultValues(user));
+    }, [user, reset]);
 
     return (
-        <div className="page">
-            <label className="page__label">Account</label>
+        <Loader isLoading={loadingUser || saving}>
+            <div className="page">
+                <span className="page__label">Account</span>
 
-            <div className="page__forms">
-                <FormField
-                    label="Name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
+                <form className="page__forms" onSubmit={handleSubmit(onSave)}>
+                    <FormController
+                        control={control}
+                        name="name"
+                        label="Name"
+                        rules={getNameValidation()}
+                    />
+
+                    <FormController
+                        control={control}
+                        name="email"
+                        label="Email"
+                        type="email"
+                        rules={getEmailValidation()}
+                    />
+
+                    <FormController
+                        control={control}
+                        name="phone"
+                        label="Phone Number"
+                        rules={getPhoneNumberValidation()}
+                    />
+
+                    <FormController
+                        control={control}
+                        name="password"
+                        label="New Password"
+                        type="password"
+                        rules={getPasswordValidation()}
+                    />
+
+                    <FormController
+                        control={control}
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        type="password"
+                        rules={getConfirmPasswordValidation(() => watch("password"))}
+                    />
+
+                    <div className="page__button">
+                        <AppButton
+                            type="submit"
+                            label="Save"
+                            disabled={loadingUser || saving}
+                        />
+                    </div>
+                </form>
+
+                <MessageDialog
+                    open={messageOpen}
+                    handleClose={handleMessageClose}
+                    message={message}
                 />
-
-                <FormField
-                    label="Email"
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                />
-
-                <FormField
-                    label="Phone Number"
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                />
-
-                <FormField
-                    label="New Password"
-                    type="password"
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                />
-
-                <FormField
-                    label="Confirm Password"
-                    type="password"
-                    name="confirmPassword"
-                    value={form.confirmPassword}
-                    onChange={handleChange}
-                />
-
-                <div className="page__button">
-                    <AppButton label="Save" onClick={handleSave}/>
-                </div>
             </div>
-        </div>
+        </Loader>
     );
-}
+};
