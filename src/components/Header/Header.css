@@ -8,7 +8,7 @@ header {
     width: 100%;
 }
 
-.header__label {
+.header__title {
     font-family: var(--font-family);
     color: var(--white-color);
     font-weight: 400;
@@ -43,7 +43,7 @@ header {
         height: 70px;
     }
 
-    .header__label {
+    .header__title {
         font-size: 42px;
     }
 
@@ -62,7 +62,7 @@ header {
         height: 60px;
     }
 
-    .header__label {
+    .header__title {
         font-size: 32px;
         padding-left: 25px;
     }

@@ -24,6 +24,10 @@ export const getMenuItemsByCategory = (categoryId) =>
     api.get("/menu_items", { params: { category_id: categoryId } })
         .then(res => res.data.menu_items || []);
 
+export const addToCart = (menuItemId, quantity = 1) =>
+    api.post("/cart", { menu_item_id: menuItemId, total_quantity: quantity })
+        .then(res => res.data);
+
 export const getUser = () => api.get("/auth/me")
     .then(res => {
         AuthService.setUser(res.data.user);

@@ -35,7 +35,7 @@ export const Account = () => {
     const { data: user, isLoading: loadingUser } = useGet(getUser, []);
 
     const { control, handleSubmit, watch, reset } = useForm({
-        defaultValues: getDefaultValues(user),
+        defaultValues: {},
         mode: "onChange"
     });
 

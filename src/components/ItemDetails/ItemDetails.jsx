@@ -10,12 +10,31 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { AppButton } from "../AppButton/AppButton.jsx";
 
+import { usePost } from "../../hooks/usePost.js";
+import { useMessageDialog } from "../../hooks/useMessageDialog.js";
+
+import { getUnit } from "../../utils/items/getUnit.js";
+
+import { addToCart } from "../../../api.js";
+
 import imagePlaceholder from "../../assets/placeholder.webp";
 
 import "./ItemDetails.css";
 
 export const ItemDetails = ({ open, item, onClose }) => {
-    const handleAddToCart = () => onClose();
+    const { postData, isLoading } = usePost((payload) => addToCart(payload.menu_item_id, payload.quantity));
+
+    const { showMessage } = useMessageDialog();
+
+    const handleAddToCart = async () => {
+        try {
+            await postData({ menu_item_id: item.id, quantity: 1 });
+            showMessage("Item added to cart successfully!");
+            onClose();
+        } catch (err) {
+            showMessage("Failed to add item to cart!");
+        }
+    };
 
     return (
         <Dialog className="item-details" open={open} onClose={onClose}>
@@ -32,12 +51,12 @@ export const ItemDetails = ({ open, item, onClose }) => {
                 <label className="item-details__description">{item.description}</label>
 
                 <div className="item-details__details">
-                    <label className="item-details__label">{item.size}</label>
-                    <label className="item-details__label">{`$${item.price.toFixed(2)}`}</label>
+                    <span className="item-details__label">{item.size} {getUnit(item)}</span>
+                    <span className="item-details__label">{`$${item.price.toFixed(2)}`}</span>
                 </div>
             </DialogContent>
             <DialogActions className="item-details__actions">
-                <AppButton label="To Cart" onClick={handleAddToCart}/>
+                <AppButton label="To Cart" onClick={handleAddToCart} disabled={isLoading}/>
             </DialogActions>
         </Dialog>
     );
