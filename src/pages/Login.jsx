@@ -34,7 +34,7 @@ export const Login = () => {
 
     const { postData, isLoading } = usePost(login);
 
-    const onLoginSubmit = submitFormData(
+    const onSubmitLogin = submitFormData(
         postData,
         showMessage,
         "Login successful!",
@@ -48,7 +48,7 @@ export const Login = () => {
             <div className="page">
                 <span className="page__label">Welcome!</span>
 
-                <form className="page__forms" onSubmit={handleSubmit(onLoginSubmit)}>
+                <form className="page__forms" onSubmit={handleSubmit(onSubmitLogin)}>
                     <InputController
                         control={control}
                         name="email"

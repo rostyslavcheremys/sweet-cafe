@@ -37,7 +37,7 @@ export const Signup = () => {
 
     const { postData, isLoading } = usePost(signup);
 
-    const onSignupSubmit = submitFormData(
+    const onSubmitSignup = submitFormData(
         postData,
         showMessage,
         "Signup successful!",
@@ -51,7 +51,7 @@ export const Signup = () => {
             <div className="page">
                 <span className="page__label">Welcome!</span>
 
-                <form className="page__forms" onSubmit={handleSubmit(onSignupSubmit)}>
+                <form className="page__forms" onSubmit={handleSubmit(onSubmitSignup)}>
                     <InputController
                         control={control}
                         name="name"
