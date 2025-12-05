@@ -1,86 +1,108 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { FormField } from "../components/Forms/FormField.jsx";
-import { FormSelect } from "../components/Forms/FormSelect.jsx";
+import { SelectController } from "../components/FormControllers/SelectController.jsx";
+import { InputController } from "../components/FormControllers/InputController.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
+import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 
-import "../styles/pages.css";
+import { useMessageDialog } from "../hooks/useMessageDialog.js";
+
+import { getPickupTimeValidation } from "../utils/validations/pickupTime.js";
+import { getDeliveryValidation } from "../utils/validations/delivery.js";
+import { getCityValidation } from "../utils/validations/city.js";
+import { getAddressValidation } from "../utils/validations/address.js";
+import { getPaymentValidation } from "../utils/validations/payment.js";
+
+import { CHECKOUT_DEFAULT_VALUES}  from "../constants/checkout/checkoutDefaultValues.js";
+import { DELIVERY_OPTIONS } from "../constants/checkout/deliveryOptions.js";
+import { CITY_OPTIONS } from "../constants/checkout/cityOptions.js";
+import { PAYMENT_OPTIONS } from "../constants/checkout/paymentOptions.js";
 
 export const Checkout = () => {
-    const [delivery, setDelivery] = useState("");
-    const [city, setCity] = useState("");
-    const [payment, setPayment] = useState("");
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
+
+
+    const { control, handleSubmit, watch } = useForm({
+        defaultValues: CHECKOUT_DEFAULT_VALUES,
+        mode: "onChange"
+    });
+
+    const delivery = watch("delivery");
+
+    const onSubmit = (data) => {
+        console.log("Checkout:", data);
+    };
 
     return (
         <div className="page">
-            <label className="page__label">Checkout</label>
+            <span className="page__label">Checkout</span>
 
-            <div className="page__forms">
-                <FormSelect
-                    label="Delivery"
+            <form className="page__forms" onSubmit={handleSubmit(onSubmit)}>
+                <SelectController
+                    control={control}
                     name="delivery"
-                    value={delivery}
-                    onChange={(e) => setDelivery(e.target.value)}
-                    options={[
-                        {value: "courier", label: "By Courier"},
-                        {value: "pickup", label: "Pickup at Cafe"},
-                    ]}
+                    label="Delivery*"
+                    rules={getDeliveryValidation()}
+                    options={DELIVERY_OPTIONS}
                 />
 
                 {delivery === "courier" && (
                     <>
-                        <FormSelect
-                            label="City"
+                        <SelectController
+                            control={control}
                             name="city"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                            options={[
-                                {value: "cherkasy", label: "Cherkasy"},
-                                {value: "kyiv", label: "Kyiv"},
-                                {value: "lviv", label: "Lviv"},
-                                {value: "odessa", label: "Odessa"},
-                            ]}
+                            label="City*"
+                            rules={getCityValidation()}
+                            options={CITY_OPTIONS}
                         />
 
-                        <FormField
-                            label="Address"
-                            type="text"
+                        <InputController
+                            control={control}
                             name="address"
+                            label="Address*"
+                            rules={getAddressValidation()}
                         />
                     </>
                 )}
 
                 {delivery === "pickup" && (
-                    <>
-                        <FormField
-                            label="Time"
-                            type="text"
-                            name="time"
-                        />
-                    </>
+                    <InputController
+                        control={control}
+                        name="time"
+                        label="Pickup Time*"
+                        rules={getPickupTimeValidation()}
+                    />
                 )}
 
-                <FormSelect
-                    label="Payment"
+                <SelectController
+                    control={control}
                     name="payment"
-                    value={payment}
-                    onChange={(e) => setPayment(e.target.value)}
-                    options={[
-                        {value: "card", label: "Card"},
-                        {value: "cash", label: "Cash"},
-                    ]}
+                    label="Payment*"
+                    rules={getPaymentValidation()}
+                    options={PAYMENT_OPTIONS}
                 />
 
-                <FormField
-                    label="Notes"
-                    type="text"
+                <InputController
+                    control={control}
                     name="notes"
+                    label="Notes"
                 />
 
                 <div className="page__button">
-                    <AppButton label="Confirm"/>
+                    <AppButton label="Confirm" type="submit"/>
                 </div>
-            </div>
+            </form>
+
+            <MessageDialog
+                open={messageOpen}
+                handleClose={handleMessageClose}
+                message={message}
+            />
         </div>
     );
-}
+};

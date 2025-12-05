@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Loader } from "../components/Loader/Loader.jsx";
-import { FormController } from "../components/FormController/FormController.jsx";
+import { InputController } from "../components/FormControllers/InputController.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
 import { AuthRedirect } from "../components/AuthRedirect/AuthRedirect.jsx";
 import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
@@ -52,14 +52,14 @@ export const Signup = () => {
                 <span className="page__label">Welcome!</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onSignupSubmit)}>
-                    <FormController
+                    <InputController
                         control={control}
                         name="name"
                         label="Name"
                         rules={getNameValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="email"
                         label="Email"
@@ -67,14 +67,14 @@ export const Signup = () => {
                         rules={getEmailValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="phone"
                         label="Phone Number"
                         rules={getPhoneNumberValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="password"
                         label="Password"
@@ -82,7 +82,7 @@ export const Signup = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="confirmPassword"
                         label="Confirm Password"

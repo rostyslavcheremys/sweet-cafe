@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Loader } from "../components/Loader/Loader.jsx";
-import { FormController } from "../components/FormController/FormController.jsx";
+import { InputController } from "../components/FormControllers/InputController.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
 import { AuthRedirect } from "../components/AuthRedirect/AuthRedirect.jsx";
 import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
@@ -49,7 +49,7 @@ export const Login = () => {
                 <span className="page__label">Welcome!</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onLoginSubmit)}>
-                    <FormController
+                    <InputController
                         control={control}
                         name="email"
                         label="Email"
@@ -57,7 +57,7 @@ export const Login = () => {
                         rules={getEmailValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="password"
                         label="Password"

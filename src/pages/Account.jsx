@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Loader } from "../components/Loader/Loader.jsx";
-import { FormController } from "../components/FormController/FormController.jsx";
+import { InputController } from "../components/FormControllers/InputController.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
 import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 
@@ -62,14 +62,14 @@ export const Account = () => {
                 <span className="page__label">Account</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onSave)}>
-                    <FormController
+                    <InputController
                         control={control}
                         name="name"
                         label="Name"
                         rules={getNameValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="email"
                         label="Email"
@@ -77,14 +77,14 @@ export const Account = () => {
                         rules={getEmailValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="phone"
                         label="Phone Number"
                         rules={getPhoneNumberValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="password"
                         label="New Password"
@@ -92,7 +92,7 @@ export const Account = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <FormController
+                    <InputController
                         control={control}
                         name="confirmPassword"
                         label="Confirm Password"

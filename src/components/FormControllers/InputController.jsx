@@ -2,9 +2,9 @@ import { Controller } from "react-hook-form";
 
 import { FormField } from "../Forms/FormField.jsx";
 
-import "./FormController.css";
+import "./FormControllers.css";
 
-export const FormController = ({ control, name, label, type, rules }) => {
+export const InputController = ({ control, name, label, type, rules }) => {
     return (
         <Controller
             name={name}
