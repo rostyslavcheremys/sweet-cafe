@@ -42,6 +42,12 @@
     margin-bottom: 30px;
 }
 
+.page__sparks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
 @media (max-width: 768px) {
     .page__label {
         font-size: 26px;
