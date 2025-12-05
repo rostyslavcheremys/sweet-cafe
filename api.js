@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { AuthService } from "./src/services/authService.js";
 
 export const api = axios.create({

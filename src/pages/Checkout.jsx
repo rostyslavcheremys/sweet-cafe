@@ -12,6 +12,7 @@ import { getDeliveryValidation } from "../utils/validations/delivery.js";
 import { getCityValidation } from "../utils/validations/city.js";
 import { getAddressValidation } from "../utils/validations/address.js";
 import { getPaymentValidation } from "../utils/validations/payment.js";
+import { getNotesValidation } from "../utils/validations/notes.js";
 
 import { CHECKOUT_DEFAULT_VALUES}  from "../constants/checkout/checkoutDefaultValues.js";
 import { DELIVERY_OPTIONS } from "../constants/checkout/deliveryOptions.js";
@@ -91,6 +92,7 @@ export const Checkout = () => {
                     control={control}
                     name="notes"
                     label="Notes"
+                    rules={getNotesValidation()}
                 />
 
                 <div className="page__button">
