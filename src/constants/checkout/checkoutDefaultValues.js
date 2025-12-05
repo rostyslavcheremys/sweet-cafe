@@ -3,6 +3,7 @@ export const CHECKOUT_DEFAULT_VALUES = {
     city: "",
     address: "",
     time: "",
+    phone: "",
     payment: "",
     notes: ""
 };

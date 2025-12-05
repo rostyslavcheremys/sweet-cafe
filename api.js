@@ -29,6 +29,9 @@ export const addToCart = (menuItemId, quantity = 1) =>
     api.post("/cart", { menu_item_id: menuItemId, total_quantity: quantity })
         .then(res => res.data);
 
+export const postDelivery = (payload) =>
+    api.post("/deliveries", payload).then(res => res.data);
+
 export const getUser = () => api.get("/auth/me")
     .then(res => {
         AuthService.setUser(res.data.user);

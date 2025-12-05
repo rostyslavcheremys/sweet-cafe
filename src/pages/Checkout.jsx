@@ -1,16 +1,21 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
+import { Loader } from "../components/Loader/Loader.jsx";
 import { SelectController } from "../components/FormControllers/SelectController.jsx";
 import { InputController } from "../components/FormControllers/InputController.jsx";
 import { AppButton } from "../components/AppButton/AppButton.jsx";
 import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 
 import { useMessageDialog } from "../hooks/useMessageDialog.js";
+import { usePost } from "../hooks/usePost.js";
 
+import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getPickupTimeValidation } from "../utils/validations/pickupTime.js";
 import { getDeliveryValidation } from "../utils/validations/delivery.js";
 import { getCityValidation } from "../utils/validations/city.js";
 import { getAddressValidation } from "../utils/validations/address.js";
+import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
 import { getPaymentValidation } from "../utils/validations/payment.js";
 import { getNotesValidation } from "../utils/validations/notes.js";
 
@@ -18,6 +23,8 @@ import { CHECKOUT_DEFAULT_VALUES}  from "../constants/checkout/checkoutDefaultVa
 import { DELIVERY_OPTIONS } from "../constants/checkout/deliveryOptions.js";
 import { CITY_OPTIONS } from "../constants/checkout/cityOptions.js";
 import { PAYMENT_OPTIONS } from "../constants/checkout/paymentOptions.js";
+
+import { postDelivery } from "../../api.js";
 
 export const Checkout = () => {
     const {
@@ -27,6 +34,7 @@ export const Checkout = () => {
         handleMessageClose
     } = useMessageDialog();
 
+    const navigate = useNavigate();
 
     const { control, handleSubmit, watch } = useForm({
         defaultValues: CHECKOUT_DEFAULT_VALUES,
@@ -35,76 +43,96 @@ export const Checkout = () => {
 
     const delivery = watch("delivery");
 
-    const onSubmit = (data) => {
-        console.log("Checkout:", data);
-    };
+    const { postData, isLoading } = usePost(postDelivery);
+
+    const onSubmitOrder = submitFormData(
+        postData,
+        showMessage,
+        "Order placed successfully!",
+        "Order failed!",
+        navigate,
+        "/menu"
+    );
 
     return (
-        <div className="page">
-            <span className="page__label">Checkout</span>
+        <Loader isLoading={isLoading}>
+            <div className="page">
+                <span className="page__label">Checkout</span>
 
-            <form className="page__forms" onSubmit={handleSubmit(onSubmit)}>
-                <SelectController
-                    control={control}
-                    name="delivery"
-                    label="Delivery*"
-                    rules={getDeliveryValidation()}
-                    options={DELIVERY_OPTIONS}
-                />
+                <form className="page__forms" onSubmit={handleSubmit(onSubmitOrder)}>
+                    <SelectController
+                        control={control}
+                        name="delivery"
+                        label="Delivery*"
+                        rules={getDeliveryValidation()}
+                        options={DELIVERY_OPTIONS}
+                    />
 
-                {delivery === "courier" && (
-                    <>
-                        <SelectController
-                            control={control}
-                            name="city"
-                            label="City*"
-                            rules={getCityValidation()}
-                            options={CITY_OPTIONS}
-                        />
+                    {delivery === "courier" && (
+                        <>
+                            <SelectController
+                                control={control}
+                                name="city"
+                                label="City*"
+                                rules={getCityValidation()}
+                                options={CITY_OPTIONS}
+                            />
 
+                            <InputController
+                                control={control}
+                                name="address"
+                                label="Address*"
+                                rules={getAddressValidation()}
+                            />
+                        </>
+                    )}
+
+                    {delivery === "pickup" && (
                         <InputController
                             control={control}
-                            name="address"
-                            label="Address*"
-                            rules={getAddressValidation()}
+                            name="time"
+                            label="Pickup Time*"
+                            rules={getPickupTimeValidation()}
                         />
-                    </>
-                )}
+                    )}
 
-                {delivery === "pickup" && (
                     <InputController
                         control={control}
-                        name="time"
-                        label="Pickup Time*"
-                        rules={getPickupTimeValidation()}
+                        name="phone"
+                        label="Phone Number*"
+                        rules={getPhoneNumberValidation()}
                     />
-                )}
 
-                <SelectController
-                    control={control}
-                    name="payment"
-                    label="Payment*"
-                    rules={getPaymentValidation()}
-                    options={PAYMENT_OPTIONS}
+                    <SelectController
+                        control={control}
+                        name="payment"
+                        label="Payment*"
+                        rules={getPaymentValidation()}
+                        options={PAYMENT_OPTIONS}
+                    />
+
+                    <InputController
+                        control={control}
+                        name="notes"
+                        label="Notes"
+                        rules={getNotesValidation()}
+                    />
+
+                    <div className="page__button">
+                        <AppButton
+                            label="Confirm"
+                            type="submit"
+                            disabled={isLoading}
+                        />
+                    </div>
+                </form>
+
+                <MessageDialog
+                    open={messageOpen}
+                    handleClose={handleMessageClose}
+                    message={message}
                 />
-
-                <InputController
-                    control={control}
-                    name="notes"
-                    label="Notes"
-                    rules={getNotesValidation()}
-                />
-
-                <div className="page__button">
-                    <AppButton label="Confirm" type="submit"/>
-                </div>
-            </form>
-
-            <MessageDialog
-                open={messageOpen}
-                handleClose={handleMessageClose}
-                message={message}
-            />
-        </div>
+            </div>
+        </Loader>
     );
 };
