@@ -53,6 +53,10 @@
     color: var(--main-color) !important;
 }
 
+.app-table__icon.total {
+    color: var(--main-color) !important;;
+}
+
 .app-table__button-icon-delete {
     display: flex;
     align-items: center;

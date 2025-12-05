@@ -184,7 +184,15 @@ export const AppTable = ({
                                 <TableCell className="head "/>
                                 <TableCell className="head "/>
                                 <TableCell className="app-table__cell head total">{formatPrice(total)}</TableCell>
-                                {showActions && <TableCell className="head "/>}
+                                {showActions &&
+                                    <TableCell>
+                                        <div className="app-table__icon-container">
+                                            <IconButton onClick={() => onDeleteCartItem?.(row)}>
+                                                <DeleteIcon className="app-table__icon total" />
+                                            </IconButton>
+                                        </div>
+                                    </TableCell>
+                                }
                             </TableRow>
                         )}
                     </TableBody>
