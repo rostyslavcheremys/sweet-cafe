@@ -52,7 +52,7 @@ export const Login = () => {
                     <InputController
                         control={control}
                         name="email"
-                        label="Email"
+                        label="Email*"
                         type="email"
                         rules={getEmailValidation()}
                     />
@@ -60,7 +60,7 @@ export const Login = () => {
                     <InputController
                         control={control}
                         name="password"
-                        label="Password"
+                        label="Password*"
                         type="password"
                         rules={getPasswordValidation()}
                     />

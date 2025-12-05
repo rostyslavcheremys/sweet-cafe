@@ -55,14 +55,14 @@ export const Signup = () => {
                     <InputController
                         control={control}
                         name="name"
-                        label="Name"
+                        label="Name*"
                         rules={getNameValidation()}
                     />
 
                     <InputController
                         control={control}
                         name="email"
-                        label="Email"
+                        label="Email*"
                         type="email"
                         rules={getEmailValidation()}
                     />
@@ -70,14 +70,14 @@ export const Signup = () => {
                     <InputController
                         control={control}
                         name="phone"
-                        label="Phone Number"
+                        label="Phone Number*"
                         rules={getPhoneNumberValidation()}
                     />
 
                     <InputController
                         control={control}
                         name="password"
-                        label="Password"
+                        label="Password*"
                         type="password"
                         rules={getPasswordValidation()}
                     />
@@ -85,7 +85,7 @@ export const Signup = () => {
                     <InputController
                         control={control}
                         name="confirmPassword"
-                        label="Confirm Password"
+                        label="Confirm Password*"
                         type="password"
                         rules={getConfirmPasswordValidation(() => watch("password"))}
                     />
