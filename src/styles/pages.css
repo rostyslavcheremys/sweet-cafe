@@ -46,6 +46,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
+    margin: 80px 0 60px 0;
 }
 
 @media (max-width: 768px) {
@@ -56,6 +57,10 @@
     .page__label-welcome {
         font-size: 24px;
     }
+
+    .page__sparks {
+        margin: 70px 0 50px 0;
+    }
 }
 
 @media (max-width: 600px) {
@@ -65,5 +70,9 @@
 
     .page__error {
         font-size: 20px;
+    }
+
+    .page__sparks {
+        margin: 60px 0 40px 0;
     }
 }
