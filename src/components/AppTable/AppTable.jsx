@@ -12,14 +12,18 @@ import ImageIcon from "@mui/icons-material/Image";
 
 import { FormField } from "../Forms/FormField.jsx";
 
+import { formatPrice } from "../../utils/items/formatPrice.js";
+
 import "./AppTable.css";
 
 export const AppTable = ({
                              columns,
                              rows,
+                             totalPrice,
                              onIncreaseQuantity,
                              onDecreaseQuantity,
                              onDeleteCartItem,
+                             onClearCartItems,
                              onViewOrder,
                              editItem,
                              newItem,
@@ -34,10 +38,6 @@ export const AppTable = ({
                              showTotal = false,
                              allowAddItem = false,
                          }) => {
-    const total = rows.reduce((sum, item) => sum + (item.price || 0) * (item.quantity || 1), 0);
-
-    const formatPrice = (price) => price.toFixed(2) + " $";
-
     return (
         <div className="app-table">
             <TableContainer className="app-table__container">
@@ -110,9 +110,9 @@ export const AppTable = ({
                                         ) : col.field === "quantity" ? (
                                             showActions ? (
                                                 <div className="app-table__icon-container">
-                                                    <IconButton className="app-table__button-icon" onClick={() => onDecreaseQuantity?.(row)}><RemoveIcon /></IconButton>
+                                                    <IconButton className="app-table__button-icon" onClick={() => onDecreaseQuantity?.(row.id)}><RemoveIcon /></IconButton>
                                                     <span className="app-table__quantity">{row.quantity}</span>
-                                                    <IconButton className="app-table__button-icon" onClick={() => onIncreaseQuantity?.(row)}><AddIcon /></IconButton>
+                                                    <IconButton className="app-table__button-icon" onClick={() => onIncreaseQuantity?.(row.id)}><AddIcon /></IconButton>
                                                 </div>
                                             ) : (
                                                 <span className="app-table__quantity">{row.quantity}</span>
@@ -183,11 +183,11 @@ export const AppTable = ({
                                 <TableCell className="head "/>
                                 <TableCell className="head "/>
                                 <TableCell className="head "/>
-                                <TableCell className="app-table__cell head total">{formatPrice(total)}</TableCell>
+                                <TableCell className="app-table__cell head total">{formatPrice(totalPrice)}</TableCell>
                                 {showActions &&
                                     <TableCell>
                                         <div className="app-table__icon-container">
-                                            <IconButton onClick={() => onDeleteCartItem?.(row)}>
+                                            <IconButton onClick={() => onClearCartItems()}>
                                                 <DeleteIcon className="app-table__icon total" />
                                             </IconButton>
                                         </div>

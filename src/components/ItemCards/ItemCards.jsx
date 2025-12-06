@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
+import { formatPrice } from "../../utils/items/formatPrice.js";
+
 import imagePlaceholder from "../../assets/placeholder.webp";
 
 import "./ItemCards.css";
@@ -26,7 +28,7 @@ export const ItemCards = ({ items = [] }) => {
                             />
                             <div className="card__content">
                                 <label className="card__label">{item.name}</label>
-                                <label className="card__label">{`$${item.price.toFixed(2)}`}</label>
+                                <label className="card__label">{formatPrice(item.price)}</label>
                             </div>
                         </div>
                     </div>

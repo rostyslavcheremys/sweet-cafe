@@ -25,9 +25,20 @@ export const getMenuItemsByCategory = (categoryId) =>
     api.get("/menu_items", { params: { category_id: categoryId } })
         .then(res => res.data.menu_items || []);
 
-export const addToCart = (menuItemId, quantity = 1) =>
-    api.post("/cart", { menu_item_id: menuItemId, total_quantity: quantity })
-        .then(res => res.data);
+
+export const getCart = () => api.get("/cart").then(res => res.data);
+
+export const addToCart = (menu_item_id, total_quantity = 1) =>
+    api.post("/cart", { menu_item_id, total_quantity }).then(res => res.data);
+
+export const updateCartItem = (id, total_quantity) =>
+    api.put(`/cart/${id}`, { total_quantity }).then(res => res.data);
+
+export const deleteCartItem = (id) =>
+    api.delete(`/cart/${id}`).then(res => res.data);
+
+export const clearCart = () =>
+    api.delete("/cart/clear").then(res => res.data);
 
 export const postDelivery = (payload) =>
     api.post("/deliveries", payload).then(res => res.data);

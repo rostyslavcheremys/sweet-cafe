@@ -8,8 +8,9 @@ export const usePost = (postFunction, transformData = data => data) =>{
 
         try {
             const response = await postFunction(payload);
-            console.log(response.data);
-            return transformData(response.data);
+            const data = response?.data ?? response;
+            console.log(data);
+            return transformData(data);
         } catch (error) {
             console.error("POST request error:", error);
             throw error;
