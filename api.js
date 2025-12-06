@@ -48,6 +48,9 @@ export const createDelivery = (orderId, payload) => {
 export const createOrder = (payload) =>
     api.post("/orders", payload).then(res => res.data);
 
+export const getOrders = (payload) =>
+    api.get("/orders", payload).then(res => res.data);
+
 export const getUser = () => api.get("/auth/me")
     .then(res => {
         AuthService.setUser(res.data.user);

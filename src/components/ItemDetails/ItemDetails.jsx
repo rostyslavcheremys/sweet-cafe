@@ -14,7 +14,7 @@ import { usePost } from "../../hooks/usePost.js";
 import { useMessageDialog } from "../../hooks/useMessageDialog.js";
 
 import { getUnit } from "../../utils/items/getUnit.js";
-import { formatPrice } from "../../utils/items/formatPrice.js";
+import { formatPrice } from "../../utils/formatters/formatPrice.js";
 
 import { addToCart } from "../../../api.js";
 

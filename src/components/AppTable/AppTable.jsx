@@ -12,7 +12,7 @@ import ImageIcon from "@mui/icons-material/Image";
 
 import { FormField } from "../Forms/FormField.jsx";
 
-import { formatPrice } from "../../utils/items/formatPrice.js";
+import { formatPrice } from "../../utils/formatters/formatPrice.js";
 
 import "./AppTable.css";
 

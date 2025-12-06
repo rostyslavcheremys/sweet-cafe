@@ -86,19 +86,49 @@ export const Account = () => {
 
                     <InputController
                         control={control}
+                        name="currentPassword"
+                        label="Current Password"
+                        type="password"
+                        rules={{
+                            validate: () => {
+                                const password = watch("password"); // дивимось, чи змінюють пароль
+                                // якщо пароль міняють — currentPassword обов'язковий
+                                if (password && !watch("currentPassword")) return "Enter your current password";
+                                return true;
+                            }
+                        }}
+                    />
+
+                    <InputController
+                        control={control}
                         name="password"
                         label="New Password"
                         type="password"
-                        rules={getPasswordValidation()}
+                        rules={{
+                            validate: (value) => {
+                                // якщо не міняємо пароль — не валідимо
+                                if (!value) return true;
+                                return value.length >= 6 || "Password must be at least 6 characters";
+                            }
+                        }}
                     />
 
                     <InputController
                         control={control}
                         name="confirmPassword"
-                        label="Confirm Password"
+                        label="Confirm New Password"
                         type="password"
-                        rules={getConfirmPasswordValidation(() => watch("password"))}
+                        rules={{
+                            validate: (value) => {
+                                const password = watch("password");
+                                // confirmPassword потрібен лише при зміні пароля
+                                if (!password) return true;
+                                if (!value) return "Confirm your new password";
+                                return value === password || "Passwords do not match";
+                            }
+                        }}
                     />
+
 
                     <div className="page__button">
                         <AppButton

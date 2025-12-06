@@ -9,7 +9,7 @@ import { useMessageDialog } from "../hooks/useMessageDialog.js";
 import { useGet } from "../hooks/useGet.js";
 import { useCartActions } from "../hooks/useCartActions.js";
 
-import { getCartRows } from "../utils/cart/getCartRows.js";
+import { mapCartRows } from "../utils/mappers/mapCartRows.js";
 
 import { CART_COLUMNS } from "../constants/cart/cartColumns.js";
 
@@ -31,7 +31,7 @@ export const Cart = () => {
 
     const handleCheckout = () => navigate("/checkout");
 
-    const rows = getCartRows(cartItems);
+    const rows = mapCartRows(cartItems);
 
     const totalPrice = rows.reduce((sum, r) => sum + r.price * r.quantity, 0);
 

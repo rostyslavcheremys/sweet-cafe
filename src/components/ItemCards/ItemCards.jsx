@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
-import { formatPrice } from "../../utils/items/formatPrice.js";
+import { formatPrice } from "../../utils/formatters/formatPrice.js";
 
 import imagePlaceholder from "../../assets/placeholder.webp";
 
