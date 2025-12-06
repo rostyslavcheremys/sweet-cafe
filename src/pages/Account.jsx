@@ -12,13 +12,13 @@ import { useGet } from "../hooks/useGet.js";
 import { usePost } from "../hooks/usePost.js";
 
 import { getDefaultValues } from "../utils/forms/getDefaultValues.js";
-import { prepareUserPayload } from "../utils/forms/prepareUserPayload.js";
+import { getUserPayload } from "../utils/forms/getUserPayload.js";
 import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getNameValidation } from "../utils/validations/name.js";
 import { getEmailValidation } from "../utils/validations/email.js";
 import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
-import { getPasswordValidation } from "../utils/validations/password.js";
-import { getConfirmPasswordValidation } from "../utils/validations/confirmPassword.js";
+import { getOptionalPasswordValidation } from "../utils/validations/optionalPassword.js";
+import { getOptionalConfirmPasswordValidation } from "../utils/validations/optionalConfirmPassword.js";
 
 import { getUser, patchUser } from "../../api.js";
 
@@ -35,12 +35,12 @@ export const Account = () => {
     const { data: user, isLoading: loadingUser } = useGet(getUser, []);
 
     const { control, handleSubmit, watch, reset } = useForm({
-        defaultValues: {},
+        defaultValues: getDefaultValues(user || {}),
         mode: "onChange"
     });
 
     const { postData, isLoading: saving } = usePost((data) =>
-            patchUser(user.id, prepareUserPayload(data))
+            patchUser(getUserPayload(data))
     );
 
     const onSave = submitFormData(
@@ -65,22 +65,23 @@ export const Account = () => {
                     <InputController
                         control={control}
                         name="name"
-                        label="Name*"
+                        label="Name"
                         rules={getNameValidation()}
                     />
 
                     <InputController
                         control={control}
                         name="email"
-                        label="Email*"
+                        label="Email"
                         type="email"
+                        disabled={true}
                         rules={getEmailValidation()}
                     />
 
                     <InputController
                         control={control}
                         name="phone"
-                        label="Phone Number*"
+                        label="Phone Number"
                         rules={getPhoneNumberValidation()}
                     />
 
@@ -89,14 +90,7 @@ export const Account = () => {
                         name="currentPassword"
                         label="Current Password"
                         type="password"
-                        rules={{
-                            validate: () => {
-                                const password = watch("password"); // дивимось, чи змінюють пароль
-                                // якщо пароль міняють — currentPassword обов'язковий
-                                if (password && !watch("currentPassword")) return "Enter your current password";
-                                return true;
-                            }
-                        }}
+                        rules={getOptionalPasswordValidation()}
                     />
 
                     <InputController
@@ -104,13 +98,7 @@ export const Account = () => {
                         name="password"
                         label="New Password"
                         type="password"
-                        rules={{
-                            validate: (value) => {
-                                // якщо не міняємо пароль — не валідимо
-                                if (!value) return true;
-                                return value.length >= 6 || "Password must be at least 6 characters";
-                            }
-                        }}
+                        rules={getOptionalPasswordValidation()}
                     />
 
                     <InputController
@@ -118,17 +106,8 @@ export const Account = () => {
                         name="confirmPassword"
                         label="Confirm New Password"
                         type="password"
-                        rules={{
-                            validate: (value) => {
-                                const password = watch("password");
-                                // confirmPassword потрібен лише при зміні пароля
-                                if (!password) return true;
-                                if (!value) return "Confirm your new password";
-                                return value === password || "Passwords do not match";
-                            }
-                        }}
+                        rules={getOptionalConfirmPasswordValidation(() => watch("password"))}
                     />
-
 
                     <div className="page__button">
                         <AppButton
