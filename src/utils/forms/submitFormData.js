@@ -14,8 +14,11 @@ export const submitFormData = (
         if (data?.token) {
             AuthService.setToken(data.token);
             AuthService.setUser(data.user);
-            showMessage(successMessage, () => navigate(path));
         }
+
+        showMessage(successMessage, () => {
+            if (path) navigate(path);
+        });
     } catch {
         showMessage(errorMessage);
     }

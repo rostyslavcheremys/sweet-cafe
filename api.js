@@ -57,12 +57,7 @@ export const getUser = () => api.get("/auth/me")
         return res.data.user;
     });
 
-export const patchUser = (userId, data, fullUpdate = false) => {
-    const method = fullUpdate ? "put" : "patch";
-
-    return api[method](`/users/${userId}`, { user: data })
-        .then(res => {
-            AuthService.setUser(res.data.user);
-            return res.data;
-        });
+export const patchUser = (data) => {
+    return api.patch("/auth/me", data)
+        .then(res => res.data);
 };

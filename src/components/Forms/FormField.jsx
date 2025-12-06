@@ -6,7 +6,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import "./Forms.css";
 
-export const FormField = forwardRef(({ label, type, name, value, onChange, onBlur, className }, ref) => {
+export const FormField = forwardRef(({ label, type, name, value, onChange, onBlur, className, disabled }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
     const isPassword = type === "password";
 
@@ -23,6 +23,7 @@ export const FormField = forwardRef(({ label, type, name, value, onChange, onBlu
                 className={`form__field ${className}`}
                 variant="outlined"
                 type={isPassword && showPassword ? "text" : type}
+                disabled={disabled}
                 slotProps={{
                     input: isPassword
                         ? {

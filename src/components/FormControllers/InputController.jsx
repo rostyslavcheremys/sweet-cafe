@@ -4,7 +4,7 @@ import { FormField } from "../Forms/FormField.jsx";
 
 import "./FormControllers.css";
 
-export const InputController = ({ control, name, label, type, rules }) => {
+export const InputController = ({ control, name, label, type, rules, disabled }) => {
     return (
         <Controller
             name={name}
@@ -12,7 +12,7 @@ export const InputController = ({ control, name, label, type, rules }) => {
             rules={rules}
             render={({ field, fieldState }) => (
                 <>
-                    <FormField label={label} type={type} {...field} />
+                    <FormField label={label} type={type} {...field} disabled={disabled} />
                     {fieldState.error && <p className="form-controller__error">{fieldState.error.message}</p>}
                 </>
             )}

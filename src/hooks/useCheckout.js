@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { getDeliveryPayload } from "../utils/checkout/getDeliveryPayload.js";
-import { getOrderPayload } from "../utils/checkout/getOrderPayload.js";
+import { getDeliveryPayload } from "../utils/payloads/getDeliveryPayload.js";
+import { getOrderPayload } from "../utils/payloads/getOrderPayload.js";
 
 import { createOrder, createDelivery, clearCart } from "../../api.js";
 

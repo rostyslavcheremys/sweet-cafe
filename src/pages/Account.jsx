@@ -12,7 +12,7 @@ import { useGet } from "../hooks/useGet.js";
 import { usePost } from "../hooks/usePost.js";
 
 import { getDefaultValues } from "../utils/forms/getDefaultValues.js";
-import { getUserPayload } from "../utils/forms/getUserPayload.js";
+import { getUserPayload } from "../utils/payloads/getUserPayload.js";
 import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getNameValidation } from "../utils/validations/name.js";
 import { getEmailValidation } from "../utils/validations/email.js";

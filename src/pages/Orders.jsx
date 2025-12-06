@@ -44,7 +44,7 @@ export const Orders = () => {
                     rows={rows}
                     columns={ORDERS_COLUMNS}
                     showActions={true}
-                    onViewOrder={handleOrderDetails}
+                    onViewOrder={(row) => handleOrderDetails(row.id)}
                 />
 
                 <MessageDialog
