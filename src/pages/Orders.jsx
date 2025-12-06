@@ -9,7 +9,7 @@ import { useGet } from "../hooks/useGet.js";
 
 import { mapOrdersRows } from "../utils/mappers/mapOrdersRows.js";
 
-import { ORDERS_COLUMNS } from "../constants/cart/ordersColumns.js";
+import { ORDERS_COLUMNS } from "../constants/tableColumns/ordersColumns.js";
 
 import { getOrders } from "../../api.js";
 

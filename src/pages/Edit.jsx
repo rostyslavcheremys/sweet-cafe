@@ -60,7 +60,7 @@ export const Edit = () => {
 
     return (
         <div className="page ">
-            <label className="page__label">Edit</label>
+            <span className="page__label">Edit</span>
 
             <div className="page__forms edit">
                 <FormSelect

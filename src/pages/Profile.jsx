@@ -38,12 +38,14 @@ export const Profile = () => {
                     Welcome{user?.name ? `, ${user.name}` : ""}!
                 </span>
 
-                <div className="page__button">
-                    <AppButton
-                        label="Edit"
-                        onClick={handleEdit}
-                    />
-                </div>
+                {user?.role === "admin" && (
+                    <div className="page__button">
+                        <AppButton
+                            label="Edit"
+                            onClick={handleEdit}
+                        />
+                    </div>
+                )}
 
                 <div className="page__button">
                     <AppButton

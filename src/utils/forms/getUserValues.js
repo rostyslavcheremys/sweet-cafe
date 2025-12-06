@@ -1,4 +1,4 @@
-export const getDefaultValues = (user = {}) => ({
+export const getUserValues = (user = {}) => ({
     name: user.name || "",
     email: user.email || "",
     phone: user.phone || "",

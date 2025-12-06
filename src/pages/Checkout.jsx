@@ -11,6 +11,7 @@ import { useMessageDialog } from "../hooks/useMessageDialog.js";
 import { useGet } from "../hooks/useGet.js";
 import { useCheckout } from "../hooks/useCheckout.js";
 
+import { getCheckoutValues } from "../utils/forms/getCheckoutValues.js";
 import { getPickupTimeValidation } from "../utils/validations/pickupTime.js";
 import { getDeliveryValidation } from "../utils/validations/delivery.js";
 import { getCityValidation } from "../utils/validations/city.js";
@@ -19,10 +20,9 @@ import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
 import { getPaymentValidation } from "../utils/validations/payment.js";
 import { getNotesValidation } from "../utils/validations/notes.js";
 
-import { CHECKOUT_DEFAULT_VALUES } from "../constants/checkout/checkoutDefaultValues.js";
-import { DELIVERY_OPTIONS } from "../constants/checkout/deliveryOptions.js";
-import { CITY_OPTIONS } from "../constants/checkout/cityOptions.js";
-import { PAYMENT_OPTIONS } from "../constants/checkout/paymentOptions.js";
+import { DELIVERY_OPTIONS } from "../constants/options/deliveryOptions.js";
+import { CITY_OPTIONS } from "../constants/options/cityOptions.js";
+import { PAYMENT_OPTIONS } from "../constants/options/paymentOptions.js";
 
 import { getCart } from "../../api.js";
 
@@ -37,7 +37,7 @@ export const Checkout = () => {
     const navigate = useNavigate();
 
     const { control, handleSubmit, watch } = useForm({
-        defaultValues: CHECKOUT_DEFAULT_VALUES,
+        defaultValues: getCheckoutValues,
         mode: "onChange"
     });
 
@@ -87,6 +87,7 @@ export const Checkout = () => {
                         <InputController
                             control={control}
                             name="time"
+                            type="time"
                             label="Pickup Time*"
                             rules={getPickupTimeValidation()}
                         />

@@ -1,4 +1,4 @@
-export const CHECKOUT_DEFAULT_VALUES = {
+export const getCheckoutValues = {
     delivery: "",
     city: "",
     address: "",

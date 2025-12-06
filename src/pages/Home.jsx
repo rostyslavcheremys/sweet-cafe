@@ -13,7 +13,7 @@ export const Home = () => {
         <div className="page">
             <div className="page__sparks" ref={sparksRef}></div>
 
-            <label className="page__label-welcome">Want something sweet?</label>
+            <span className="page__label-welcome">Want something sweet?</span>
 
             <SpinningDonut />
         </div>
