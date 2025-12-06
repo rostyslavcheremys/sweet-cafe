@@ -10,7 +10,7 @@ import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 import { usePost } from "../hooks/usePost.js";
 import { useMessageDialog } from "../hooks/useMessageDialog.js";
 
-import { getDefaultValues } from "../utils/forms/getDefaultValues.js";
+import { getUserValues } from "../utils/forms/getUserValues.js";
 import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getNameValidation } from "../utils/validations/name.js";
 import { getEmailValidation } from "../utils/validations/email.js";
@@ -31,7 +31,7 @@ export const Signup = () => {
     const navigate = useNavigate();
 
     const { control, handleSubmit, watch } = useForm({
-        defaultValues: getDefaultValues(),
+        defaultValues: getUserValues(),
         mode: "onChange"
     });
 

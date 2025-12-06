@@ -35,7 +35,7 @@ export const ItemDetails = ({ open, item, onClose }) => {
         try {
             await postData({ menu_item_id: item.id, quantity: 1 });
             onClose();
-        } catch (err) {
+        } catch {
             showMessage("Failed to add item to cart!");
         }
     };

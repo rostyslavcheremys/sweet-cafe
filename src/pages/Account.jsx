@@ -11,7 +11,7 @@ import { useMessageDialog } from "../hooks/useMessageDialog.js";
 import { useGet } from "../hooks/useGet.js";
 import { usePost } from "../hooks/usePost.js";
 
-import { getDefaultValues } from "../utils/forms/getDefaultValues.js";
+import { getUserValues } from "../utils/forms/getUserValues.js";
 import { getUserPayload } from "../utils/payloads/getUserPayload.js";
 import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getNameValidation } from "../utils/validations/name.js";
@@ -35,7 +35,7 @@ export const Account = () => {
     const { data: user, isLoading: loadingUser } = useGet(getUser, []);
 
     const { control, handleSubmit, watch, reset } = useForm({
-        defaultValues: getDefaultValues(user || {}),
+        defaultValues: getUserValues(user || {}),
         mode: "onChange"
     });
 
@@ -53,7 +53,7 @@ export const Account = () => {
     );
 
     useEffect(() => {
-        if (user) reset(getDefaultValues(user));
+        if (user) reset(getUserValues(user));
     }, [user, reset]);
 
     return (

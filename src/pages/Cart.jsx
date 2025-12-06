@@ -11,7 +11,7 @@ import { useCartActions } from "../hooks/useCartActions.js";
 
 import { mapCartRows } from "../utils/mappers/mapCartRows.js";
 
-import { CART_COLUMNS } from "../constants/cart/cartColumns.js";
+import { CART_COLUMNS } from "../constants/tableColumns/cartColumns.js";
 
 import { getCart } from "../../api.js";
 

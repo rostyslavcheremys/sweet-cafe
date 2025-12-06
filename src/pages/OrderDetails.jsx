@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { AppTable } from "../components/AppTable/AppTable.jsx";
 
-import { ORDERS_DETAILS_COLUMNS } from "../constants/cart/ordersDetailsColumns.js";
+import { ORDERS_DETAILS_COLUMNS } from "../constants/tableColumns/ordersDetailsColumns.js";
 
 export const OrderDetails = () => {
     const { id } = useParams();
