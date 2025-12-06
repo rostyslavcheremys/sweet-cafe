@@ -40,8 +40,13 @@ export const deleteCartItem = (id) =>
 export const clearCart = () =>
     api.delete("/cart/clear").then(res => res.data);
 
-export const postDelivery = (payload) =>
-    api.post("/deliveries", payload).then(res => res.data);
+export const createDelivery = (orderId, payload) => {
+    return api.post("/deliveries", { order_id: orderId, delivery: payload });
+};
+
+
+export const createOrder = (payload) =>
+    api.post("/orders", payload).then(res => res.data);
 
 export const getUser = () => api.get("/auth/me")
     .then(res => {

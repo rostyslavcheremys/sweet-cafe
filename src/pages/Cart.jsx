@@ -38,8 +38,8 @@ export const Cart = () => {
     return (
         <Loader
             isLoading={isLoading}
-            error={error}
-            errorText="Failed to load cart!"
+            error={!!error || (!isLoading && rows.length === 0)}
+            errorText={error ? "Failed to load cart!" : "Your cart is empty!"}
         >
             <div className="page">
                 <span className="page__label">Cart</span>

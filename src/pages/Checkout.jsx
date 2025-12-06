@@ -8,9 +8,9 @@ import { AppButton } from "../components/AppButton/AppButton.jsx";
 import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
 
 import { useMessageDialog } from "../hooks/useMessageDialog.js";
-import { usePost } from "../hooks/usePost.js";
+import { useGet } from "../hooks/useGet.js";
+import { useCheckout } from "../hooks/useCheckout.js";
 
-import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getPickupTimeValidation } from "../utils/validations/pickupTime.js";
 import { getDeliveryValidation } from "../utils/validations/delivery.js";
 import { getCityValidation } from "../utils/validations/city.js";
@@ -19,12 +19,12 @@ import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
 import { getPaymentValidation } from "../utils/validations/payment.js";
 import { getNotesValidation } from "../utils/validations/notes.js";
 
-import { CHECKOUT_DEFAULT_VALUES}  from "../constants/checkout/checkoutDefaultValues.js";
+import { CHECKOUT_DEFAULT_VALUES } from "../constants/checkout/checkoutDefaultValues.js";
 import { DELIVERY_OPTIONS } from "../constants/checkout/deliveryOptions.js";
 import { CITY_OPTIONS } from "../constants/checkout/cityOptions.js";
 import { PAYMENT_OPTIONS } from "../constants/checkout/paymentOptions.js";
 
-import { postDelivery } from "../../api.js";
+import { getCart } from "../../api.js";
 
 export const Checkout = () => {
     const {
@@ -43,19 +43,16 @@ export const Checkout = () => {
 
     const delivery = watch("delivery");
 
-    const { postData, isLoading } = usePost(postDelivery);
+    const { data, isLoading, error } = useGet(getCart, []);
 
-    const onSubmitOrder = submitFormData(
-        postData,
-        showMessage,
-        "Order placed successfully!",
-        "Order failed!",
-        navigate,
-        "/menu"
-    );
+    const { onSubmitOrder, isSubmitting } = useCheckout(data?.cart_items, showMessage, navigate);
 
     return (
-        <Loader isLoading={isLoading}>
+        <Loader
+            isLoading={isLoading || isSubmitting}
+            error={error}
+            errorText="Failed to load cart!"
+        >
             <div className="page">
                 <span className="page__label">Checkout</span>
 
@@ -68,7 +65,7 @@ export const Checkout = () => {
                         options={DELIVERY_OPTIONS}
                     />
 
-                    {delivery === "courier" && (
+                    {delivery === "by courier" && (
                         <>
                             <SelectController
                                 control={control}
@@ -77,7 +74,6 @@ export const Checkout = () => {
                                 rules={getCityValidation()}
                                 options={CITY_OPTIONS}
                             />
-
                             <InputController
                                 control={control}
                                 name="address"
@@ -122,7 +118,7 @@ export const Checkout = () => {
                         <AppButton
                             label="Confirm"
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isLoading || isSubmitting}
                         />
                     </div>
                 </form>

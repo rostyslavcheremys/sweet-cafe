@@ -12,7 +12,7 @@ export const Header = () => {
 
     return(
         <header>
-            <span className="header__title" onClick={() => navigate("/")}>Sweet Cafe</span>
+            <span className="header__title" onClick={() => navigate("/menu")}>Sweet Cafe</span>
 
             <div className="header__buttons">
                 <PersonIcon

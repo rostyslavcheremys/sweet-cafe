@@ -136,7 +136,7 @@ export const AppTable = ({
                                     <TableCell>
                                         <div className="app-table__icon-container">
                                             {onDeleteCartItem && (
-                                                <IconButton onClick={() => onDeleteCartItem?.(row)}>
+                                                <IconButton onClick={() => onDeleteCartItem?.(row.id)}>
                                                     <DeleteIcon/>
                                                 </IconButton>
                                             )}
