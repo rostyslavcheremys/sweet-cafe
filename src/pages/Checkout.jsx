@@ -89,7 +89,7 @@ export const Checkout = () => {
                             name="time"
                             type="time"
                             label="Pickup Time*"
-                            rules={getPickupTimeValidation()}
+                            rules={getPickupTimeValidation(15, { start: 9, end: 20 })}
                         />
                     )}
 
