@@ -95,7 +95,7 @@ export const AppTable = ({
                             <TableRow key={row.id}>
                                 {columns.map((col) => (
                                     <TableCell key={col.field} className={`app-table__cell ${col.align || ''}`}>
-                                        {editItem === row.id ? (
+                                        {editItem === row.id  && onEditItem ? (
                                             <div className="app-table__fields">
                                                 <FormField
                                                     className="app-table__edit-field"

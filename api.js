@@ -51,6 +51,9 @@ export const createOrder = (payload) =>
 export const getOrders = (payload) =>
     api.get("/orders", payload).then(res => res.data);
 
+export const getOrderById = (id) =>
+    api.get(`/orders/${id}`).then(res => res.data.order);
+
 export const getUser = () => api.get("/auth/me")
     .then(res => {
         AuthService.setUser(res.data.user);

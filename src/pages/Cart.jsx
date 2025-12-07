@@ -10,6 +10,7 @@ import { useGet } from "../hooks/useGet.js";
 import { useCartActions } from "../hooks/useCartActions.js";
 
 import { mapCartRows } from "../utils/mappers/mapCartRows.js";
+import { getTotalPrice } from "../utils/items/getTotalPrice.js";
 
 import { CART_COLUMNS } from "../constants/tableColumns/cartColumns.js";
 
@@ -33,8 +34,6 @@ export const Cart = () => {
 
     const rows = mapCartRows(cartItems);
 
-    const totalPrice = rows.reduce((sum, r) => sum + r.price * r.quantity, 0);
-
     return (
         <Loader
             isLoading={isLoading}
@@ -47,7 +46,7 @@ export const Cart = () => {
                 <AppTable
                     columns={CART_COLUMNS}
                     rows={rows}
-                    totalPrice={totalPrice}
+                    totalPrice={getTotalPrice(rows)}
                     onIncreaseQuantity={increase}
                     onDecreaseQuantity={decrease}
                     onDeleteCartItem={remove}
