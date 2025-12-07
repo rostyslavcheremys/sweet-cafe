@@ -18,7 +18,6 @@ import { formatPrice } from "../../utils/formatters/formatPrice.js";
 
 import { addToCart } from "../../../api.js";
 
-import imagePlaceholder from "../../assets/placeholder.webp";
 import "./ItemDetails.css";
 
 export const ItemDetails = ({ open, item, onClose }) => {
@@ -52,7 +51,7 @@ export const ItemDetails = ({ open, item, onClose }) => {
                     </div>
                 </DialogTitle>
                 <DialogContent className="item-details__content">
-                    <img className="item-details__image" src={item.image_url || imagePlaceholder} alt={item.name}/>
+                    <img className="item-details__image" src={item.image_url || "images/placeholder.webp"} alt={item.name}/>
                     <label className="item-details__description">{item.description}</label>
 
                     <div className="item-details__details">

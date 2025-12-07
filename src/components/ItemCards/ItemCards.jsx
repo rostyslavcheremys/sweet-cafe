@@ -4,8 +4,6 @@ import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
 
 import { formatPrice } from "../../utils/formatters/formatPrice.js";
 
-import imagePlaceholder from "../../assets/placeholder.webp";
-
 import "./ItemCards.css";
 
 export const ItemCards = ({ items = [] }) => {
@@ -23,7 +21,7 @@ export const ItemCards = ({ items = [] }) => {
                         <div className="card">
                             <img
                                 className="card__image"
-                                src={item.image_url || imagePlaceholder}
+                                src={item.image_url || "images/placeholder.webp"}
                                 alt={item.name}
                             />
                             <div className="card__content">

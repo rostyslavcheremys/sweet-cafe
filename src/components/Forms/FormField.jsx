@@ -33,7 +33,7 @@ export const FormField = forwardRef(({ label, type, name, value, onChange, onBlu
                                         onClick={() => setShowPassword(prev => !prev)}
                                         edge="end"
                                     >
-                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                        {showPassword ?  <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                             )
