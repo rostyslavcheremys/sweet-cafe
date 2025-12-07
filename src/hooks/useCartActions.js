@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-import { CartAPI } from "../api/index.js";
+import { CartAPI } from "../api";
 
 export const useCartActions = (data, showMessage) => {
     const [cartItems, setCartItems] = useState([]);

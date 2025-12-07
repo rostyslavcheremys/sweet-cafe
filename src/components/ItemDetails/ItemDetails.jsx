@@ -3,22 +3,27 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
-    IconButton
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+    IconButton,
+} from "../../libs/mui.js";
 
-import { AppButton } from "../AppButton/AppButton.jsx";
-import { MessageDialog } from "../MessageDialog/MessageDialog.jsx";
+import { CloseIcon } from "../../libs/mui-icons.js";
 
-import { usePost } from "../../hooks/usePost.js";
-import { useMessageDialog } from "../../hooks/useMessageDialog.js";
+import {
+    AppButton,
+    MessageDialog
+} from "../";
 
-import { getUnit } from "../../utils/items/getUnit.js";
-import { formatPrice } from "../../utils/formatters/formatPrice.js";
+import {
+    usePost,
+    useMessageDialog
+} from "../../hooks";
 
-import { CartAPI } from "../../api/index.js";
+import {
+    getUnit,
+    formatPrice
+} from "../../utils";
 
-import "./ItemDetails.css";
+import { CartAPI } from "../../api";
 
 export const ItemDetails = ({ open, item, onClose }) => {
     const {

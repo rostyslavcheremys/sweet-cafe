@@ -1,30 +1,38 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { SelectController } from "../components/FormControllers/SelectController.jsx";
-import { InputController } from "../components/FormControllers/InputController.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
-import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
+import {
+    Loader,
+    SelectController,
+    InputController,
+    AppButton,
+    MessageDialog
+} from "../components";
 
-import { useMessageDialog } from "../hooks/useMessageDialog.js";
-import { useGet } from "../hooks/useGet.js";
-import { useCheckout } from "../hooks/useCheckout.js";
+import {
+    useMessageDialog,
+    useGet,
+    useCheckout
+} from "../hooks";
 
-import { getCheckoutValues } from "../utils/forms/getCheckoutValues.js";
-import { getPickupTimeValidation } from "../utils/validations/pickupTime.js";
-import { getDeliveryValidation } from "../utils/validations/delivery.js";
-import { getCityValidation } from "../utils/validations/city.js";
-import { getAddressValidation } from "../utils/validations/address.js";
-import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
-import { getPaymentValidation } from "../utils/validations/payment.js";
-import { getNotesValidation } from "../utils/validations/notes.js";
+import {
+    getCheckoutValues,
+    getDeliveryValidation,
+    getPickupTimeValidation,
+    getCityValidation,
+    getAddressValidation,
+    getPhoneNumberValidation,
+    getPaymentValidation,
+    getNotesValidation
+} from "../utils";
 
-import { DELIVERY_OPTIONS } from "../constants/options/deliveryOptions.js";
-import { CITY_OPTIONS } from "../constants/options/cityOptions.js";
-import { PAYMENT_OPTIONS } from "../constants/options/paymentOptions.js";
+import {
+    DELIVERY_OPTIONS,
+    CITY_OPTIONS,
+    PAYMENT_OPTIONS
+} from "../constants";
 
-import { CartAPI } from "../api/index.js";
+import { CartAPI } from "../api";
 
 export const Checkout = () => {
     const {
@@ -65,7 +73,7 @@ export const Checkout = () => {
             errorText="Failed to load page!"
         >
             <div className="page">
-                <span className="page__label">Checkout</span>
+                <span className="page__title">Checkout</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onSubmitOrder)}>
                     <SelectController

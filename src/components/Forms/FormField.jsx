@@ -1,10 +1,15 @@
 import { useState, forwardRef } from "react";
-import { TextField, IconButton, InputAdornment } from "@mui/material";
 
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import {
+    TextField,
+    IconButton,
+    InputAdornment
+} from "../../libs/mui.js";
 
-import "./Forms.css";
+import {
+    Visibility,
+    VisibilityOff
+} from "../../libs/mui-icons.js";
 
 export const FormField = forwardRef(({ label, type, name, value, onChange, onBlur, className, disabled }, ref) => {
     const [showPassword, setShowPassword] = useState(false);

@@ -1,4 +1,4 @@
-import { formatPickupTime } from "../formatters/formatPickupTime.js";
+import { formatPickupTime } from "../";
 
 export const getDeliveryPayload = (formData) => {
     return {

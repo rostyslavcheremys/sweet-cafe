@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-import "./AuthRedirect.css";
-
 export const AuthRedirect = ({ text, linkText, linkTo }) => {
     return (
         <p className="auth-redirect">

@@ -1,8 +1,8 @@
 import { useRef } from "react";
 
-import { SpinningDonut } from "../components/SpinningDonut/SpinningDonut.jsx";
+import { SpinningDonut } from "../components";
 
-import { useSparks } from "../hooks/useSparks.js";
+import { useSparks } from "../hooks";
 
 export const Home = () => {
     const sparksRef = useRef(null);
@@ -13,7 +13,7 @@ export const Home = () => {
         <div className="page">
             <div className="page__sparks" ref={sparksRef}></div>
 
-            <span className="page__label-welcome">Want something sweet?</span>
+            <span className="page__title-welcome">Want something sweet?</span>
 
             <SpinningDonut />
         </div>

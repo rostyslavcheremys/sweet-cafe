@@ -1,6 +1,8 @@
-import { formatPrice } from "../formatters/formatPrice.js";
-import { formatDate } from "../formatters/formatDate.js";
-import { formatTime } from "../formatters/formatTime.js";
+import {
+    formatPrice,
+    formatDate,
+    formatTime
+} from "../";
 
 export const mapOrdersRows = (orders = []) => {
     return orders.map(order => ({

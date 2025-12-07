@@ -1,8 +1,10 @@
-import { Dialog, DialogContent, DialogActions } from "@mui/material";
+import {
+    Dialog,
+    DialogContent,
+    DialogActions
+} from "../../libs/mui.js";
 
-import { AppButton } from "../AppButton/AppButton.jsx";
-
-import "./MessageDialog.css";
+import { AppButton } from "../";
 
 export const MessageDialog = ({ open, handleClose, message }) => {
     return (

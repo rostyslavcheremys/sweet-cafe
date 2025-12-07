@@ -1,4 +1,8 @@
-import { FormControl, Select, MenuItem } from "@mui/material";
+import {
+    FormControl,
+    Select,
+    MenuItem
+} from "../../libs/mui.js";
 
 export const FormSelect = ({ label, name, value, onChange, options = [] }) => {
     return (

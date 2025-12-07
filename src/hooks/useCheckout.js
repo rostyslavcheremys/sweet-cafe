@@ -1,9 +1,15 @@
 import { useState } from "react";
 
-import { getDeliveryPayload } from "../utils/payloads/getDeliveryPayload.js";
-import { getOrderPayload } from "../utils/payloads/getOrderPayload.js";
+import {
+    getDeliveryPayload,
+    getOrderPayload
+} from "../utils";
 
-import { OrdersAPI, DeliveryAPI, CartAPI } from "../api/index.js";
+import {
+    OrdersAPI,
+    DeliveryAPI,
+    CartAPI
+} from "../api";
 
 export const useCheckout = (cartItems = [], showMessage, navigate) => {
     const [isSubmitting, setIsSubmitting] = useState(false);

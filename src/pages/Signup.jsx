@@ -1,24 +1,30 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { InputController } from "../components/FormControllers/InputController.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
-import { AuthRedirect } from "../components/AuthRedirect/AuthRedirect.jsx";
-import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
+import {
+    Loader,
+    InputController,
+    AppButton,
+    AuthRedirect,
+    MessageDialog
+} from "../components";
 
-import { usePost } from "../hooks/usePost.js";
-import { useMessageDialog } from "../hooks/useMessageDialog.js";
+import {
+    useMessageDialog,
+    usePost
+} from "../hooks";
 
-import { getUserValues } from "../utils/forms/getUserValues.js";
-import { submitFormData } from "../utils/forms/submitFormData.js";
-import { getNameValidation } from "../utils/validations/name.js";
-import { getEmailValidation } from "../utils/validations/email.js";
-import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
-import { getPasswordValidation } from "../utils/validations/password.js";
-import { getConfirmPasswordValidation } from "../utils/validations/confirmPassword.js";
+import {
+    getUserValues,
+    submitFormData,
+    getNameValidation,
+    getEmailValidation,
+    getPhoneNumberValidation,
+    getPasswordValidation,
+    getConfirmPasswordValidation
+} from "../utils";
 
-import { AuthAPI } from "../api/index.js";
+import { AuthAPI } from "../api";
 
 export const Signup = () => {
     const {
@@ -42,8 +48,8 @@ export const Signup = () => {
     const {
         postData,
         isLoading,
-        error,
-    } = usePost(() => AuthAPI.signup());
+        error
+    } = usePost((data) => AuthAPI.signup(data));
 
     const onSubmitSignup = submitFormData(
         postData,
@@ -61,7 +67,7 @@ export const Signup = () => {
             errorText="Failed to load page!"
         >
             <div className="page">
-                <span className="page__label">Welcome!</span>
+                <span className="page__title">Welcome!</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onSubmitSignup)}>
                     <InputController

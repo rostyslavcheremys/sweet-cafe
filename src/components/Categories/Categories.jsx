@@ -1,6 +1,7 @@
-import { Tabs, Tab } from "@mui/material";
-
-import "./Categories.css";
+import {
+    Tabs,
+    Tab
+} from "../../libs/mui.js";
 
 export const Categories = ({ categories = [], selectedCategory, setSelectedCategory }) => {
     const value = categories.findIndex(c => c.id === selectedCategory);

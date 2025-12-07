@@ -2,26 +2,32 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { InputController } from "../components/FormControllers/InputController.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
-import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
+import {
+    Loader,
+    InputController,
+    AppButton,
+    MessageDialog
+} from "../components";
 
-import { useMessageDialog } from "../hooks/useMessageDialog.js";
-import { useGet } from "../hooks/useGet.js";
-import { usePost } from "../hooks/usePost.js";
+import {
+    useMessageDialog,
+    useGet,
+    usePost
+} from "../hooks";
 
-import { getErrorText } from "../utils/forms/getErrorText.js";
-import { getUserValues } from "../utils/forms/getUserValues.js";
-import { getUserPayload } from "../utils/payloads/getUserPayload.js";
-import { submitFormData } from "../utils/forms/submitFormData.js";
-import { getNameValidation } from "../utils/validations/name.js";
-import { getEmailValidation } from "../utils/validations/email.js";
-import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
-import { getOptionalPasswordValidation } from "../utils/validations/optionalPassword.js";
-import { getOptionalConfirmPasswordValidation } from "../utils/validations/optionalConfirmPassword.js";
+import {
+    getErrorText,
+    getUserValues,
+    submitFormData,
+    getUserPayload,
+    getNameValidation,
+    getEmailValidation,
+    getPhoneNumberValidation,
+    getOptionalPasswordValidation,
+    getOptionalConfirmPasswordValidation
+} from "../utils";
 
-import { AuthAPI } from "../api/index.js";
+import { AuthAPI } from "../api";
 
 export const Account = () => {
     const {
@@ -82,7 +88,7 @@ export const Account = () => {
             }
         >
             <div className="page">
-                <span className="page__label">Account</span>
+                <span className="page__title">Account</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onSave)}>
                     <InputController

@@ -1,3 +1,14 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    margin: 40px 30px;
+    flex: 1;
+}
+
 .page {
     display: flex;
     align-items: center;
@@ -7,7 +18,7 @@
     width: 100%;
 }
 
-.page__label {
+.page__title {
     text-align: center;
     font-family: var(--second-family);
     color: var(--grey-dark-color);
@@ -16,7 +27,7 @@
     margin-bottom: 10px;
 }
 
-.page__label-welcome {
+.page__title-welcome {
     text-align: center;
     font-family: var(--second-family);
     color: var(--grey-dark-color);
@@ -50,11 +61,11 @@
 }
 
 @media (max-width: 768px) {
-    .page__label {
+    .page__title {
         font-size: 26px;
     }
 
-    .page__label-welcome {
+    .page__title-welcome {
         font-size: 24px;
     }
 
@@ -64,7 +75,11 @@
 }
 
 @media (max-width: 600px) {
-    .page__label-welcome {
+    main {
+        margin: 30px 20px;
+    }
+
+    .page__title-welcome {
         font-size: 20px;
     }
 

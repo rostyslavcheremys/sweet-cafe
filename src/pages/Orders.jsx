@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { AppTable } from "../components/AppTable/AppTable.jsx";
+import { Loader, AppTable } from "../components";
 
-import { useGet } from "../hooks/useGet.js";
+import { useGet } from "../hooks";
 
-import { mapOrdersRows } from "../utils/mappers/mapOrdersRows.js";
-import { getErrorText } from "../utils/forms/getErrorText.js";
+import {
+    mapOrdersRows,
+    getErrorText
+} from "../utils";
 
-import { ORDERS_COLUMNS } from "../constants/tableColumns/ordersColumns.js";
+import { ORDERS_COLUMNS } from "../constants";
 
-import { OrdersAPI } from "../api/index.js";
+import { OrdersAPI } from "../api";
 
 export const Orders = () => {
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ export const Orders = () => {
             }
         >
             <div className="page">
-                <span className="page__label">Orders</span>
+                <span className="page__title">Orders</span>
 
                 <AppTable
                     rows={rows}

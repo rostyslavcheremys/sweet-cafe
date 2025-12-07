@@ -1,6 +1,4 @@
-import { CircularProgress } from "@mui/material";
-
-import "./Loader.css";
+import { CircularProgress } from "../../libs/mui.js";
 
 export const Loader = ({ isLoading, error, errorText, children }) => {
     if (isLoading) {

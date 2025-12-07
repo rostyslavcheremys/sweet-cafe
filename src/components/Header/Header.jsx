@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-import PersonIcon from "@mui/icons-material/Person";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
+import {
+    PersonIcon,
+    LocalMallIcon
+} from "../../libs/mui-icons.js";
 
-import { requireAuth } from "../../utils/auth/requireAuth.js";
-
-import "./Header.css";
+import { requireAuth } from "../../utils";
 
 export const Header = () => {
     const navigate = useNavigate();

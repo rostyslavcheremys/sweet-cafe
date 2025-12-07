@@ -1,20 +1,26 @@
 import {
-    Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton
-} from "@mui/material";
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    IconButton,
+} from "../../libs/mui.js";
 
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
-import SaveIcon from "@mui/icons-material/Save";
-import ImageIcon from "@mui/icons-material/Image";
+import {
+    AddIcon,
+    RemoveIcon,
+    DeleteIcon,
+    VisibilityIcon,
+    EditIcon,
+    SaveIcon,
+    ImageIcon
+} from "../../libs/mui-icons.js";
 
-import { FormField } from "../Forms/FormField.jsx";
+import { FormField } from "../";
 
-import { formatPrice } from "../../utils/formatters/formatPrice.js";
-
-import "./AppTable.css";
+import { formatPrice } from "../../utils";
 
 export const AppTable = ({
                              columns,

@@ -1,10 +1,8 @@
 import { useState } from "react";
 
-import { ItemDetails } from "../ItemDetails/ItemDetails.jsx";
+import { ItemDetails } from "../";
 
-import { formatPrice } from "../../utils/formatters/formatPrice.js";
-
-import "./ItemCards.css";
+import { formatPrice } from "../../utils";
 
 export const ItemCards = ({ items = [] }) => {
     const [selectedItem, setSelectedItem] = useState(null);

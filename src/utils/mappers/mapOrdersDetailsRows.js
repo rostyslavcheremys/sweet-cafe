@@ -1,4 +1,4 @@
-import { getUnit } from "../items/getUnit.js";
+import { getUnit } from "../";
 
 export const mapOrdersDetailsRows = (items = []) => {
     return items.map(item => ({

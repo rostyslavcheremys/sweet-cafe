@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import "./SpinningDonut.css";
-
 export const SpinningDonut = () => {
     const navigate = useNavigate();
 

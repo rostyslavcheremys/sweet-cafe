@@ -1,19 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Layout } from "./pages/Layout/Layout.jsx";
-import { Home } from "./pages/Home.jsx";
-import { Menu } from "./pages/Menu.jsx";
-import { Login } from "./pages/Login.jsx";
-import { Signup } from "./pages/Signup.jsx";
-import { Profile } from "./pages/Profile.jsx";
-import { Cart } from "./pages/Cart.jsx";
-import { Checkout } from "./pages/Checkout.jsx"
-import { Orders } from "./pages/Orders.jsx";
-import { OrderDetails } from "./pages/OrderDetails.jsx";
-import { Edit } from "./pages/Edit.jsx";
-import { Account } from "./pages/Account.jsx";
-
-import "./styles/pages.css";
+import {
+    Layout,
+    Home,
+    Menu,
+    Login,
+    Signup,
+    Profile,
+    Cart,
+    Checkout,
+    Orders,
+    OrderDetails,
+    Edit,
+    Account
+} from "./pages";
 
 export const App = () => {
     return (

@@ -1,17 +1,18 @@
 import { useParams } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { AppTable } from "../components/AppTable/AppTable.jsx";
+import { Loader, AppTable } from "../components";
 
-import { useGet } from "../hooks/useGet.js";
+import { useGet } from "../hooks";
 
-import { mapOrdersDetailsRows } from "../utils/mappers/mapOrdersDetailsRows.js";
-import { getTotalPrice } from "../utils/items/getTotalPrice.js";
-import { getErrorText } from "../utils/forms/getErrorText.js";
+import {
+    mapOrdersDetailsRows,
+    getTotalPrice,
+    getErrorText
+} from "../utils";
 
-import { ORDERS_DETAILS_COLUMNS } from "../constants/tableColumns/ordersDetailsColumns.js";
+import { ORDERS_DETAILS_COLUMNS } from "../constants";
 
-import { OrdersAPI } from "../api/index.js";
+import { OrdersAPI } from "../api";
 
 export const OrderDetails = () => {
     const { id } = useParams();
@@ -38,7 +39,7 @@ export const OrderDetails = () => {
             }
         >
             <div className="page">
-                <span className="page__label">{`Order: ${id}`}</span>
+                <span className="page__title">{`Order: ${id}`}</span>
 
                 <AppTable
                     rows={rows}

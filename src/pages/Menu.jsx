@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { Categories } from "../components/Categories/Categories.jsx";
-import { ItemCards } from "../components/ItemCards/ItemCards.jsx";
+import {
+    Loader,
+    Categories,
+    ItemCards
+} from "../components";
 
-import { useGet } from "../hooks/useGet.js";
+import { useGet } from "../hooks";
 
-import { CategoriesAPI, MenuAPI } from "../api/index.js";
+import { CategoriesAPI, MenuAPI } from "../api";
 
 export const Menu = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);

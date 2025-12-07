@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
+import { Loader, AppButton } from "../components";
 
-import { useGet } from "../hooks/useGet.js";
+import { useGet } from "../hooks";
 
 import { AuthService } from "../services/authService.js";
 
-import { AuthAPI } from "../api/index.js";
+import { AuthAPI } from "../api";
 
 export const Profile = () => {
     const navigate = useNavigate();
@@ -37,7 +36,7 @@ export const Profile = () => {
             errorText="Failed to load page!"
         >
             <div className="page">
-                <span className="page__label">
+                <span className="page__title">
                     Welcome{user?.name ? `, ${user.name}` : ""}!
                 </span>
 

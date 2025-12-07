@@ -1,21 +1,27 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { InputController } from "../components/FormControllers/InputController.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
-import { AuthRedirect } from "../components/AuthRedirect/AuthRedirect.jsx";
-import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
+import {
+    Loader,
+    InputController,
+    AppButton,
+    AuthRedirect,
+    MessageDialog
+} from "../components";
 
-import { usePost } from "../hooks/usePost.js";
-import { useMessageDialog } from "../hooks/useMessageDialog.js";
+import {
+    usePost,
+    useMessageDialog
+} from "../hooks";
 
-import { getUserValues } from "../utils/forms/getUserValues.js";
-import { submitFormData } from "../utils/forms/submitFormData.js";
-import { getEmailValidation } from "../utils/validations/email.js";
-import { getPasswordValidation } from "../utils/validations/password.js";
+import {
+    getUserValues,
+    submitFormData,
+    getEmailValidation,
+    getPasswordValidation
+} from "../utils";
 
-import { AuthAPI } from "../api/index.js";
+import { AuthAPI } from "../api";
 
 export const Login = () => {
     const {
@@ -57,7 +63,7 @@ export const Login = () => {
             errorText="Failed to load page!"
         >
             <div className="page">
-                <span className="page__label">Welcome!</span>
+                <span className="page__title">Welcome!</span>
 
                 <form className="page__forms" onSubmit={handleSubmit(onSubmitLogin)}>
                     <InputController

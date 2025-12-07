@@ -1,22 +1,28 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components/Loader/Loader.jsx";
-import { AppTable } from "../components/AppTable/AppTable.jsx";
-import { AppButton } from "../components/AppButton/AppButton.jsx";
-import { MessageDialog } from "../components/MessageDialog/MessageDialog.jsx";
+import {
+    Loader,
+    AppTable,
+    AppButton,
+    MessageDialog
+} from "../components";
 
-import { useMessageDialog } from "../hooks/useMessageDialog.js";
-import { useGet } from "../hooks/useGet.js";
-import { useCartActions } from "../hooks/useCartActions.js";
+import {
+    useMessageDialog,
+    useGet,
+    useCartActions
+} from "../hooks";
 
-import { mapCartRows } from "../utils/mappers/mapCartRows.js";
-import { getTotalPrice } from "../utils/items/getTotalPrice.js";
-import { getErrorText } from "../utils/forms/getErrorText.js";
+import {
+    mapCartRows,
+    getTotalPrice,
+    getErrorText
+} from "../utils";
 
-import { CART_COLUMNS } from "../constants/tableColumns/cartColumns.js";
+import { CART_COLUMNS } from "../constants";
 
-import { CartAPI } from "../api/index.js";
+import { CartAPI } from "../api";
 
 export const Cart = () => {
     const {
@@ -61,7 +67,7 @@ export const Cart = () => {
             }
         >
             <div className="page">
-                <span className="page__label">Cart</span>
+                <span className="page__title">Cart</span>
 
                 <AppTable
                     columns={CART_COLUMNS}

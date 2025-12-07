@@ -1,6 +1,4 @@
-import { Button } from "@mui/material";
-
-import "./AppButton.css";
+import { Button } from "../../libs/mui.js";
 
 export const AppButton = ({ label, type, onClick, disabled }) => {
     return (
