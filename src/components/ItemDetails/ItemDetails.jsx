@@ -16,19 +16,19 @@ import { useMessageDialog } from "../../hooks/useMessageDialog.js";
 import { getUnit } from "../../utils/items/getUnit.js";
 import { formatPrice } from "../../utils/formatters/formatPrice.js";
 
-import { addToCart } from "../../../api.js";
+import { CartAPI } from "../../api/index.js";
 
 import "./ItemDetails.css";
 
 export const ItemDetails = ({ open, item, onClose }) => {
-    const { postData, isLoading } = usePost((payload) => addToCart(payload.menu_item_id, payload.quantity));
-
     const {
         messageOpen,
         message,
         showMessage,
         handleMessageClose
     } = useMessageDialog();
+
+    const { postData, isLoading } = usePost((payload) => CartAPI.addItem(payload.menu_item_id, payload.quantity));
 
     const handleAddToCart = async () => {
         try {

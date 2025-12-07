@@ -11,6 +11,7 @@ import { useMessageDialog } from "../hooks/useMessageDialog.js";
 import { useGet } from "../hooks/useGet.js";
 import { usePost } from "../hooks/usePost.js";
 
+import { getErrorText } from "../utils/forms/getErrorText.js";
 import { getUserValues } from "../utils/forms/getUserValues.js";
 import { getUserPayload } from "../utils/payloads/getUserPayload.js";
 import { submitFormData } from "../utils/forms/submitFormData.js";
@@ -20,7 +21,7 @@ import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
 import { getOptionalPasswordValidation } from "../utils/validations/optionalPassword.js";
 import { getOptionalConfirmPasswordValidation } from "../utils/validations/optionalConfirmPassword.js";
 
-import { getUser, patchUser } from "../../api.js";
+import { AuthAPI } from "../api/index.js";
 
 export const Account = () => {
     const {
@@ -32,16 +33,27 @@ export const Account = () => {
 
     const navigate = useNavigate();
 
-    const { data: user, isLoading: loadingUser } = useGet(getUser, []);
+    const {
+        data: user,
+        isLoading: loadingUser,
+        error: errorUser
+    } = useGet(() => AuthAPI.me(), []);
 
-    const { control, handleSubmit, watch, reset } = useForm({
+    const {
+        control,
+        handleSubmit,
+        watch,
+        reset
+    } = useForm({
         defaultValues: getUserValues(user || {}),
         mode: "onChange"
     });
 
-    const { postData, isLoading: saving } = usePost((data) =>
-            patchUser(getUserPayload(data))
-    );
+    const {
+        postData,
+        isLoading: isSaving,
+        error: errorSaving
+    } = usePost((data) => AuthAPI.update(getUserPayload(data)));
 
     const onSave = submitFormData(
         postData,
@@ -57,7 +69,18 @@ export const Account = () => {
     }, [user, reset]);
 
     return (
-        <Loader isLoading={loadingUser || saving}>
+        <Loader
+            isLoading={loadingUser || isSaving}
+            error={errorUser || errorSaving}
+            errorText={
+                getErrorText({
+                    errorFirst: errorUser,
+                    textFirst: "Failed to load page!",
+                    errorSecond: errorSaving,
+                    textSecond: "Failed to save!"
+                })
+            }
+        >
             <div className="page">
                 <span className="page__label">Account</span>
 
@@ -113,7 +136,7 @@ export const Account = () => {
                         <AppButton
                             type="submit"
                             label="Save"
-                            disabled={loadingUser || saving}
+                            disabled={loadingUser || isSaving}
                         />
                     </div>
                 </form>

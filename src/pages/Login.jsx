@@ -15,7 +15,7 @@ import { submitFormData } from "../utils/forms/submitFormData.js";
 import { getEmailValidation } from "../utils/validations/email.js";
 import { getPasswordValidation } from "../utils/validations/password.js";
 
-import { login } from "../../api.js";
+import { AuthAPI } from "../api/index.js";
 
 export const Login = () => {
     const {
@@ -27,12 +27,19 @@ export const Login = () => {
 
     const navigate = useNavigate();
 
-    const { control, handleSubmit } = useForm({
+    const {
+        control,
+        handleSubmit
+    } = useForm({
         defaultValues: getUserValues(),
         mode: "onChange"
     });
 
-    const { postData, isLoading } = usePost(login);
+    const {
+        postData,
+        isLoading,
+        error
+    } = usePost((data) => AuthAPI.login(data));
 
     const onSubmitLogin = submitFormData(
         postData,
@@ -44,7 +51,11 @@ export const Login = () => {
     );
 
     return (
-        <Loader isLoading={isLoading}>
+        <Loader
+            isLoading={isLoading}
+            error={error}
+            errorText="Failed to load page!"
+        >
             <div className="page">
                 <span className="page__label">Welcome!</span>
 

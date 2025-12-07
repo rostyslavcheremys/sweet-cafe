@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Loader } from "../components/Loader/Loader.jsx";
@@ -11,10 +12,11 @@ import { useCartActions } from "../hooks/useCartActions.js";
 
 import { mapCartRows } from "../utils/mappers/mapCartRows.js";
 import { getTotalPrice } from "../utils/items/getTotalPrice.js";
+import { getErrorText } from "../utils/forms/getErrorText.js";
 
 import { CART_COLUMNS } from "../constants/tableColumns/cartColumns.js";
 
-import { getCart } from "../../api.js";
+import { CartAPI } from "../api/index.js";
 
 export const Cart = () => {
     const {
@@ -26,19 +28,37 @@ export const Cart = () => {
 
     const navigate = useNavigate();
 
-    const { data, isLoading, error } = useGet(getCart, []);
+    const {
+        data,
+        isLoading,
+        error
+    } = useGet(() => CartAPI.get(), []);
 
-    const { cartItems, increase, decrease, remove, clear } = useCartActions(data, showMessage);
+    const {
+        cartItems,
+        increase,
+        decrease,
+        remove,
+        clear
+    } = useCartActions(data, showMessage);
+
+    const rows = useMemo(() => mapCartRows(cartItems), [cartItems]);
+    const totalPrice = useMemo(() => getTotalPrice(rows), [rows]);
 
     const handleCheckout = () => navigate("/checkout");
-
-    const rows = mapCartRows(cartItems);
 
     return (
         <Loader
             isLoading={isLoading}
-            error={!!error || (!isLoading && rows.length === 0)}
-            errorText={error ? "Failed to load cart!" : "Your cart is empty!"}
+            error={!!error || !isLoading && rows.length === 0}
+            errorText={
+                getErrorText({
+                    errorFirst: error,
+                    textFirst: "Failed to load page!",
+                    errorSecond: !isLoading && rows.length === 0,
+                    textSecond: "Your cart is empty!"
+                })
+            }
         >
             <div className="page">
                 <span className="page__label">Cart</span>
@@ -46,7 +66,7 @@ export const Cart = () => {
                 <AppTable
                     columns={CART_COLUMNS}
                     rows={rows}
-                    totalPrice={getTotalPrice(rows)}
+                    totalPrice={totalPrice}
                     onIncreaseQuantity={increase}
                     onDecreaseQuantity={decrease}
                     onDeleteCartItem={remove}

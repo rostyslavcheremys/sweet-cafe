@@ -6,9 +6,7 @@ import { ItemCards } from "../components/ItemCards/ItemCards.jsx";
 
 import { useGet } from "../hooks/useGet.js";
 
-import { getMenuItemsByCategory, getCategories } from "../../api.js";
-
-import "../styles/pages.css";
+import { CategoriesAPI, MenuAPI } from "../api/index.js";
 
 export const Menu = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -17,11 +15,16 @@ export const Menu = () => {
         data: categories = [],
         isLoading: categoriesLoading,
         error: categoriesError
-    } = useGet(getCategories, []);
+    } = useGet(() => CategoriesAPI.getAll(), []);
 
-    const { data: items = [], isLoading: itemsLoading, error: itemsError } = useGet(
-        () => selectedCategory !== null ? getMenuItemsByCategory(selectedCategory) :
-            Promise.resolve([]), [selectedCategory]
+    const {
+        data: items = [],
+        isLoading: itemsLoading,
+        error: itemsError
+    } = useGet(() => selectedCategory !== null
+            ? MenuAPI.getByCategory(selectedCategory)
+            : Promise.resolve([]),
+        [selectedCategory]
     );
 
     useEffect(() => {
@@ -34,7 +37,7 @@ export const Menu = () => {
         <Loader
             isLoading={categoriesLoading || itemsLoading}
             error={categoriesError || itemsError}
-            errorText="Failed to load menu!"
+            errorText="Failed to load page!"
         >
             <div className="page">
                 <Categories

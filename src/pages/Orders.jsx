@@ -6,15 +6,20 @@ import { AppTable } from "../components/AppTable/AppTable.jsx";
 import { useGet } from "../hooks/useGet.js";
 
 import { mapOrdersRows } from "../utils/mappers/mapOrdersRows.js";
+import { getErrorText } from "../utils/forms/getErrorText.js";
 
 import { ORDERS_COLUMNS } from "../constants/tableColumns/ordersColumns.js";
 
-import { getOrders } from "../../api.js";
+import { OrdersAPI } from "../api/index.js";
 
 export const Orders = () => {
     const navigate = useNavigate();
 
-    const { data, isLoading, error } = useGet(getOrders, []);
+    const {
+        data,
+        isLoading,
+        error
+    } = useGet(() => OrdersAPI.getAll(), []);
 
     const rows = mapOrdersRows(data?.orders);
 
@@ -25,8 +30,15 @@ export const Orders = () => {
     return (
         <Loader
             isLoading={isLoading}
-            error={!!error || (!isLoading && rows.length === 0)}
-            errorText={error ? "Failed to load orders!" : "No orders found!"}
+            error={!!error || !isLoading && rows.length === 0}
+            errorText={
+                getErrorText({
+                    errorFirst: error,
+                    textFirst: "Failed to load page!",
+                    errorSecond: !isLoading && rows.length === 0,
+                    textSecond: "No orders found!"
+                })
+            }
         >
             <div className="page">
                 <span className="page__label">Orders</span>

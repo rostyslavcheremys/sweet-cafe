@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { updateCartItem, deleteCartItem, clearCart } from "../../api";
+
+import { CartAPI } from "../api/index.js";
 
 export const useCartActions = (data, showMessage) => {
     const [cartItems, setCartItems] = useState([]);
@@ -18,7 +19,7 @@ export const useCartActions = (data, showMessage) => {
 
         debounceRef.current[id] = setTimeout(async () => {
             try {
-                await updateCartItem(id, newQty);
+                await CartAPI.updateItem(id, newQty);
             } catch {
                 showMessage("Failed to update quantity!");
             }
@@ -40,7 +41,7 @@ export const useCartActions = (data, showMessage) => {
 
     const remove = async (itemId) => {
         try {
-            await deleteCartItem(itemId);
+            await CartAPI.removeItem(itemId);
             setCartItems(prev => prev.filter(i => i.id !== itemId));
         } catch {
             showMessage("Failed to delete item!");
@@ -49,7 +50,7 @@ export const useCartActions = (data, showMessage) => {
 
     const clear = async () => {
         try {
-            await clearCart();
+            await CartAPI.clear();
             setCartItems([]);
         } catch {
             showMessage("Failed to clear cart!");

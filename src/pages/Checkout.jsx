@@ -24,7 +24,7 @@ import { DELIVERY_OPTIONS } from "../constants/options/deliveryOptions.js";
 import { CITY_OPTIONS } from "../constants/options/cityOptions.js";
 import { PAYMENT_OPTIONS } from "../constants/options/paymentOptions.js";
 
-import { getCart } from "../../api.js";
+import { CartAPI } from "../api/index.js";
 
 export const Checkout = () => {
     const {
@@ -36,22 +36,33 @@ export const Checkout = () => {
 
     const navigate = useNavigate();
 
-    const { control, handleSubmit, watch } = useForm({
+    const {
+        control,
+        handleSubmit,
+        watch
+    } = useForm({
         defaultValues: getCheckoutValues,
         mode: "onChange"
     });
 
+    const {
+        data,
+        isLoading,
+        error
+    } = useGet(() => CartAPI.get(), []);
+
+    const {
+        onSubmitOrder,
+        isSubmitting
+    } = useCheckout(data?.cart_items, showMessage, navigate);
+
     const delivery = watch("delivery");
-
-    const { data, isLoading, error } = useGet(getCart, []);
-
-    const { onSubmitOrder, isSubmitting } = useCheckout(data?.cart_items, showMessage, navigate);
 
     return (
         <Loader
             isLoading={isLoading || isSubmitting}
             error={error}
-            errorText="Failed to load cart!"
+            errorText="Failed to load page!"
         >
             <div className="page">
                 <span className="page__label">Checkout</span>

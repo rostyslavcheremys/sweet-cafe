@@ -18,7 +18,7 @@ import { getPhoneNumberValidation } from "../utils/validations/phoneNumber.js";
 import { getPasswordValidation } from "../utils/validations/password.js";
 import { getConfirmPasswordValidation } from "../utils/validations/confirmPassword.js";
 
-import { signup } from "../../api.js";
+import { AuthAPI } from "../api/index.js";
 
 export const Signup = () => {
     const {
@@ -30,12 +30,20 @@ export const Signup = () => {
 
     const navigate = useNavigate();
 
-    const { control, handleSubmit, watch } = useForm({
+    const {
+        control,
+        handleSubmit,
+        watch
+    } = useForm({
         defaultValues: getUserValues(),
         mode: "onChange"
     });
 
-    const { postData, isLoading } = usePost(signup);
+    const {
+        postData,
+        isLoading,
+        error,
+    } = usePost(() => AuthAPI.signup());
 
     const onSubmitSignup = submitFormData(
         postData,
@@ -47,7 +55,11 @@ export const Signup = () => {
     );
 
     return (
-        <Loader isLoading={isLoading}>
+        <Loader
+            isLoading={isLoading}
+            error={error}
+            errorText="Failed to load page!"
+        >
             <div className="page">
                 <span className="page__label">Welcome!</span>
 

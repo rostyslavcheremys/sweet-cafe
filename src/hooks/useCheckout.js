@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getDeliveryPayload } from "../utils/payloads/getDeliveryPayload.js";
 import { getOrderPayload } from "../utils/payloads/getOrderPayload.js";
 
-import { createOrder, createDelivery, clearCart } from "../../api.js";
+import { OrdersAPI, DeliveryAPI, CartAPI } from "../api/index.js";
 
 export const useCheckout = (cartItems = [], showMessage, navigate) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,13 +18,13 @@ export const useCheckout = (cartItems = [], showMessage, navigate) => {
 
         try {
             const orderPayload = getOrderPayload(cartItems, formData);
-            const createdOrder = await createOrder(orderPayload);
+            const createdOrder = await OrdersAPI.create(orderPayload);
 
             const deliveryPayload = getDeliveryPayload(formData);
             console.log("Delivery payload:", deliveryPayload);
-            await createDelivery(createdOrder.order.id, deliveryPayload);
+            await DeliveryAPI.create(createdOrder.order.id, deliveryPayload);
 
-            await clearCart();
+            await CartAPI.clear();
 
             showMessage("Order placed successfully!", () => navigate("/menu"));
 

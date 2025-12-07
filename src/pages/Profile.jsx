@@ -5,13 +5,18 @@ import { AppButton } from "../components/AppButton/AppButton.jsx";
 
 import { useGet } from "../hooks/useGet.js";
 
-import { getUser } from "../../api.js";
 import { AuthService } from "../services/authService.js";
+
+import { AuthAPI } from "../api/index.js";
 
 export const Profile = () => {
     const navigate = useNavigate();
 
-    const { data: user, isLoading } = useGet(getUser, []);
+    const {
+        data: user,
+        isLoading,
+        error
+    } = useGet(() => AuthAPI.me(), []);
 
     const handleEdit = () => navigate("/edit");
 
@@ -25,13 +30,11 @@ export const Profile = () => {
         navigate("/login");
     };
 
-    console.log("Token:", AuthService.getToken());
-
     return (
         <Loader
             isLoading={isLoading}
-            /*error={error}
-            errorText="Failed to load profile!"*/
+            error={error}
+            errorText="Failed to load page!"
         >
             <div className="page">
                 <span className="page__label">
