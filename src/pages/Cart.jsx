@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
     Loader,
-    AppTable,
+    CartTable,
     AppButton,
     MessageDialog
 } from "../components";
@@ -69,15 +69,14 @@ export const Cart = () => {
             <div className="page">
                 <span className="page__title">Cart</span>
 
-                <AppTable
+                <CartTable
                     columns={CART_COLUMNS}
                     rows={rows}
                     totalPrice={totalPrice}
-                    onIncreaseQuantity={increase}
-                    onDecreaseQuantity={decrease}
-                    onDeleteCartItem={remove}
-                    onClearCartItems={clear}
-                    showTotal={true}
+                    onIncrease={increase}
+                    onDecrease={decrease}
+                    onRemove={remove}
+                    onClear={clear}
                 />
 
                 <div className="page__button">
