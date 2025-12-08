@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { Loader, AppTable } from "../components";
+import { Loader, OrdersTable } from "../components";
 
 import { useGet } from "../hooks";
 
@@ -44,10 +44,9 @@ export const Orders = () => {
             <div className="page">
                 <span className="page__title">Orders</span>
 
-                <AppTable
+                <OrdersTable
                     rows={rows}
                     columns={ORDERS_COLUMNS}
-                    showActions={true}
                     onViewOrder={(row) => handleOrderDetails(row.id)}
                 />
             </div>
