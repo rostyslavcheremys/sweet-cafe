@@ -69,7 +69,14 @@ export const ItemDetails = ({ open, item, onClose }) => {
                     </div>
                 </DialogTitle>
                 <DialogContent className="item-details__content">
-                    <img className="item-details__image" src={item.image_url || "images/placeholder.webp"} alt={item.name}/>
+                    <img
+                        className="item-details__image"
+                        src={item.image_url || "images/placeholder.webp"}
+                        alt={item.name}
+                        onError={(e) => {
+                            e.currentTarget.src = "images/placeholder.webp";
+                        }}
+                    />
                     <label className="item-details__description">{item.description}</label>
 
                     <div className="item-details__details">
