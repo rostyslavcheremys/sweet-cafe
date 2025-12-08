@@ -1,5 +1,6 @@
-![CI/CD](https://github.com/rostyslavcheremys/sweet-cafe/actions/workflows/ci-cd.yml/badge.svg)
-![Vercel](https://vercel.com/rostyslavcheremys/sweet-cafe-sand/badge)
+![CI/CD](https://github.com/rostyslavcheremys/sweet-cafe/actions/workflows/ci-cd.yml/badge.svg)  
+
+![Vercel](https://vercel.com/rostyslavcheremys/sweet-cafe/badge)
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
