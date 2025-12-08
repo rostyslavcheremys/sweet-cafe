@@ -58,7 +58,7 @@ export const Edit = () => {
     );
 
     useEffect(() => {
-        if (categories?.length && !selectedCategory) {
+        if (categories && categories.length > 0 && selectedCategory === null) {
             setSelectedCategory(categories[0].id);
         }
     }, [categories]);

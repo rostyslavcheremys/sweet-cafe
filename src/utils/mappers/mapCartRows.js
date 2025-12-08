@@ -1,7 +1,4 @@
-import {
-    getUnit,
-    formatPrice
-} from "../";
+import { getUnit } from "../";
 
 export const mapCartRows = (cartItems) => {
     return cartItems.map(item => ({
