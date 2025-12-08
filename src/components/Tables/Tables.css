@@ -1,4 +1,4 @@
-.app-table {
+.table {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,17 +6,17 @@
     max-width: max-content;
 }
 
-.app-table__container {
+.table__container {
     box-shadow: none;
     width: 100%;
     overflow-x: auto;
 }
 
-.app-table__container::-webkit-scrollbar {
+.table__container::-webkit-scrollbar {
     height: 0;
 }
 
-.app-table__cell {
+.table__cell {
     font-family: var(--second-family) !important;
     font-size: 16px !important;
     font-weight: 700 !important;
@@ -26,57 +26,65 @@
     white-space: nowrap;
 }
 
-.app-table__cell.head {
+.table__cell.head {
     color: var(--grey-light-color) !important;;
 }
 
-.app-table__cell.left  {
+.table__cell.left  {
     text-align: left !important;
 }
 
-.app-table__cell.total {
+.table__cell.total {
     color: var(--main-color) !important;;
 }
 
-.app-table__icon-container {
+.table__icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.app-table__quantity {
+.table__quantity {
     min-width: 20px;
     margin: 0 10px;
 }
 
-.app-table__button-icon {
+.table__button-icon {
     color: var(--main-color) !important;
 }
 
-.app-table__icon.total {
+.table__icon.total {
     color: var(--main-color) !important;;
 }
 
-.app-table__button-icon-delete {
+.table__button-icon-delete {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.app-table__image {
+.table__image {
     width: 50px;
     height: 50px;
     object-fit: cover;
 }
 
-.app-table__fields {
+.table__fields {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.table__tooltip-text {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: help;
+}
+
 @media (max-width: 768px) {
-    .app-table__cell {
+    .table__cell {
         font-size: 14px !important;
     }
 }
