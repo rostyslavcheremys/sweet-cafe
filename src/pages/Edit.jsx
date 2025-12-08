@@ -152,7 +152,7 @@ export const Edit = () => {
             errorText="Failed to load page!"
         >
             <div className="page">
-                <span className="page__title">Edit Menu</span>
+                <span className="page__title">Edit</span>
 
                 <div className="page__forms edit">
                     <FormSelect
@@ -163,23 +163,25 @@ export const Edit = () => {
                     />
                 </div>
 
-                <EditMenuTable
-                    controlEdit={editControl}
-                    controlNew={newControl}
-                    columns={EDIT_MENU_COLUMNS}
-                    rows={rows}
-                    editItem={editItemId}
-                    newItem={newItem}
-                    isAddingNew={isAddingNew}
-                    onEditItem={handleEdit}
-                    onCancelEdit={handleCancelEdit}
-                    onSaveItem={handleSave}
-                    onDeleteItem={handleDelete}
-                    onStartAddItem={handleStartAdd}
-                    onCancelAddItem={handleCancelAdd}
-                    onSaveAddItem={handleSaveAdd}
-                    allowAddItem
-                />
+                {selectedCategory && (
+                    <EditMenuTable
+                        controlEdit={editControl}
+                        controlNew={newControl}
+                        columns={EDIT_MENU_COLUMNS}
+                        rows={rows}
+                        editItem={editItemId}
+                        newItem={newItem}
+                        isAddingNew={isAddingNew}
+                        onEditItem={handleEdit}
+                        onCancelEdit={handleCancelEdit}
+                        onSaveItem={handleSave}
+                        onDeleteItem={handleDelete}
+                        onStartAddItem={handleStartAdd}
+                        onCancelAddItem={handleCancelAdd}
+                        onSaveAddItem={handleSaveAdd}
+                        allowAddItem
+                    />
+                )}
             </div>
 
             <MessageDialog
