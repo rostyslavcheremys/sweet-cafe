@@ -1,3 +1,5 @@
+import {useNavigate} from "react-router-dom";
+
 import {
     Dialog,
     DialogTitle,
@@ -33,9 +35,20 @@ export const ItemDetails = ({ open, item, onClose }) => {
         handleMessageClose
     } = useMessageDialog();
 
+    const navigate = useNavigate();
+
     const { postData, isLoading } = usePost((payload) => CartAPI.addItem(payload.menu_item_id, payload.quantity));
 
     const handleAddToCart = async () => {
+        const user = JSON.parse(localStorage.getItem("user") || null);
+
+        if (!user || !user.id) {
+            showMessage("Please log in or sign up to add item!", () => {
+                navigate("/login");
+            });
+            return;
+        }
+
         try {
             await postData({ menu_item_id: item.id, quantity: 1 });
             onClose();
