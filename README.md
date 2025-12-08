@@ -78,130 +78,18 @@ https://sweet-cafe-sand.vercel.app/
 
    The application will be available at `http://localhost:5173`
 
-### Available Scripts
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
-| `npm run deploy` | Deploy to GitHub Pages |
+Currently, two official plugins are available:
 
-## 🔧 Configuration
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### API Configuration
-The application communicates with a backend API through configured endpoints in `src/api/axios.js`:
+## React Compiler
 
-```javascript
-export const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL
-});
-```
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Authentication
-JWT-based authentication is handled through:
-- Local storage for token persistence
-- Axios interceptors for automatic token attachment
-- Protected routes with authentication guards
+## Expanding the ESLint configuration
 
-### Environment Variables
-- `VITE_API_URL` - Backend API base URL
-
-## 📱 Key Features Explained
-
-### Menu System
-- **Category Navigation**: Dynamic category loading and filtering
-- **Item Details**: Rich product information with images and descriptions
-- **Search & Filter**: Easy discovery of menu items
-
-### Shopping Cart
-- **Real-time Updates**: Immediate reflection of quantity changes
-- **Persistent Storage**: Cart state maintained across sessions
-- **Price Calculations**: Automatic totals and tax calculations
-
-### Order Management
-- **Checkout Process**: Step-by-step order placement
-- **Delivery Options**: Choice between pickup and courier delivery
-- **Payment Integration**: Support for card and cash payments
-- **Order Tracking**: Real-time order status updates
-
-### User Experience
-- **Responsive Design**: Optimized for mobile and desktop
-- **Loading States**: Visual feedback during API operations
-- **Error Handling**: Graceful error management with user feedback
-- **Form Validation**: Real-time validation with helpful error messages
-
-## 🎨 UI/UX Design
-
-### Design System
-- **Material-UI Components**: Consistent component library
-- **Custom Styling**: Brand-specific styling with CSS modules
-- **Typography**: Google Fonts (Titan One, Poppins)
-- **Color Scheme**: Warm, cafe-inspired color palette
-
-### Responsive Layout
-- **Mobile-First**: Optimized for mobile devices
-- **Breakpoints**: Responsive design for all screen sizes
-- **Touch-Friendly**: Large tap targets and intuitive navigation
-
-## 🔒 Security Features
-
-- **JWT Authentication**: Secure token-based authentication
-- **Protected Routes**: Route guards for authenticated pages
-- **Input Validation**: Client and server-side validation
-- **HTTPS Ready**: SSL/TLS encryption support
-
-## 🚀 Deployment
-
-### Production Build
-```bash
-npm run build
-```
-
-### GitHub Pages Deployment
-```bash
-npm run deploy
-```
-
-### Environment Setup for Production
-Ensure proper environment variables are set:
-- `VITE_API_URL` - Production API endpoint
-- Configure CORS settings on backend
-- Set up SSL certificates
-
-## 🧪 Testing
-
-### Running Tests
-```bash
-npm test
-```
-
-### ESLint
-```bash
-npm run lint
-```
-
-### Code Quality
-- ESLint configuration for React best practices
-- Consistent code formatting
-- Component architecture following React patterns
-
-## 📚 API Integration
-
-### Endpoints Used
-- **Authentication**: `/auth/login`, `/auth/signup`, `/auth/me`
-- **Menu**: `/menu_items`, `/categories`
-- **Cart**: `/cart` (GET, POST, PUT, DELETE)
-- **Orders**: `/orders` (GET, POST)
-- **Delivery**: `/deliveries`
-
-### Data Flow
-1. User actions trigger API calls through service layers
-2. Custom hooks manage loading states and error handling
-3. Response data is transformed through mapper utilities
-4. UI components receive clean, formatted data
-
----
-
-**Sweet Cafe** - Bringing the cafe experience to your fingertips! ☕️🍰
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# sweet-cafe-ui
