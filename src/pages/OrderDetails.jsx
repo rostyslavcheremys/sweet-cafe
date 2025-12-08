@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { Loader, AppTable } from "../components";
+import { Loader, OrderDetailsTable } from "../components";
 
 import { useGet } from "../hooks";
 
 import {
-    mapOrdersDetailsRows,
+    mapOrderDetailsRows,
     getTotalPrice,
     getErrorText
 } from "../utils";
@@ -23,7 +23,7 @@ export const OrderDetails = () => {
         error
     } = useGet(() => OrdersAPI.getById(id), [id]);
 
-    const rows = mapOrdersDetailsRows(order?.order_items || []);
+    const rows = mapOrderDetailsRows(order?.order_items || []);
 
     return (
         <Loader
@@ -41,12 +41,10 @@ export const OrderDetails = () => {
             <div className="page">
                 <span className="page__title">{`Order: ${id}`}</span>
 
-                <AppTable
+                <OrderDetailsTable
                     rows={rows}
                     columns={ORDERS_DETAILS_COLUMNS}
                     totalPrice={getTotalPrice(rows)}
-                    showTotal={true}
-                    showActions={false}
                 />
             </div>
         </Loader>

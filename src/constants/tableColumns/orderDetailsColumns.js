@@ -3,5 +3,5 @@ export const ORDERS_DETAILS_COLUMNS = [
     { field: "size", headerName: "Size" },
     { field: "price", headerName: "Price" },
     { field: "quantity", headerName: "Quantity" },
-    { field: "total", headerName: "Total" },
+    { field: "subtotal", headerName: "Total" },
 ];

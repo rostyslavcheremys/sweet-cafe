@@ -1,6 +1,6 @@
 import { getUnit } from "../";
 
-export const mapOrdersDetailsRows = (items = []) => {
+export const mapOrderDetailsRows = (items = []) => {
     return items.map(item => ({
         id: item.id,
         name: item.menu_item.name,
