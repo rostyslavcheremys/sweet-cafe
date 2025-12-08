@@ -2,10 +2,10 @@
 
 ![CI/CD](https://github.com/rostyslavcheremys/sweet-cafe/actions/workflows/ci-cd.yml/badge.svg)
 
+A modern, responsive web application for a cafe that allows customers to browse menu items, place orders, and manage their accounts. Built with React 19 and Vite, featuring a Material-UI design and comprehensive ordering system.
+
 ## Live Demo
 https://sweet-cafe-sand.vercel.app/
-
-A modern, responsive web application for a cafe that allows customers to browse menu items, place orders, and manage their accounts. Built with React 19 and Vite, featuring a Material-UI design and comprehensive ordering system.
 
 ## 🌟 Features
 
