@@ -1,97 +1,192 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-import { AppTable } from "../components/AppTable/AppTable.jsx";
-import { FormSelect } from "../components/Forms/FormSelect.jsx";
+import {FormSelect, Loader, EditMenuTable, MessageDialog} from "../components";
 
-import "../styles/pages.css";
+import {useGet, useMessageDialog} from "../hooks";
+
+import { getEditMenuValues } from "../utils/";
+
+import { EDIT_MENU_COLUMNS } from "../constants";
+
+import { CategoriesAPI, MenuAPI } from "../api";
 
 export const Edit = () => {
-    const [category, setCategory] = useState("");
-    const [editItem, setEditItem] = useState(null);
-    const [newItem, setNewItem] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [rows, setRows] = useState([]);
+    const [editItemId, setEditItemId] = useState(null);
+    const [isAddingNew, setIsAddingNew] = useState(false);
 
-    const [rows, setRows] = useState([
-        { id: 1, name: "Coca-Cola", size: "500 ml", price: 0.50 },
-        { id: 2, name: "Mineral Water", size: "500 ml", price: 0.50 },
-        { id: 3, name: "Pepsi", size: "500 ml", price: 0.55 },
-        { id: 4, name: "Coca-Cola", size: "500 ml", price: 0.50 },
-        { id: 5, name: "Mineral Water", size: "500 ml", price: 0.50 },
-        { id: 6, name: "Pepsi", size: "500 ml", price: 0.55 },
-        { id: 7, name: "Coca-Cola", size: "500 ml", price: 0.50 },
-        { id: 8, name: "Mineral Water", size: "500 ml", price: 0.50 },
-        { id: 9, name: "Pepsi", size: "500 ml", price: 0.55 },
-    ]);
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
 
-    const columns = [
-        { field: "name", headerName: "Name", align: "left" },
-        { field: "size", headerName: "Size" },
-        { field: "price", headerName: "Price" },
-        { field: "total_quantity", headerName: "Quantity" },
-        { field: "image", headerName: "Image" },
-    ];
+    const {
+        control: editControl,
+        reset: resetEditForm,
+        getValues: getEditValues,
+    } = useForm({ mode: "onChange" });
 
-    const handleEdit = (updatedRow) => {
-        setRows(rows.map(r => r.id === updatedRow.id ? updatedRow : r));
-        setEditItem(updatedRow.id);
-    }
+    const {
+        control: newControl,
+        watch: watchNew,
+        reset: resetNewForm,
+        getValues: getNewValues
+    } = useForm({
+        defaultValues: { new: getEditMenuValues() },
+        mode: "onChange",
+    });
 
-    const handleSave = (updatedData) => {
-        setRows(rows.map(r => r.id === editItem.id ? { ...r, ...updatedData } : r));
-        setEditItem(null);
-    }
+    const newItem = watchNew("new");
 
-    const handleDelete = (row) => {
-        setRows(rows.filter(r => r.id !== row.id));
-    }
+    const {
+        data: categories,
+        isLoading: categoriesLoading,
+        error: categoriesError
+    } = useGet(() => CategoriesAPI.getAll(), []);
+
+    const {
+        data: items,
+        isLoading: itemsLoading,
+        error: itemsError
+    } = useGet(() => selectedCategory
+        ? MenuAPI.getByCategory(selectedCategory)
+        : Promise.resolve([]), [selectedCategory]
+    );
+
+    useEffect(() => {
+        if (categories?.length && !selectedCategory) {
+            setSelectedCategory(categories[0].id);
+        }
+    }, [categories]);
+
+    useEffect(() => {
+        setRows(items || []);
+        setEditItemId(null);
+        setIsAddingNew(false);
+        resetNewForm({ new: getEditMenuValues(selectedCategory) });
+    }, [items, selectedCategory, resetNewForm]);
+
+    const handleEdit = (row) => {
+        setEditItemId(row.id);
+        resetEditForm({ [row.id]: row });
+    };
+
+    const handleSave = async (row) => {
+        try {
+            const updated = getEditValues()[row.id] || row;
+
+            const payload = {
+                ...updated,
+                price: Number(updated.price),
+                size: Number(updated.size) || 0,
+                available_quantity: Number(updated.available_quantity) || 0,
+            };
+
+            const res = await MenuAPI.update(row.id, payload);
+            const updatedItem = res?.menu_item || res;
+
+            setRows((prev) => prev.map((i) => (i.id === row.id ? updatedItem : i)));
+            setEditItemId(null);
+        } catch {
+            showMessage("Failed to save!");
+        }
+    };
+
+    const handleCancelEdit = () => {
+        setEditItemId(null);
+        resetEditForm();
+    };
+
+    const handleDelete = async (row) => {
+        if (!window.confirm("Delete this item?")) return;
+
+        try {
+            await MenuAPI.delete(row.id);
+            setRows((prev) => prev.filter((i) => i.id !== row.id));
+        } catch {
+            showMessage("Failed to delete!");
+        }
+    };
 
     const handleStartAdd = () => {
-        const emptyItem = columns.reduce((acc, col) => ({ ...acc, [col.field]: "" }), {});
-        setNewItem(emptyItem);
-    }
+        resetNewForm({ new: getEditMenuValues(selectedCategory) });
+        setIsAddingNew(true);
+    };
 
-    const handleCancelAdd = () => setNewItem(null);
+    const handleCancelAdd = () => {
+        setIsAddingNew(false);
+    };
 
-    const handleSaveAdd = () => {
-        if (!newItem.name || !newItem.size || !newItem.price) return;
-        const itemToAdd = { ...newItem, id: Date.now(), price: Number(newItem.price) };
-        setRows([...rows, itemToAdd]);
-        setNewItem(null);
-    }
+    const handleSaveAdd = async () => {
+        const values = getNewValues().new;
+
+        try {
+            const payload = {
+                ...values,
+                price: Number(values.price),
+                size: Number(values.size) || 0,
+                available_quantity: Number(values.available_quantity) || 0,
+                category_id: Number(selectedCategory),
+            };
+
+            const res = await MenuAPI.create(payload);
+            const createdItem = res?.menu_item || res;
+
+            setRows((prev) => [...prev, createdItem]);
+            resetNewForm({ new: getEditMenuValues(selectedCategory) });
+            setIsAddingNew(false);
+        } catch (e) {
+            console.error(e);
+            alert(e.message || "Помилка при створенні");
+        }
+    };
 
     return (
-        <div className="page ">
-            <span className="page__title">Edit</span>
+        <Loader
+            isLoading={categoriesLoading || itemsLoading}
+            error={categoriesError || itemsError}
+            errorText="Failed to load page!"
+        >
+            <div className="page">
+                <span className="page__title">Edit Menu</span>
 
-            <div className="page__forms edit">
-                <FormSelect
-                    label="Category"
-                    name="category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    options={[
-                        {value: "drinks", label: "Drinks"},
-                        {value: "ice-creams", label: "Ice Creams"},
-                        {value: "donuts", label: "Donuts"},
-                        {value: "cakes", label: "Cakes"},
-                        {value: "cupcakes", label: "Cupcakes"},
-                    ]}
+                <div className="page__forms edit">
+                    <FormSelect
+                        label="Category"
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(Number(e.target.value))}
+                        options={categories?.map((c) => ({ value: c.id, label: c.name })) || []}
+                    />
+                </div>
+
+                <EditMenuTable
+                    controlEdit={editControl}
+                    controlNew={newControl}
+                    columns={EDIT_MENU_COLUMNS}
+                    rows={rows}
+                    editItem={editItemId}
+                    newItem={newItem}
+                    isAddingNew={isAddingNew}
+                    onEditItem={handleEdit}
+                    onCancelEdit={handleCancelEdit}
+                    onSaveItem={handleSave}
+                    onDeleteItem={handleDelete}
+                    onStartAddItem={handleStartAdd}
+                    onCancelAddItem={handleCancelAdd}
+                    onSaveAddItem={handleSaveAdd}
+                    allowAddItem
                 />
             </div>
 
-            <AppTable
-                columns={columns}
-                rows={rows}
-                editItem={editItem}
-                newItem={newItem}
-                setNewItem={setNewItem}
-                onEditItem={handleEdit}
-                onSaveItem={handleSave}
-                onDeleteItem={handleDelete}
-                onStartAddItem={handleStartAdd}
-                onCancelAddItem={handleCancelAdd}
-                onSaveAddItem={handleSaveAdd}
-                allowAddItem={true}
+            <MessageDialog
+                open={messageOpen}
+                handleClose={handleMessageClose}
+                message={message}
             />
-        </div>
+        </Loader>
     );
 };
