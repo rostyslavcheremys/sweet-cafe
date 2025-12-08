@@ -54,8 +54,8 @@ export const Signup = () => {
     const onSubmitSignup = submitFormData(
         postData,
         showMessage,
-        "Signup successful!",
-        "Signup failed!",
+        "Sign up successful!",
+        "Sign up failed!",
         navigate,
         "/menu"
     );

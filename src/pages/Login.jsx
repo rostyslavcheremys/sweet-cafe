@@ -50,8 +50,8 @@ export const Login = () => {
     const onSubmitLogin = submitFormData(
         postData,
         showMessage,
-        "Login successful!",
-        "Login failed!",
+        "Log in successful!",
+        "Log in failed!",
         navigate,
         "/menu"
     );
