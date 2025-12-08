@@ -1,5 +1,5 @@
 import "./AppButton/AppButton.css";
-import "./AppTable/AppTable.css";
+import "./Tables/Tables.css";
 import "./AuthRedirect/AuthRedirect.css";
 import "./Categories/Categories.css";
 import "./Footer/Footer.css";

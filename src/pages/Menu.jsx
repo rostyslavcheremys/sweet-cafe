@@ -20,17 +20,16 @@ export const Menu = () => {
     } = useGet(() => CategoriesAPI.getAll(), []);
 
     const {
-        data: items = [],
+        data: items,
         isLoading: itemsLoading,
         error: itemsError
-    } = useGet(() => selectedCategory !== null
-            ? MenuAPI.getByCategory(selectedCategory)
-            : Promise.resolve([]),
-        [selectedCategory]
+    } = useGet(() => selectedCategory
+        ? MenuAPI.getByCategory(selectedCategory)
+        : Promise.resolve([]), [selectedCategory]
     );
 
     useEffect(() => {
-        if (categories && categories.length > 0 && selectedCategory === null) {
+        if (categories?.length && !selectedCategory) {
             setSelectedCategory(categories[0].id);
         }
     }, [categories]);
