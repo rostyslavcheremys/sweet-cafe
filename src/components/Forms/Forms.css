@@ -20,11 +20,6 @@
     width: 400px;
 }
 
-.form__field.app-table__edit-field,
-.form__field.app-table__add-field {
-    width: 200px;
-}
-
 .form__field .MuiOutlinedInput-root {
     font-family: var(--second-family);
     color: var(--grey-dark-color);
