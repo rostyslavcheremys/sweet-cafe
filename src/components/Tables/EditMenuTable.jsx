@@ -65,7 +65,8 @@ export const EditMenuTable = ({
                                             <InputController
                                                 control={controlNew}
                                                 name={`new.${col.field}`}
-                                                className="table__add-field"
+                                                label={col.headerName}
+                                                className="table__add-field name"
                                                 defaultValue={newItem?.[col.field] ?? ""}
                                                 rules={getEditMenu[col.field] ?? {}}
                                             />
@@ -103,7 +104,8 @@ export const EditMenuTable = ({
                                                     <InputController
                                                         control={controlEdit}
                                                         name={`${row.id}.${col.field}`}
-                                                        className="table__add-field"
+                                                        label={col.headerName}
+                                                        className="table__add-field name"
                                                         defaultValue={String(row[col.field] ?? "")}
                                                         rules={getEditMenu[col.field] ?? {}}
                                                     />
