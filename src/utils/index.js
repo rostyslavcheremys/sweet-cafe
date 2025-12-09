@@ -25,6 +25,7 @@ export * from "./payloads/getUserPayload.js";
 export * from "./validations/address.js";
 export * from "./validations/city.js";
 export * from "./validations/confirmPassword.js";
+export * from "./validations/editMenu.js";
 export * from "./validations/delivery.js";
 export * from "./validations/email.js";
 export * from "./validations/name.js";

@@ -19,7 +19,7 @@ import {
 
 import { InputController, ImageCell } from "../";
 
-import { formatPrice } from "../../utils";
+import { formatPrice, getEditMenu } from "../../utils";
 
 export const EditMenuTable = ({
                                   columns = [],
@@ -67,6 +67,7 @@ export const EditMenuTable = ({
                                                 name={`new.${col.field}`}
                                                 className="table__add-field"
                                                 defaultValue={newItem?.[col.field] ?? ""}
+                                                rules={getEditMenu[col.field] ?? {}}
                                             />
                                         </div>
                                     </TableCell>
@@ -104,6 +105,7 @@ export const EditMenuTable = ({
                                                         name={`${row.id}.${col.field}`}
                                                         className="table__add-field"
                                                         defaultValue={String(row[col.field] ?? "")}
+                                                        rules={getEditMenu[col.field] ?? {}}
                                                     />
                                                 </div>
                                             ) : col.field === "description" ? (
