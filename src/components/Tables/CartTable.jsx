@@ -14,7 +14,7 @@ import {
     DeleteIcon
 } from "../../libs/mui-icons.js";
 
-import { formatPrice } from "../../utils";
+import {formatPrice, getDiscountPrice} from "../../utils";
 
 export const CartTable = ({ columns, rows, totalPrice, onIncrease, onDecrease, onRemove, onClear }) => {
     return (
@@ -32,38 +32,43 @@ export const CartTable = ({ columns, rows, totalPrice, onIncrease, onDecrease, o
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.id}>
-                                {columns.map((col) => (
-                                    <TableCell key={col.field} className={`table__cell ${col.align || ''}`}>
-                                        {col.field === "quantity" ? (
-                                            <div className="table__icon-container">
-                                                <IconButton className="table__button-icon" onClick={() => onDecrease(row.id)}>
-                                                    <RemoveIcon />
-                                                </IconButton>
-                                                <span className="table__quantity">{row.quantity}</span>
-                                                <IconButton className="table__button-icon" onClick={() => onIncrease(row.id)}>
-                                                    <AddIcon />
-                                                </IconButton>
-                                            </div>
-                                        ) : col.field === "price" ? (
-                                            formatPrice(row.price)
-                                        ) : col.field === "total" ? (
-                                            formatPrice(row.price * row.quantity)
-                                        ) : (
-                                            row[col.field]
-                                        )}
+                        {rows.map((row) => {
+                            const hasDiscount = row.discounted > 0 && row.discounted <= 100;
+                            const finalPrice = getDiscountPrice(row.price, row.discounted);
+
+                            return(
+                                <TableRow key={row.id}>
+                                    {columns.map((col) => (
+                                        <TableCell key={col.field} className={`table__cell ${col.align || ''}`}>
+                                            {col.field === "quantity" ? (
+                                                <div className="table__icon-container">
+                                                    <IconButton className="table__button-icon" onClick={() => onDecrease(row.id)}>
+                                                        <RemoveIcon />
+                                                    </IconButton>
+                                                    <span className="table__quantity">{row.quantity}</span>
+                                                    <IconButton className="table__button-icon" onClick={() => onIncrease(row.id)}>
+                                                        <AddIcon />
+                                                    </IconButton>
+                                                </div>
+                                            ) : col.field === "price" ? (
+                                                formatPrice(hasDiscount ? finalPrice : row.price)
+                                            ) : col.field === "total" ? (
+                                                formatPrice((hasDiscount ? finalPrice : row.price) * row.quantity)
+                                            ) : (
+                                                row[col.field]
+                                            )}
+                                        </TableCell>
+                                    ))}
+                                    <TableCell>
+                                        <div className="table__icon-container">
+                                            <IconButton onClick={() => onRemove(row.id)}>
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </div>
                                     </TableCell>
-                                ))}
-                                <TableCell>
-                                    <div className="table__icon-container">
-                                        <IconButton onClick={() => onRemove(row.id)}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                                </TableRow>
+                            );
+                        })}
                         <TableRow>
                             <TableCell className="table__cell head left total">Total Price</TableCell>
                             <TableCell className="head "/>

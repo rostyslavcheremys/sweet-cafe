@@ -30,7 +30,17 @@
     color: var(--white-color);
     padding: 4px 6px;
     border-radius:  4px 12px 4px 4px;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+.item-card .discount {
+    position: absolute;
+    font-family: var(--second-family);
+    background: red;
+    color: var(--white-color);
+    padding: 4px 6px;
+    border-radius: 12px 4px 4px 4px;
+    font-size: 16px;
 }
 
 .card__image {

@@ -22,7 +22,7 @@ import {
 
 import {
     getUnit,
-    formatPrice
+    formatPrice, getDiscountPrice
 } from "../../utils";
 
 import { CartAPI } from "../../api";
@@ -57,6 +57,9 @@ export const ItemDetails = ({ open, item, onClose }) => {
         }
     };
 
+    const hasDiscount = item.discount > 0 && item.discount <= 100;
+    const finalPrice = getDiscountPrice(item.price, item.discount);
+
     return (
         <>
             <Dialog className="item-details" open={open} onClose={onClose}>
@@ -81,7 +84,9 @@ export const ItemDetails = ({ open, item, onClose }) => {
 
                     <div className="item-details__details">
                         <span className="item-details__label">{item.size} {getUnit(item)}</span>
-                        <span className="item-details__label">{formatPrice(item.price)}</span>
+                        <span className="item-details__label">
+                            {hasDiscount ? formatPrice(finalPrice) : formatPrice(item.price)}
+                        </span>
                     </div>
                 </DialogContent>
                 <DialogActions className="item-details__actions">

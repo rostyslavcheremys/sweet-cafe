@@ -12,6 +12,7 @@ export * from "./forms/getErrorText.js";
 export * from "./forms/getUserValues.js";
 export * from "./forms/submitFormData.js";
 
+export * from "./items/getDiscountPrice.js"
 export * from "./items/getTotalPrice.js";
 export * from "./items/getUnit.js";
 

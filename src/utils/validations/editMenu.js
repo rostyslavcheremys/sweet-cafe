@@ -27,6 +27,22 @@ export const getEditMenu = {
         },
     },
 
+    discount: {
+        required: "Discount is required",
+        min: {
+            value: 0,
+            message: "Discount cannot be less than 0"
+        },
+        max: {
+            value: 100,
+            message: "Discount cannot be greater than 100"
+        },
+        pattern: {
+            value: /^(100|[0-9]{1,2})$/,
+            message: "Discount must be a number from 0 to 100"
+        },
+    },
+
     size: {
         required: "Size is required",
         pattern: {

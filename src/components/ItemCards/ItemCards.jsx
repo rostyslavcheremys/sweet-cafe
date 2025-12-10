@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { ItemDetails } from "../";
 
-import { formatPrice } from "../../utils";
+import { formatPrice, getDiscountPrice } from "../../utils";
 
 export const ItemCards = ({ items = [] }) => {
     const [selectedItem, setSelectedItem] = useState(null);
@@ -12,6 +12,8 @@ export const ItemCards = ({ items = [] }) => {
             <div className="item-cards">
                 {items.map((item) => {
                     const isAvailable = item.available !== false;
+                    const hasDiscount = item.discount > 0 && item.discount <= 100;
+                    const finalPrice = getDiscountPrice(item.price, item.discount);
 
                     return (
                         <div
@@ -20,6 +22,7 @@ export const ItemCards = ({ items = [] }) => {
                             onClick={() => isAvailable && setSelectedItem(item)}
                         >
                             <div className="card">
+                                {hasDiscount && <span className="discount">{item.discount}%</span>}
                                 <img
                                     className="card__image"
                                     src={item.image_url || "images/placeholder.webp"}
@@ -29,8 +32,10 @@ export const ItemCards = ({ items = [] }) => {
                                     }}
                                 />
                                 <div className="card__content">
-                                    <label className="card__label">{item.name}</label>
-                                    <label className="card__label">{formatPrice(item.price)}</label>
+                                    <span className="card__label">{item.name}</span>
+                                    <span className="card__label">
+                                        {hasDiscount ? formatPrice(finalPrice) : formatPrice(item.price)}
+                                    </span>
                                 </div>
                                 {!isAvailable && <span className="out-of-stock">Out of stock</span>}
                             </div>
