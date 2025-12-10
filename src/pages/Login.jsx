@@ -15,6 +15,7 @@ import {
 } from "../hooks";
 
 import {
+    googleAuth,
     getUserValues,
     submitFormData,
     getEmailValidation,
@@ -88,11 +89,19 @@ export const Login = () => {
                         linkTo="/signup"
                     />
 
-                    <div className="page__button">
+                    <div className="page__buttons">
                         <AppButton
                             type="submit"
                             label="Log In"
                             disabled={isLoading}
+                        />
+
+                        <span className="page__separator">OR</span>
+
+                        <AppButton
+                            label="Google"
+                            disabled={isLoading}
+                            onClick={() => googleAuth(showMessage)}
                         />
                     </div>
                 </form>

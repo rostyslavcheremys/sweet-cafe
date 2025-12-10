@@ -45,8 +45,25 @@ main {
 .page__button {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     margin-top: 30px;
+}
+
+.page__buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.page__separator {
+    font-family: var(--second-family);
+    color: var(--grey-dark-color);
+    font-size: 15px;
+    padding: 7px 0;
 }
 
 .page__forms.edit {
@@ -77,6 +94,10 @@ main {
 @media (max-width: 600px) {
     main {
         margin: 30px 20px;
+    }
+
+    .page__separator {
+        font-size: 14px;
     }
 
     .page__title-welcome {

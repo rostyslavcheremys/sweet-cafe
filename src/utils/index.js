@@ -1,3 +1,4 @@
+export * from "./auth/googleAuth.js";
 export * from "./auth/requireAuth.js";
 
 export * from "./formatters/formatDate.js";

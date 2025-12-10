@@ -12,7 +12,8 @@ import {
     Orders,
     OrderDetails,
     Edit,
-    Account
+    Account,
+    AuthCallback
 } from "./pages";
 
 export const App = () => {
@@ -31,6 +32,7 @@ export const App = () => {
                     <Route path="/order/:id" element={<OrderDetails />} />
                     <Route path="/edit" element={<Edit />} />
                     <Route path="/account" element={<Account />} />
+                    <Route path="/auth/callback" element={<AuthCallback />} />
                 </Route>
             </Routes>
         </BrowserRouter>
