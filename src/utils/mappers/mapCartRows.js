@@ -8,6 +8,6 @@ export const mapCartRows = (cartItems) => {
         price: item.menu_item.price,
         discount: item.menu_item.discount,
         quantity: item.total_quantity,
-        total: item.total_quantity * item.menu_item.price
+        total: item.total_quantity * item.menu_item
     }));
 }
