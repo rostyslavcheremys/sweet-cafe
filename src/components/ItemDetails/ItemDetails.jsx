@@ -42,6 +42,8 @@ export const ItemDetails = ({ open, item, onClose }) => {
     const handleAddToCart = async () => {
         const user = JSON.parse(localStorage.getItem("user") || null);
 
+        console.log("USER FROM LOCAL STORAGE:", localStorage.getItem("user"));
+
         if (!user || !user.id) {
             showMessage("Please log in or sign up to add item!", () => {
                 navigate("/login");
