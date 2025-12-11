@@ -14,7 +14,7 @@ import {
     DeleteIcon
 } from "../../libs/mui-icons.js";
 
-import {formatPrice, getDiscountPrice} from "../../utils";
+import { formatPrice, getDiscountPrice } from "../../utils";
 
 export const CartTable = ({ columns, rows, totalPrice, onIncrease, onDecrease, onRemove, onClear }) => {
     return (
@@ -33,8 +33,8 @@ export const CartTable = ({ columns, rows, totalPrice, onIncrease, onDecrease, o
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => {
-                            const hasDiscount = row.discounted > 0 && row.discounted <= 100;
-                            const finalPrice = getDiscountPrice(row.price, row.discounted);
+                            const hasDiscount = row.discount > 0 && row.discount <= 100;
+                            const finalPrice = getDiscountPrice(row.price, row.discount);
 
                             return(
                                 <TableRow key={row.id}>
